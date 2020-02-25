@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {CardsProvider} from "./Components/CardsContext";
+import {DeckProvider} from "./DataStore/DeckContext";
 
 ReactDOM.render(<CardsProvider><App /></CardsProvider>, document.getElementById('root'));
 

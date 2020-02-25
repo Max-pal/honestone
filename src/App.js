@@ -1,32 +1,27 @@
 import React, {useContext} from 'react';
 import {CardsContext} from "./Components/CardsContext";
-import Card from './Components/Card'
 import {DeckProvider} from "./DataStore/DeckContext";
+import CardList from "./Components/CardList";
+import {BrowserRouter, Link, Route} from 'react-router-dom';
+import MyDecks from "./Components/MyDecks";
 
 
 function App() {
-    const [cards, setPage, page] = useContext(CardsContext);
+    const {cards} = useContext(CardsContext);
 
     return (
-        <div className="App">
-            <h2>Page: {page}</h2>
+        <BrowserRouter>
+            <Link to="/mydecks">MY DECKS</Link>
             <DeckProvider>
-                {cards && cards.map(card => <Card key={card.id} card={card}/>)}
+                <div className="App">
+                    <Route path="/" exact component={() => <CardList cards={cards}/>}/>
+                    <Route path="/mydecks" component={() => <MyDecks/>}/>
+
+                </div>
             </DeckProvider>
-            <button onClick={() => {
-                if (page <= 1) setPage(60);
-                else setPage(page - 1)
-            }}>prev page
-            </button>
-
-            <button onClick={() => {
-                if (page >= 60) setPage(1);
-                else setPage(page + 1)
-            }}>next page
-            </button>
-        </div>
-
-    );
+        </BrowserRouter>
+    )
+        ;
 }
 
 export default App;

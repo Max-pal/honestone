@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc08f0a6-86dd-4233-a5ce-3f02303aebb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DataStore/DeckContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/CardList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/MyDecks.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataStore/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CardsContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CardsContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataStore/DeckContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataStore/DeckContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +38,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -66,7 +72,7 @@
       <updated>1582624402898</updated>
       <workItem from="1582624405167" duration="2087000" />
       <workItem from="1582631132439" duration="4429000" />
-      <workItem from="1582637963826" duration="7188000" />
+      <workItem from="1582637963826" duration="10440000" />
     </task>
     <task id="LOCAL-00001" summary="all cards are loaded into context">
       <created>1582631659302</created>
@@ -82,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582643381941</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="click on card to add to Deck">
+      <created>1582646829782</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582646829782</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,36 +104,41 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="all cards are loaded into context" />
     <MESSAGE value="NEW API NEW ME" />
-    <option name="LAST_COMMIT_MESSAGE" value="NEW API NEW ME" />
+    <MESSAGE value="click on card to add to Deck" />
+    <option name="LAST_COMMIT_MESSAGE" value="click on card to add to Deck" />
   </component>
   <component name="WindowStateProjectService">
     <state x="615" y="323" width="747" height="467" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1582630311411">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="615" y="323" width="747" height="467" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582630311411" />
-    <state x="554" y="59" width="869" height="996" key="CommitChangelistDialog2" timestamp="1582643381532">
+    <state x="554" y="59" width="869" height="996" key="CommitChangelistDialog2" timestamp="1582646829589">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="554" y="59" width="869" height="996" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1582643381532" />
-    <state width="1830" height="252" key="GridCell.Tab.0.bottom" timestamp="1582640073219">
+    <state x="554" y="59" width="869" height="996" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1582646829589" />
+    <state x="776" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1582649878033">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="252" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582640073219" />
-    <state width="1830" height="252" key="GridCell.Tab.0.center" timestamp="1582640073219">
+    <state x="776" y="311" width="424" height="491" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1582649878033" />
+    <state width="1830" height="252" key="GridCell.Tab.0.bottom" timestamp="1582649881229">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="252" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582640073219" />
-    <state width="1830" height="252" key="GridCell.Tab.0.left" timestamp="1582640073218">
+    <state width="1830" height="252" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582649881229" />
+    <state width="1830" height="252" key="GridCell.Tab.0.center" timestamp="1582649881227">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="252" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582640073218" />
-    <state width="1830" height="252" key="GridCell.Tab.0.right" timestamp="1582640073219">
+    <state width="1830" height="252" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582649881227" />
+    <state width="1830" height="252" key="GridCell.Tab.0.left" timestamp="1582649881226">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="252" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582640073219" />
-    <state x="588" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2" timestamp="1582643386918">
+    <state width="1830" height="252" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582649881226" />
+    <state width="1830" height="252" key="GridCell.Tab.0.right" timestamp="1582649881228">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1582643386918" />
+    <state width="1830" height="252" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582649881228" />
+    <state x="588" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2" timestamp="1582646833559">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="588" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1582646833559" />
   </component>
 </project>

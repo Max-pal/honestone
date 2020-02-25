@@ -13,7 +13,7 @@ export function CardsProvider(props) {
     },[page]);
 
     return(
-        <CardsContext.Provider value={[cards,setPage,page]}>
+        <CardsContext.Provider value={{cards,setPage,page}}>
             {props.children}
         </CardsContext.Provider>
     )
