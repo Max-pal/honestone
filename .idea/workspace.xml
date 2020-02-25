@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc08f0a6-86dd-4233-a5ce-3f02303aebb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DataStore/Users.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataStore/DeckContext.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/CardsContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CardsContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataStore/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Card.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +66,7 @@
       <updated>1582624402898</updated>
       <workItem from="1582624405167" duration="2087000" />
       <workItem from="1582631132439" duration="4429000" />
-      <workItem from="1582637963826" duration="5369000" />
+      <workItem from="1582637963826" duration="7188000" />
     </task>
     <task id="LOCAL-00001" summary="all cards are loaded into context">
       <created>1582631659302</created>
@@ -78,7 +75,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582631659302</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="NEW API NEW ME">
+      <created>1582643381941</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582643381941</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -86,17 +90,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="all cards are loaded into context" />
-    <option name="LAST_COMMIT_MESSAGE" value="all cards are loaded into context" />
+    <MESSAGE value="NEW API NEW ME" />
+    <option name="LAST_COMMIT_MESSAGE" value="NEW API NEW ME" />
   </component>
   <component name="WindowStateProjectService">
     <state x="615" y="323" width="747" height="467" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1582630311411">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="615" y="323" width="747" height="467" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582630311411" />
-    <state x="554" y="59" width="869" height="996" key="CommitChangelistDialog2" timestamp="1582631658777">
+    <state x="554" y="59" width="869" height="996" key="CommitChangelistDialog2" timestamp="1582643381532">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="554" y="59" width="869" height="996" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1582631658777" />
+    <state x="554" y="59" width="869" height="996" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1582643381532" />
     <state width="1830" height="252" key="GridCell.Tab.0.bottom" timestamp="1582640073219">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -113,9 +118,9 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1830" height="252" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582640073219" />
-    <state x="588" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2" timestamp="1582631663305">
+    <state x="588" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2" timestamp="1582643386918">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1582631663305" />
+    <state x="588" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1582643386918" />
   </component>
 </project>
