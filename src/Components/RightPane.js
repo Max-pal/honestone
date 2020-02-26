@@ -12,7 +12,11 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    position: "sticky",
+    top: 0,
+    overflow: "auto",
+    maxHeight: "450px"
   }
 }));
 

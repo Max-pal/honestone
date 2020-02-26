@@ -9,9 +9,8 @@ export default function CroppedCardList(props) {
     <React.Fragment>
       {cardsInDeck &&
         cardsInDeck.map((card) => (
-          <CroppedCard key={card.id} croppedImage={card.croppedImage} />
+          <CroppedCard key={card.id} croppedImage={card.cropImage} />
         ))}
-      ;
     </React.Fragment>
   );
 }

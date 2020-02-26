@@ -15,14 +15,9 @@ function App() {
           <React.Fragment>
             <div className='App'>
               <div>
-                <Grid
-                  container
-                  direction='row'
-                  justify='center'
-                  alignItems='center'
-                >
+                <Grid container direction='row' justify='top' alignItems='top'>
                   <LeftPane />
-                  <RightPane />
+                  <RightPane position='sticky' />
                 </Grid>
               </div>
             </div>
