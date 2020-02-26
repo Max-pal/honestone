@@ -1,27 +1,36 @@
-import React, {useContext} from 'react';
-import {CardsContext} from "./Components/CardsContext";
-import {DeckProvider} from "./DataStore/DeckContext";
-import CardList from "./Components/CardList";
-import {BrowserRouter, Link, Route} from 'react-router-dom';
-import MyDecks from "./Components/MyDecks";
-
+import React, { useContext } from "react";
+import { BrowserRouter, Link } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
+import { CardsContext, CardsProvider } from "./Components/CardsContext";
+import { DeckProvider } from "./DataStore/DeckContext";
+import LeftPane from "./Components/LeftPane";
+import RightPane from "./Components/RightPane";
 
 function App() {
-    const {cards} = useContext(CardsContext);
-
-    return (
-        <BrowserRouter>
-            <Link to="/mydecks">MY DECKS</Link>
-            <DeckProvider>
-                <div className="App">
-                    <Route path="/" exact component={() => <CardList cards={cards}/>}/>
-                    <Route path="/mydecks" component={() => <MyDecks/>}/>
-
-                </div>
-            </DeckProvider>
-        </BrowserRouter>
-    )
-        ;
+  return (
+    <BrowserRouter>
+      <DeckProvider>
+        <CardsProvider>
+          <Link to='/mydecks'>MY DECKS</Link>
+          <React.Fragment>
+            <div className='App'>
+              <div>
+                <Grid
+                  container
+                  direction='row'
+                  justify='center'
+                  alignItems='center'
+                >
+                  <LeftPane />
+                  <RightPane />
+                </Grid>
+              </div>
+            </div>
+          </React.Fragment>
+        </CardsProvider>
+      </DeckProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
