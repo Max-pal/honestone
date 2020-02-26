@@ -4,10 +4,6 @@ export const DeckContext = createContext();
 
 export function DeckProvider(props) {
     const [cardsInDeck,setCardsInDeck] = useState(localStorage.getItem("deck") || []);
-    console.log("im rendering");
-    useEffect(()=>{
-        console.log("im using effect")
-    },[cardsInDeck]);
 
     return(
         <DeckContext.Provider value={[cardsInDeck,setCardsInDeck]}>
