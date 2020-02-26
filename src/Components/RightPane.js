@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import { DeckContext } from "../DataStore/DeckContext";
 import CroppedCardList from "./CroppedCardList";
 
 const useStyles = makeStyles((theme) => ({

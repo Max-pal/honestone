@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LeftPane() {
   const classes = useStyles();
 
-  const { cards, setCards } = useContext(CardsContext);
+  const { cards } = useContext(CardsContext);
 
   return (
     <Grid item xs={8}>

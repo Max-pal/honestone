@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import { CardsContext, CardsProvider } from "./Components/CardsContext";
+import { CardsProvider } from "./Components/CardsContext";
 import { DeckProvider } from "./DataStore/DeckContext";
 import LeftPane from "./Components/LeftPane";
 import RightPane from "./Components/RightPane";
