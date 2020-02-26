@@ -15,7 +15,7 @@ function App() {
           <React.Fragment>
             <div className='App'>
               <div>
-                <Grid container direction='row' justify='top' alignItems='top'>
+                <Grid container direction='row'>
                   <LeftPane />
                   <RightPane position='sticky' />
                 </Grid>

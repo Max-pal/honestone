@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     position: "sticky",
     top: 0,
     overflow: "auto",
-    maxHeight: "450px"
+    maxHeight: "100vh"
   }
 }));
 
