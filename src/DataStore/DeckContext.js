@@ -4,10 +4,7 @@ export const DeckContext = createContext();
 
 export function DeckProvider(props) {
   const [cardsInDeck, setCardsInDeck] = useState([]);
-  console.log("im rendering");
-  useEffect(() => {
-    console.log("im using effect");
-  }, [cardsInDeck]);
+  useEffect(() => {}, [cardsInDeck]);
 
   return (
     <DeckContext.Provider value={[cardsInDeck, setCardsInDeck]}>

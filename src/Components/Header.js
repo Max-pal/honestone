@@ -97,6 +97,7 @@ export default function SearchAppBar() {
               }}
             >
               <InputBase
+                autoComplete="off"
                 id="search"
                 placeholder="Search…"
                 classes={{

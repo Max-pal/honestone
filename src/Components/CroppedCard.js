@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { DeckContext } from "../DataStore/DeckContext";
 import DeleteIcon from "@material-ui/icons/Delete";
 
@@ -54,8 +54,15 @@ export default function CroppedCard(props) {
     right: "0",
     height: "18px"
   };
-  const removeItem = card => {
-    setCardsInDeck(cardsInDeck.splice(cardsInDeck.indexOf(card), 1));
+  const removeItem = removedCard => {
+    for (let index = 0; index < cardsInDeck.length; index++) {
+      const card = cardsInDeck[index];
+      if (card.id === removedCard.id) {
+        let cards = cardsInDeck;
+        cards.splice(index, 1);
+        setCardsInDeck(cards);
+      }
+    }
   };
 
   return (
