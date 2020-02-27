@@ -119,6 +119,9 @@ export function CastSelect(props) {
       <TabPanel value={value} index={4} />
       <TabPanel value={value} index={5} />
       <TabPanel value={value} index={6} />
+      <TabPanel value={value} index={7} />
+      <TabPanel value={value} index={8} />
+      <TabPanel value={value} index={9} />
       <div>
         <Button
           style={{ float: "left" }}
