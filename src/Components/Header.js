@@ -79,16 +79,6 @@ export default function SearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             HoneStone
           </Typography>
-          <Link
-            style={{
-              color: "white",
-              cursor: "pointer",
-              textDecoration: "none"
-            }}
-            to="/mydecks"
-          >
-            MY DECKS
-          </Link>
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
