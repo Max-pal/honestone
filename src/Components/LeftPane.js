@@ -21,7 +21,7 @@ export default function LeftPane() {
   const classes = useStyles();
 
   return (
-    <Grid item xs={8}>
+    <Grid item xs={10}>
       <Paper className={classes.paper}>
         <div>
           <Route path="/" exact component={() => <CardList />} />

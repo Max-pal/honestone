@@ -11,6 +11,7 @@ export default function CardList(props) {
       <CastSelect />
       <h2>Page: {page}</h2>
       {cards && <CardListed cards={props.cards} />}
+
       <button
         onClick={() => {
           if (page <= 1) setPage(pageCount);
