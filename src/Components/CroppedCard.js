@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { DeckContext } from "../DataStore/DeckContext";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 export default function CroppedCard(props) {
   const [cardsInDeck, setCardsInDeck] = useContext(DeckContext);
@@ -46,9 +47,11 @@ export default function CroppedCard(props) {
   };
 
   const removeStyle = {
+    color: "white",
     position: "absolute",
-    height: "15px",
-    widht: "15px"
+    top: "0",
+    right: "0",
+    height: "18px"
   };
 
   return (
@@ -66,7 +69,7 @@ export default function CroppedCard(props) {
           <img style={asd} src={props.croppedImage} alt="" />
         </div>
         <div style={nameStyle}>{props.name}</div>
-        <img
+        <DeleteIcon
           onClick={() => {
             setCardsInDeck(cardsInDeck.remove(props.id));
           }}
