@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { CardsProvider } from "./Components/CardsContext";
 import { DeckProvider } from "./DataStore/DeckContext";
@@ -12,16 +12,16 @@ import Header from "./Components/Header";
 
 function App(props) {
   return (
-    <BrowserRouter>
+    <Router>
       <DeckProvider>
         <CardsProvider>
           <React.Fragment>
-            <div className="App">
+            <div className='App'>
               <Header />
               <div>
-                <Grid container direction="row">
+                <Grid container direction='row'>
                   <LeftPane />
-                  <RightPane position="sticky" />
+                  <RightPane position='sticky' />
                 </Grid>
               </div>
             </div>
@@ -29,11 +29,11 @@ function App(props) {
         </CardsProvider>
       </DeckProvider>
       <ScrollTop {...props}>
-        <Fab color="secondary" size="large" aria-label="scroll back to top">
+        <Fab color='secondary' size='large' aria-label='scroll back to top'>
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
-    </BrowserRouter>
+    </Router>
   );
 }
 
