@@ -24,7 +24,7 @@ export default function RightPane() {
   const classes = useStyles();
 
   return (
-    <Grid item xs={4}>
+    <Grid item xs={3}>
       <Paper className={classes.paper}>
         <div>
           <Route path='/' exact component={CroppedCardList} />
