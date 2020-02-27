@@ -59,9 +59,11 @@ function valuetext(value) {
 export default function ManaSlider() {
   const classes = useStyles();
   const { settings, setSettings } = useContext(CardsContext);
-
+  const style = {
+    margin: "auto"
+  };
   return (
-    <div className={classes.root}>
+    <div style={style} className={classes.root}>
       <Typography id="discrete-slider" gutterBottom>
         Mana Cost
       </Typography>
@@ -71,7 +73,7 @@ export default function ManaSlider() {
           else if (value === 7) value = [7, 100];
           setSettings({ ...settings, manaCost: value });
         }}
-        defaultValue={0}
+        defaultValue={-1}
         getAriaValueText={valuetext}
         valueLabelFormat={valuetext}
         aria-labelledby="discrete-slider"

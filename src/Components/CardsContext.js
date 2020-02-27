@@ -18,7 +18,7 @@ export function CardsProvider(props) {
   const [settings, setSettings] = useState({
     manaCost: "",
     rarity: "",
-    class: "all",
+    class: "neutral",
     type: ""
   });
 

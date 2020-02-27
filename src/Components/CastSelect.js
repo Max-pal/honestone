@@ -5,6 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 import { CardsContext } from "./CardsContext";
 
 function TabPanel(props) {
@@ -34,7 +35,9 @@ function a11yProps(index) {
 export function CastSelect(props) {
   console.log("rendering");
   const [value, setValue] = useState(0);
-  const { settings, setSettings } = useContext(CardsContext);
+  const { pageCount, page, setPage, settings, setSettings } = useContext(
+    CardsContext
+  );
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
@@ -49,7 +52,7 @@ export function CastSelect(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" id="back-to-top-anchor">
         <Tabs
           onChange={handleChange}
           value={value}
@@ -58,8 +61,8 @@ export function CastSelect(props) {
           aria-label="simple tabs example"
         >
           <Tab
-            onClick={() => setSettings({ ...settings, class: "all" })}
-            label="All"
+            onClick={() => setSettings({ ...settings, class: "neutral" })}
+            label="Neutral"
             {...a11yProps(0)}
           />
           <Tab
@@ -92,6 +95,21 @@ export function CastSelect(props) {
             label="Mage"
             {...a11yProps(6)}
           />
+          <Tab
+            onClick={() => setSettings({ ...settings, class: "priest" })}
+            label="Priest"
+            {...a11yProps(7)}
+          />
+          <Tab
+            onClick={() => setSettings({ ...settings, class: "shaman" })}
+            label="Shaman"
+            {...a11yProps(8)}
+          />
+          <Tab
+            onClick={() => setSettings({ ...settings, class: "hunter" })}
+            label="Hunter"
+            {...a11yProps(9)}
+          />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} />
@@ -101,6 +119,31 @@ export function CastSelect(props) {
       <TabPanel value={value} index={4} />
       <TabPanel value={value} index={5} />
       <TabPanel value={value} index={6} />
+      <div>
+        <Button
+          style={{ float: "left" }}
+          onClick={() => {
+            if (page <= 1) setPage(pageCount);
+            else setPage(page - 1);
+          }}
+          variant="outlined"
+          color="primary"
+        >
+          Previous Page
+        </Button>
+
+        <Button
+          style={{ float: "right" }}
+          variant="outlined"
+          color="primary"
+          onClick={() => {
+            if (page >= pageCount) setPage(1);
+            else setPage(page + 1);
+          }}
+        >
+          Next Page
+        </Button>
+      </div>
     </div>
   );
 }
