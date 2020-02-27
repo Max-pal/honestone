@@ -13,11 +13,15 @@ export default function Card(props) {
     props.card.rarityId === 5 &&
     cardsInDeck.filter((x) => x === props.card).length >= 1;
 
+  const maxCardsReached = cardsInDeck.length >= 30;
+
   return (
     <img
       onClick={() => {
         if (sameCardsInDeck || noLegendaryCardDuplicate) {
           alert("Reached maximum number of cards from that type");
+        } else if (maxCardsReached) {
+          alert("Reached maximum number of cards in a deck");
         } else {
           setCardsInDeck([...cardsInDeck, props.card]);
         }
