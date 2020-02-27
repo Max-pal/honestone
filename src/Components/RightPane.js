@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import CroppedCardList from "./CroppedCardList";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
     position: "sticky",
     top: 0,
     overflow: "auto",
-    maxHeight: "100vh"
+    maxHeight: "100vh",
+    height: "100%"
   }
 }));
 
@@ -27,7 +28,7 @@ export default function RightPane() {
     <Grid item xs={2}>
       <Paper className={classes.paper}>
         <div>
-          <Route path='/' exact component={CroppedCardList} />
+          <Route path="/" exact component={CroppedCardList} />
         </div>
       </Paper>
     </Grid>
