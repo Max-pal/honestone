@@ -4,6 +4,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 export default function CroppedCard(props) {
   const [cardsInDeck, setCardsInDeck] = useContext(DeckContext);
+
   const container = {
     position: "relative",
     marginBottom: "5px"
@@ -53,6 +54,9 @@ export default function CroppedCard(props) {
     right: "0",
     height: "18px"
   };
+  const removeItem = card => {
+    setCardsInDeck(cardsInDeck.splice(cardsInDeck.indexOf(card), 1));
+  };
 
   return (
     <React.Fragment>
@@ -71,7 +75,7 @@ export default function CroppedCard(props) {
         <div style={nameStyle}>{props.name}</div>
         <DeleteIcon
           onClick={() => {
-            setCardsInDeck(cardsInDeck.remove(props.id));
+            removeItem(props.card);
           }}
           style={removeStyle}
           src="https://i.dlpng.com/static/png/6774888_preview.png"
