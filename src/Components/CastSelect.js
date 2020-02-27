@@ -12,8 +12,8 @@ function TabPanel(props) {
 
   return (
     <Typography
-      component='div'
-      role='tabpanel'
+      component="div"
+      role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -35,7 +35,7 @@ export function CastSelect(props) {
   console.log("rendering");
   const [value, setValue] = useState(0);
   const { settings, setSettings } = useContext(CardsContext);
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.paper
@@ -49,45 +49,47 @@ export function CastSelect(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static'>
+      <AppBar position="static">
         <Tabs
           onChange={handleChange}
           value={value}
-          aria-label='simple tabs example'
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="simple tabs example"
         >
           <Tab
             onClick={() => setSettings({ ...settings, class: "all" })}
-            label='All'
+            label="All"
             {...a11yProps(0)}
           />
           <Tab
             onClick={() => setSettings({ ...settings, class: "rogue" })}
-            label='Rogue'
+            label="Rogue"
             {...a11yProps(1)}
           />
           <Tab
             onClick={() => setSettings({ ...settings, class: "druid" })}
-            label='Druid'
+            label="Druid"
             {...a11yProps(2)}
           />
           <Tab
             onClick={() => setSettings({ ...settings, class: "warrior" })}
-            label='Warrior'
+            label="Warrior"
             {...a11yProps(3)}
           />
           <Tab
             onClick={() => setSettings({ ...settings, class: "paladin" })}
-            label='Paladin'
+            label="Paladin"
             {...a11yProps(4)}
           />
           <Tab
             onClick={() => setSettings({ ...settings, class: "warlock" })}
-            label='Warlock'
+            label="Warlock"
             {...a11yProps(5)}
           />
           <Tab
             onClick={() => setSettings({ ...settings, class: "mage" })}
-            label='Mage'
+            label="Mage"
             {...a11yProps(6)}
           />
         </Tabs>

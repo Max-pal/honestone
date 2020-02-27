@@ -1,0 +1,4 @@
+[build]
+base = "HoneStone/"
+publish = "HoneStone/build/"
+command = "npm run build"
