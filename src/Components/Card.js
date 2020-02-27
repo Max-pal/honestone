@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { DeckContext } from "../DataStore/DeckContext";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import transitions from "@material-ui/core/styles/transitions";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -10,9 +11,10 @@ export default function Card(props) {
   const { id, image } = props.card;
   const [open, setOpen] = useState(false);
   const [message, setMassage] = useState("");
-  const cardSize = {
+  const cardStyle = {
     height: "395px",
-    width: "295px"
+    width: "295px",
+    cursor: "pointer"
   };
 
   const sameCardsInDeck =
@@ -48,7 +50,7 @@ export default function Card(props) {
             setOpen(true);
           }
         }}
-        style={cardSize}
+        style={cardStyle}
         id={id}
         src={image}
         alt=""
