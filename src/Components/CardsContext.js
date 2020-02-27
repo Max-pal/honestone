@@ -19,7 +19,8 @@ export function CardsProvider(props) {
     manaCost: "",
     rarity: "",
     class: "neutral",
-    type: ""
+    type: "",
+    textFilter: ""
   });
 
   useEffect(() => {

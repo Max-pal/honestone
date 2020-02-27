@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -8,6 +8,7 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "@material-ui/core";
+import { CardsContext } from "./CardsContext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -64,7 +65,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SearchAppBar() {
   const classes = useStyles();
-
+  const { settings, setSettings } = useContext(CardsContext);
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -93,14 +94,28 @@ export default function SearchAppBar() {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                setSettings({
+                  manaCost: "",
+                  rarity: "",
+                  class: "all",
+                  type: "",
+                  textFilter: document.getElementById("search").value
+                });
               }}
-              inputProps={{ "aria-label": "search" }}
-            />
+            >
+              <InputBase
+                id="search"
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput
+                }}
+                inputProps={{ "aria-label": "search" }}
+              />
+            </form>
           </div>
         </Toolbar>
       </AppBar>
