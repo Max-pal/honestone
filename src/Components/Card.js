@@ -9,6 +9,7 @@ export default function Card(props) {
   const [cardsInDeck, setCardsInDeck] = useContext(DeckContext);
   const { id, image } = props.card;
   const [open, setOpen] = useState(false);
+  const [message, setMassage] = useState("");
   const cardSize = {
     height: "395px",
     width: "295px"
@@ -21,6 +22,8 @@ export default function Card(props) {
     props.card.rarityId === 5 &&
     cardsInDeck.filter(card => card === props.card).length >= 1;
 
+  const isDeckFull = cardsInDeck.length >= 30;
+
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -31,10 +34,18 @@ export default function Card(props) {
     <React.Fragment>
       <img
         onClick={() => {
-          if (sameCardsInDeck || noLegendaryCardDuplicate) {
-            setOpen(true);
+          if (!isDeckFull) {
+            if (sameCardsInDeck || noLegendaryCardDuplicate) {
+              setMassage(
+                "Reached the maximum number of cards of the this card!"
+              );
+              setOpen(true);
+            } else {
+              setCardsInDeck([...cardsInDeck, props.card]);
+            }
           } else {
-            setCardsInDeck([...cardsInDeck, props.card]);
+            setMassage("You can have only 30 cards in your deck!");
+            setOpen(true);
           }
         }}
         style={cardSize}
@@ -44,7 +55,7 @@ export default function Card(props) {
       />
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          Reached the maximum number of cards of the this card!
+          {message}
         </Alert>
       </Snackbar>
     </React.Fragment>

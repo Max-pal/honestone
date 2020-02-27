@@ -36,7 +36,7 @@ export default function CroppedCard(props) {
     fontFamily: "URW Chancery L, cursive",
     fontStyle: "oblique",
     position: "absolute",
-    left: "12px",
+    left: "3px",
     fontSize: "60px",
     color: "white"
   };
