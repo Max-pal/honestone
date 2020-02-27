@@ -11,6 +11,8 @@ export default function CroppedCardList(props) {
         cardsInDeck.map(card => (
           <CroppedCard
             key={card.id}
+            card={card}
+            id={card.id}
             croppedImage={card.cropImage}
             name={card.name}
             manaCost={card.manaCost}
