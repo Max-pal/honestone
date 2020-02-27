@@ -3,15 +3,28 @@ import { DeckContext } from "../DataStore/DeckContext";
 
 export default function Card(props) {
   const [cardsInDeck, setCardsInDeck] = useContext(DeckContext);
+
+  const { id, image } = props.card;
+
+  const sameCardsInDeck =
+    cardsInDeck.filter((x) => x === props.card).length >= 2;
+
+  const noLegendaryCardDuplicate =
+    props.card.rarityId === 5 &&
+    cardsInDeck.filter((x) => x === props.card).length >= 1;
+
   return (
     <img
       onClick={() => {
-        setCardsInDeck([...cardsInDeck, props.card]);
-        console.log(cardsInDeck);
+        if (sameCardsInDeck || noLegendaryCardDuplicate) {
+          alert("Reached maximum number of cards from that type");
+        } else {
+          setCardsInDeck([...cardsInDeck, props.card]);
+        }
       }}
-      id={props.card.id}
-      src={props.card.image}
-      alt=""
+      id={id}
+      src={image}
+      alt=''
     />
   );
 }
