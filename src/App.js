@@ -5,25 +5,34 @@ import { CardsProvider } from "./Components/CardsContext";
 import { DeckProvider } from "./DataStore/DeckContext";
 import LeftPane from "./Components/LeftPane";
 import RightPane from "./Components/RightPane";
+import Fab from "@material-ui/core/Fab";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import ScrollTop from "./Components/ScrollTop";
+import Header from "./Components/Header";
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <DeckProvider>
         <CardsProvider>
-          <Link to='/mydecks'>MY DECKS</Link>
           <React.Fragment>
-            <div className='App'>
+            <div className="App">
+              <Header />
               <div>
-                <Grid container direction='row'>
+                <Grid container direction="row">
                   <LeftPane />
-                  <RightPane position='sticky' />
+                  <RightPane position="sticky" />
                 </Grid>
               </div>
             </div>
           </React.Fragment>
         </CardsProvider>
       </DeckProvider>
+      <ScrollTop {...props}>
+        <Fab color="secondary" size="large" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
     </BrowserRouter>
   );
 }

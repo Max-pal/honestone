@@ -16,9 +16,11 @@ export function CardsProvider(props) {
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(null);
   const [settings, setSettings] = useState({
+    manaCost: "",
     rarity: "",
-    class: "all",
-    type: ""
+    class: "neutral",
+    type: "",
+    textFilter: ""
   });
 
   useEffect(() => {
@@ -27,12 +29,16 @@ export function CardsProvider(props) {
         settings
       )}&page=${page}&locale=en_US&access_token=US8DPdzA9eXl72FOKd0zw2EyWOHEFY0bmZ`
     )
-      .then((response) => response.json())
-      .then((json) => {
+      .then(response => response.json())
+      .then(json => {
         setPageCount(json.pageCount);
         setCards(json.cards);
       });
   }, [page, settings]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [settings]);
 
   return (
     <CardsContext.Provider
