@@ -22,12 +22,12 @@ export function CardsProvider(props) {
     type: "",
     textFilter: ""
   });
-
+  const token = "US5fNF6NE0wt8h3d6lgTciLLQoSAxKUv4w";
   useEffect(() => {
     fetch(
       `https://us.api.blizzard.com/hearthstone/cards?${serialize(
         settings
-      )}&page=${page}&locale=en_US&access_token=US8DPdzA9eXl72FOKd0zw2EyWOHEFY0bmZ`
+      )}&page=${page}&locale=en_US&access_token=${token}`
     )
       .then(response => response.json())
       .then(json => {

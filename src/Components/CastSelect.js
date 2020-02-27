@@ -123,29 +123,33 @@ export function CastSelect(props) {
       <TabPanel value={value} index={8} />
       <TabPanel value={value} index={9} />
       <div>
-        <Button
-          style={{ float: "left" }}
-          onClick={() => {
-            if (page <= 1) setPage(pageCount);
-            else setPage(page - 1);
-          }}
-          variant="outlined"
-          color="primary"
-        >
-          Previous Page
-        </Button>
+        {page !== 1 && (
+          <Button
+            style={{ float: "left" }}
+            onClick={() => {
+              if (page <= 1) setPage(pageCount);
+              else setPage(page - 1);
+            }}
+            variant="outlined"
+            color="primary"
+          >
+            Previous Page
+          </Button>
+        )}
 
-        <Button
-          style={{ float: "right" }}
-          variant="outlined"
-          color="primary"
-          onClick={() => {
-            if (page >= pageCount) setPage(1);
-            else setPage(page + 1);
-          }}
-        >
-          Next Page
-        </Button>
+        {page !== pageCount && (
+          <Button
+            style={{ float: "right" }}
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              if (page >= pageCount) setPage(1);
+              else setPage(page + 1);
+            }}
+          >
+            Next Page
+          </Button>
+        )}
       </div>
     </div>
   );
