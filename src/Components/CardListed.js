@@ -7,7 +7,7 @@ export default function CardListed(props) {
   return (
     <React.Fragment>
       {cards &&
-        props.cards
+        cards
           .filter(card => card.cropImage !== null)
           .map(card => <Card key={card.id} card={card} />)}
     </React.Fragment>
