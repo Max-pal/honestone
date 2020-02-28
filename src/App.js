@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import { CardsProvider } from "./Components/CardsContext";
+import { CardsProvider } from "./DataStore/CardsContext";
 import { DeckProvider } from "./DataStore/DeckContext";
-import LeftPane from "./Components/LeftPane";
-import RightPane from "./Components/RightPane";
+import LeftPane from "./Components/LeftPane/LeftPane";
+import RightPane from "./Components/RightPane/RightPane";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import ScrollTop from "./Components/ScrollTop";
-import Header from "./Components/Header";
+import ScrollTop from "./Components/Header/ScrollTop";
+import Header from "./Components/Header/Header";
 
 function App(props) {
   return (
