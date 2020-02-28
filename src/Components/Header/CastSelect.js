@@ -6,7 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import { CardsContext } from "./CardsContext";
+import { CardsContext } from "../../DataStore/CardsContext";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

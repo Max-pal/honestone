@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { DeckContext } from "../DataStore/DeckContext";
+import { DeckContext } from "../../DataStore/DeckContext";
 
 export default function Card(props) {
   const [cardsInDeck, setCardsInDeck] = useContext(DeckContext);

@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import MyDecks from "./MyDecks";
+import MyDecks from "../Header/MyDecks";
 import CardList from "./CardList";
 
 const useStyles = makeStyles((theme) => ({
