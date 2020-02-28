@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-import { CardsContext } from "./CardsContext";
+import { CardsContext } from "../../DataStore/CardsContext";
 
 const useStyles = makeStyles(theme => ({
   root: {

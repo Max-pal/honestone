@@ -15,17 +15,15 @@ function App(props) {
     <BrowserRouter>
       <DeckProvider>
         <CardsProvider>
-          <React.Fragment>
-            <div className="App">
-              <Header />
-              <div>
-                <Grid container direction="row">
-                  <LeftPane />
-                  <RightPane position="sticky" />
-                </Grid>
-              </div>
+          <div className="App">
+            <Header />
+            <div>
+              <Grid container direction="row">
+                <LeftPane />
+                <RightPane position="sticky" />
+              </Grid>
             </div>
-          </React.Fragment>
+          </div>
         </CardsProvider>
       </DeckProvider>
       <ScrollTop {...props}>
