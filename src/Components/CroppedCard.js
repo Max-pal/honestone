@@ -80,14 +80,14 @@ export default function CroppedCard(props) {
           <img style={asd} src={props.croppedImage} alt="" />
         </div>
         <div style={nameStyle}>{props.name}</div>
-        <DeleteIcon
+        {/* <DeleteIcon
           onClick={() => {
             removeItem(props.card);
           }}
           style={removeStyle}
           src="https://i.dlpng.com/static/png/6774888_preview.png"
           alt=""
-        />
+        /> */}
       </div>
     </React.Fragment>
   );
