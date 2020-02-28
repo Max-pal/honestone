@@ -11,8 +11,9 @@ export default function CroppedCard(props) {
   };
 
   const nameStyle = {
+    lineHeight: "27px",
     position: "absolute",
-    top: "28%",
+    top: "5px",
     left: "26%",
     color: "white",
     fontFamily: "URW Chancery L, cursive",
@@ -20,7 +21,8 @@ export default function CroppedCard(props) {
     fontStyle: "oblique",
     textShadow: "-2px 0 black, 0 2px black, 2px 0 black, 0 -2px black",
     wordBreak: "break-word",
-    fontWeight: "bolder"
+    fontWeight: "bolder",
+    textAlign: "left"
   };
 
   const manaCrystalStyle = {
