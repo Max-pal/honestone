@@ -3,11 +3,12 @@ import { DeckContext } from "../DataStore/DeckContext";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import transitions from "@material-ui/core/styles/transitions";
+import useDeckString from "../hooks/useDeckString";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 export default function Card(props) {
-  const [cardsInDeck, setCardsInDeck] = useContext(DeckContext);
+  const [cardsInDeck, setCardsInDeck, deckLength] = useContext(DeckContext);
   const { id, image } = props.card;
   const [open, setOpen] = useState(false);
   const [message, setMassage] = useState("");
@@ -17,14 +18,25 @@ export default function Card(props) {
     cursor: "pointer"
   };
 
-  const sameCardsInDeck =
-    cardsInDeck.filter(card => card === props.card).length >= 2;
+  function isSameCardsInDeck() {
+    for (const card of cardsInDeck) {
+      if (card.id === props.card.id) {
+        return card.quantity >= 2;
+      }
+    }
+  }
 
-  const noLegendaryCardDuplicate =
-    props.card.rarityId === 5 &&
-    cardsInDeck.filter(card => card === props.card).length >= 1;
+  function isLegendaryInDeck() {
+    if (props.card.rarityId === 5) {
+      for (const card of cardsInDeck) {
+        if (card.id === props.card.id) {
+          return true;
+        }
+      }
+    }
+  }
 
-  const isDeckFull = cardsInDeck.length >= 30;
+  const isDeckFull = deckLength >= 30;
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -37,13 +49,26 @@ export default function Card(props) {
       <img
         onClick={() => {
           if (!isDeckFull) {
-            if (sameCardsInDeck || noLegendaryCardDuplicate) {
+            if (isSameCardsInDeck() || isLegendaryInDeck()) {
               setMassage(
                 "Reached the maximum number of cards of the this card!"
               );
               setOpen(true);
             } else {
-              setCardsInDeck([...cardsInDeck, props.card]);
+              let found = false;
+              for (const card of cardsInDeck) {
+                if (card.id === props.card.id) {
+                  found = true;
+                  card.quantity = 2;
+                  break;
+                }
+              }
+              if (!found)
+                setCardsInDeck([
+                  ...cardsInDeck,
+                  { ...props.card, quantity: 1 }
+                ]);
+              else setCardsInDeck([...cardsInDeck]);
             }
           } else {
             setMassage("You can have only 30 cards in your deck!");

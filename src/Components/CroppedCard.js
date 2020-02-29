@@ -81,7 +81,9 @@ export default function CroppedCard(props) {
         <div>
           <img style={asd} src={props.croppedImage} alt="" />
         </div>
-        <div style={nameStyle}>{props.name}</div>
+        <div style={nameStyle}>
+          {props.name} x{props.card.quantity}
+        </div>
         {/* <DeleteIcon
           onClick={() => {
             removeItem(props.card);

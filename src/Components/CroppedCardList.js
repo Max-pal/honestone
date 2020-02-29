@@ -1,17 +1,23 @@
 import React, { useContext, useEffect } from "react";
 import CroppedCard from "./CroppedCard";
 import { DeckContext } from "../DataStore/DeckContext";
+import { Button } from "@material-ui/core";
+import useDeckString from "../hooks/useDeckString";
 
 export default function CroppedCardList(props) {
-  const [cardsInDeck] = useContext(DeckContext);
+  const [cardsInDeck, setCardsInDeck, deckLength] = useContext(DeckContext);
+
+  const printDeckString = useDeckString(cardsInDeck);
+
   return (
     <React.Fragment>
-      {cardsInDeck.length > 0 && (
-        <div style={{ color: `${cardsInDeck.length >= 30 ? "red" : ""}` }}>
-          {cardsInDeck.length} / 30{" "}
+      {deckLength > 0 && (
+        <div style={{ color: `${deckLength >= 30 ? "red" : ""}` }}>
+          {deckLength} / 30{" "}
         </div>
       )}
-      {cardsInDeck.length > 0 &&
+      {console.log(cardsInDeck)}
+      {deckLength > 0 &&
         cardsInDeck.map(card => (
           <CroppedCard
             key={card.id}
@@ -22,6 +28,13 @@ export default function CroppedCardList(props) {
             manaCost={card.manaCost}
           />
         ))}
+      <Button
+        onClick={() => {
+          console.log(printDeckString);
+        }}
+      >
+        Copy Deck URL
+      </Button>
     </React.Fragment>
   );
 }
