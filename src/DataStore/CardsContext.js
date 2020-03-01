@@ -27,7 +27,7 @@ export function CardsProvider(props) {
     fetch(
       `https://us.api.blizzard.com/hearthstone/cards?${serialize(
         settings
-      )}&page=${page}&locale=en_US&access_token=US5fNF6NE0wt8h3d6lgTciLLQoSAxKUv4w`
+      )}&page=${page}&locale=en_US&access_token= US74LdEJWNfE2566qxj7NaJ7k7qRdVVRq5`
     )
       .then(response => response.json())
       .then(json => {
