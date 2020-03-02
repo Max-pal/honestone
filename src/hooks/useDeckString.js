@@ -3,7 +3,6 @@ import { encode, decode, FormatType } from "deckstrings";
 export default function(deck) {
   let convertedCards = [];
   deck.map(card => convertedCards.push([card.id, card.quantity]));
-  console.log(convertedCards);
   const convertedDeck = {
     cards: convertedCards, // [dbfid, count] pairs
     heroes: [7], // Garrosh Hellscream

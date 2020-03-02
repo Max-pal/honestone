@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import CroppedCard from "./CroppedCard";
-import { DeckContext } from "../DataStore/DeckContext";
+import { DeckContext } from "../../DataStore/DeckContext";
 import { Button } from "@material-ui/core";
-import useDeckString from "../hooks/useDeckString";
+import useDeckString from "../../hooks/useDeckString";
 
 export default function CroppedCardList(props) {
   const [cardsInDeck, setCardsInDeck, deckLength] = useContext(DeckContext);
@@ -16,7 +16,6 @@ export default function CroppedCardList(props) {
           {deckLength} / 30{" "}
         </div>
       )}
-      {console.log(cardsInDeck)}
       {deckLength > 0 &&
         cardsInDeck.map(card => (
           <CroppedCard

@@ -6,7 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import { CardsContext } from "./CardsContext";
+import { CardsContext } from "../../DataStore/CardsContext";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -33,7 +33,6 @@ function a11yProps(index) {
 }
 
 export function CastSelect(props) {
-  console.log("rendering");
   const [value, setValue] = useState(0);
   const { pageCount, page, setPage, settings, setSettings } = useContext(
     CardsContext
@@ -123,33 +122,29 @@ export function CastSelect(props) {
       <TabPanel value={value} index={8} />
       <TabPanel value={value} index={9} />
       <div>
-        {page !== 1 && (
-          <Button
-            style={{ float: "left" }}
-            onClick={() => {
-              if (page <= 1) setPage(pageCount);
-              else setPage(page - 1);
-            }}
-            variant="outlined"
-            color="primary"
-          >
-            Previous Page
-          </Button>
-        )}
+        <Button
+          style={{ float: "left" }}
+          onClick={() => {
+            if (page <= 1) setPage(pageCount);
+            else setPage(page - 1);
+          }}
+          variant="outlined"
+          color="primary"
+        >
+          Previous Page
+        </Button>
 
-        {page !== pageCount && (
-          <Button
-            style={{ float: "right" }}
-            variant="outlined"
-            color="primary"
-            onClick={() => {
-              if (page >= pageCount) setPage(1);
-              else setPage(page + 1);
-            }}
-          >
-            Next Page
-          </Button>
-        )}
+        <Button
+          style={{ float: "right" }}
+          variant="outlined"
+          color="primary"
+          onClick={() => {
+            if (page >= pageCount) setPage(1);
+            else setPage(page + 1);
+          }}
+        >
+          Next Page
+        </Button>
       </div>
     </div>
   );

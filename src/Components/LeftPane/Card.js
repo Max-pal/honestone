@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { DeckContext } from "../DataStore/DeckContext";
+import { DeckContext } from "../../DataStore/DeckContext";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import transitions from "@material-ui/core/styles/transitions";
-import useDeckString from "../hooks/useDeckString";
+import useDeckString from "../../hooks/useDeckString";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }

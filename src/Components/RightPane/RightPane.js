@@ -3,29 +3,31 @@ import { Route } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import MyDecks from "./MyDecks";
-import CardList from "./CardList";
+import CroppedCardList from "./CroppedCardList";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    position: "sticky",
+    top: 0,
+    overflow: "auto",
+    maxHeight: "100vh"
   }
 }));
 
-export default function LeftPane() {
+export default function RightPane() {
   const classes = useStyles();
 
   return (
-    <Grid item xs={10}>
+    <Grid item xs={2}>
       <Paper className={classes.paper}>
         <div>
-          <Route path="/" exact component={() => <CardList />} />
-          <Route path="/mydecks" component={() => <MyDecks />} />
+          <Route path='/' exact component={CroppedCardList} />
         </div>
       </Paper>
     </Grid>

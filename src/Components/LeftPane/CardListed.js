@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Card from "./Card";
-import { CardsContext } from "./CardsContext";
+import { CardsContext } from "../../DataStore/CardsContext";
 
 export default function CardListed(props) {
   const { cards } = useContext(CardsContext);
