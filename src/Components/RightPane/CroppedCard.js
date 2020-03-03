@@ -54,8 +54,18 @@ export default function CroppedCard(props) {
     right: "0",
     height: "18px"
   };
+
   const removeItem = id => {
-    setCardsInDeck(cardsInDeck.filter(card => card.id !== id));
+    for (const card of cardsInDeck) {
+      if (card.id === id) {
+        card.quantity--;
+        if (card.quantity === 0) {
+          setCardsInDeck(cardsInDeck.filter(card => card.id !== id));
+        } else {
+          setCardsInDeck([...cardsInDeck]);
+        }
+      }
+    }
   };
 
   return (
