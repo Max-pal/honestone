@@ -8,15 +8,14 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { CardsContext } from "../../DataStore/CardsContext";
 import { HeroContext } from "../../DataStore/HeroContext";
-import HeroTabs from "./HeroTabs";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
     <Typography
-      component='div'
-      role='tabpanel'
+      component="div"
+      role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -33,6 +32,17 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`
   };
 }
+const heroList = [
+  "Rogue",
+  "Druid",
+  "Warrior",
+  "Paladin",
+  "Warlock",
+  "Mage",
+  "Priest",
+  "Shaman",
+  "Hunter"
+];
 
 export function CastSelect(props) {
   const [value, setValue] = useState(0);
@@ -40,7 +50,7 @@ export function CastSelect(props) {
   const { pageCount, page, setPage, settings, setSettings } = useContext(
     CardsContext
   );
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.paper
@@ -54,20 +64,26 @@ export function CastSelect(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static' id='back-to-top-anchor'>
+      <AppBar position="static" id="back-to-top-anchor">
         <Tabs
           onChange={handleChange}
           value={value}
-          variant='scrollable'
-          scrollButtons='auto'
-          aria-label='simple tabs example'
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="simple tabs example"
         >
           <Tab
             onClick={() => setSettings({ ...settings, class: "neutral" })}
-            label='Neutral'
+            label="Neutral"
             {...a11yProps(0)}
           />
-          <HeroTabs />
+          <Tab
+            onClick={() => {
+              setSettings({ ...settings, class: hero.toLowerCase() });
+            }}
+            label={hero}
+            {...a11yProps(1)}
+          />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} />
@@ -79,16 +95,16 @@ export function CastSelect(props) {
             if (page <= 1) setPage(pageCount);
             else setPage(page - 1);
           }}
-          variant='outlined'
-          color='primary'
+          variant="outlined"
+          color="primary"
         >
           Previous Page
         </Button>
 
         <Button
           style={{ float: "right" }}
-          variant='outlined'
-          color='primary'
+          variant="outlined"
+          color="primary"
           onClick={() => {
             if (page >= pageCount) setPage(1);
             else setPage(page + 1);
