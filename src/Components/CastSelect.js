@@ -33,7 +33,6 @@ function a11yProps(index) {
 }
 
 export function CastSelect(props) {
-  console.log("rendering");
   const [value, setValue] = useState(0);
   const { pageCount, page, setPage, settings, setSettings } = useContext(
     CardsContext
