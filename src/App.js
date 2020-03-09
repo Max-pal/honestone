@@ -1,15 +1,16 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { CardsProvider } from "./DataStore/CardsContext";
 import { DeckProvider } from "./DataStore/DeckContext";
 import { HeroProvider } from "./DataStore/HeroContext";
 import LeftPane from "./Components/LeftPane/LeftPane";
 import RightPane from "./Components/RightPane/RightPane";
+import { HeroSelect } from "./Components/Header/HeroSelect";
+import Header from "./Components/Header/Header";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import ScrollTop from "./Components/Header/ScrollTop";
-import Header from "./Components/Header/Header";
 
 function App(props) {
   return (
@@ -19,12 +20,13 @@ function App(props) {
           <div className='App'>
             <Header />
             <div>
-              <Grid container direction='row'>
-                <HeroProvider>
+              <HeroProvider>
+                <Route path='/builddeck' component={HeroSelect} />
+                <Grid container direction='row'>
                   <LeftPane />
-                </HeroProvider>
-                <RightPane position='sticky' />
-              </Grid>
+                  <RightPane position='sticky' />
+                </Grid>
+              </HeroProvider>
             </div>
           </div>
         </CardsProvider>

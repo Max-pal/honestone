@@ -7,8 +7,9 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import { CardsContext } from "../../DataStore/CardsContext";
+import { Link } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
   },
@@ -66,24 +67,24 @@ export default function SearchAppBar() {
   const { settings, setSettings } = useContext(CardsContext);
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position='static'>
         <Toolbar>
           <IconButton
-            edge="start"
+            edge='start'
             className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
+            color='inherit'
+            aria-label='open drawer'
           />
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} variant='h6' noWrap>
             HoneStone
           </Typography>
-
+          <Link href='/builddeck'>Create Deck</Link>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <form
-              onSubmit={e => {
+              onSubmit={(e) => {
                 e.preventDefault();
                 setSettings({
                   manaCost: "",
@@ -95,8 +96,8 @@ export default function SearchAppBar() {
               }}
             >
               <InputBase
-                id="search"
-                placeholder="Search…"
+                id='search'
+                placeholder='Search…'
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput

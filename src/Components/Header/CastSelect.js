@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { CardsContext } from "../../DataStore/CardsContext";
 import { HeroContext } from "../../DataStore/HeroContext";
+import HeroTabs from "./HeroTabs";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -35,7 +36,7 @@ function a11yProps(index) {
 
 export function CastSelect(props) {
   const [value, setValue] = useState(0);
-  const [hero, setHero] = useContext(HeroContext);
+  const [hero] = useContext(HeroContext);
   const { pageCount, page, setPage, settings, setSettings } = useContext(
     CardsContext
   );
@@ -49,33 +50,6 @@ export function CastSelect(props) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const heroList = [
-    "Rogue",
-    "Druid",
-    "Warrior",
-    "Paladin",
-    "Warlock",
-    "Mage",
-    "Priest",
-    "Shaman",
-    "Hunter"
-  ];
-
-  const HeroTabs = () => {
-    return heroList
-      .filter((heroElement) => heroElement === hero)
-      .map((chosenHero) => (
-        <Tab
-          onClick={() => {
-            console.log("click");
-            setSettings({ ...settings, class: chosenHero.toLowerCase() });
-          }}
-          label={chosenHero}
-          {...a11yProps(0)}
-        />
-      ));
   };
 
   return (

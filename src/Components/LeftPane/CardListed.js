@@ -8,8 +8,8 @@ export default function CardListed(props) {
     <React.Fragment>
       {cards &&
         cards
-          .filter(card => card.cropImage !== null)
-          .map(card => <Card key={card.id} card={card} />)}
+          .filter((card) => card.cropImage !== null)
+          .map((card) => <Card key={card.id} card={card} />)}
     </React.Fragment>
   );
 }
