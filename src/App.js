@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { CardsProvider } from "./DataStore/CardsContext";
 import { DeckProvider } from "./DataStore/DeckContext";
+import { HeroProvider } from "./DataStore/HeroContext";
 import LeftPane from "./Components/LeftPane/LeftPane";
 import RightPane from "./Components/RightPane/RightPane";
 import Fab from "@material-ui/core/Fab";
@@ -15,19 +16,21 @@ function App(props) {
     <BrowserRouter>
       <DeckProvider>
         <CardsProvider>
-          <div className="App">
+          <div className='App'>
             <Header />
             <div>
-              <Grid container direction="row">
-                <LeftPane />
-                <RightPane position="sticky" />
+              <Grid container direction='row'>
+                <HeroProvider>
+                  <LeftPane />
+                </HeroProvider>
+                <RightPane position='sticky' />
               </Grid>
             </div>
           </div>
         </CardsProvider>
       </DeckProvider>
       <ScrollTop {...props}>
-        <Fab color="secondary" size="large" aria-label="scroll back to top">
+        <Fab color='secondary' size='large' aria-label='scroll back to top'>
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
