@@ -7,6 +7,7 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import { CardsContext } from "../../DataStore/CardsContext";
+import { UserContext } from "../../DataStore/UserProvider";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,7 +64,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function SearchAppBar() {
   const classes = useStyles();
-  const { settings, setSettings } = useContext(CardsContext);
+  const { user } = useContext(UserContext);
+  //const { settings, setSettings } = useContext(CardsContext);
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -85,13 +87,13 @@ export default function SearchAppBar() {
             <form
               onSubmit={e => {
                 e.preventDefault();
-                setSettings({
-                  manaCost: "",
-                  rarity: "",
-                  class: "all",
-                  type: "",
-                  textFilter: document.getElementById("search").value
-                });
+                // setSettings({
+                //   manaCost: "",
+                //   rarity: "",
+                //   class: "all",
+                //   type: "",
+                //   textFilter: document.getElementById("search").value
+                // });
               }}
             >
               <InputBase

@@ -1,37 +1,38 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
+import { BrowserRouter, Route } from "react-router-dom";
 import { CardsProvider } from "./DataStore/CardsContext";
 import { DeckProvider } from "./DataStore/DeckContext";
-import LeftPane from "./Components/LeftPane/LeftPane";
-import RightPane from "./Components/RightPane/RightPane";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import ScrollTop from "./Components/Header/ScrollTop";
+import DeckBuilder from "./Components/DeckBuilder";
+import Registry from "./Components/Registry";
 import Header from "./Components/Header/Header";
+import { UserProvider } from "./DataStore/UserProvider";
 
 function App(props) {
   return (
-    <BrowserRouter>
-      <DeckProvider>
-        <CardsProvider>
-          <div className="App">
-            <Header />
-            <div>
-              <Grid container direction="row">
-                <LeftPane />
-                <RightPane position="sticky" />
-              </Grid>
-            </div>
-          </div>
-        </CardsProvider>
-      </DeckProvider>
-      <ScrollTop {...props}>
-        <Fab color="secondary" size="large" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
-    </BrowserRouter>
+    <React.Fragment>
+      <BrowserRouter>
+        <UserProvider>
+          <Header />
+
+          <Registry />
+        </UserProvider>
+        {/* 
+       <DeckProvider>
+         <CardsProvider>
+           <DeckBuilder />
+         </CardsProvider>
+       </DeckProvider> */}
+
+        <ScrollTop {...props}>
+          <Fab color="secondary" size="large" aria-label="scroll back to top">
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollTop>
+      </BrowserRouter>
+    </React.Fragment>
   );
 }
 
