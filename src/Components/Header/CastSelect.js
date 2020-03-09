@@ -88,7 +88,7 @@ export function CastSelect(props) {
       </AppBar>
       <TabPanel value={value} index={0} />
       <TabPanel value={value} index={1} />
-      <div>
+      {page !== 1 && (
         <Button
           style={{ float: "left" }}
           onClick={() => {
@@ -100,7 +100,9 @@ export function CastSelect(props) {
         >
           Previous Page
         </Button>
+      )}
 
+      {page !== pageCount && (
         <Button
           style={{ float: "right" }}
           variant="outlined"
@@ -112,7 +114,7 @@ export function CastSelect(props) {
         >
           Next Page
         </Button>
-      </div>
+      )}
     </div>
   );
 }
