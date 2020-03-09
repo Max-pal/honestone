@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import getAccessToken from "../getAccessToken";
 
 export const CardsContext = createContext();
 
@@ -22,18 +23,20 @@ export function CardsProvider(props) {
     type: "",
     textFilter: ""
   });
-  const token = "US5fNF6NE0wt8h3d6lgTciLLQoSAxKUv4w";
+
   useEffect(() => {
-    fetch(
-      `https://us.api.blizzard.com/hearthstone/cards?${serialize(
-        settings
-      )}&page=${page}&locale=en_US&access_token=${token}`
-    )
-      .then(response => response.json())
-      .then(json => {
-        setPageCount(json.pageCount);
-        setCards(json.cards);
-      });
+    getAccessToken().then(token => {
+      fetch(
+        `https://us.api.blizzard.com/hearthstone/cards?${serialize(
+          settings
+        )}&page=${page}&locale=en_US&access_token=${token}`
+      )
+        .then(response => response.json())
+        .then(json => {
+          setPageCount(json.pageCount);
+          setCards(json.cards);
+        });
+    });
   }, [page, settings]);
 
   useEffect(() => {
