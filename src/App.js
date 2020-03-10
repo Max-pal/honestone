@@ -11,20 +11,26 @@ import Header from "./Components/Header/Header";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import ScrollTop from "./Components/Header/ScrollTop";
+import Registry from "./Components/Registry";
+import { UserProvider } from "./DataStore/UserProvider";
 
 function App(props) {
   return (
     <BrowserRouter>
       <DeckProvider>
         <CardsProvider>
-          <div className='App'>
-            <Header />
+          <div className="App">
+            <UserProvider>
+              <Header />
+
+              <Registry />
+            </UserProvider>
             <div>
               <HeroProvider>
-                <Route path='/builddeck' component={HeroSelect} />
-                <Grid container direction='row'>
+                <Route path="/builddeck" component={HeroSelect} />
+                <Grid container direction="row">
                   <LeftPane />
-                  <RightPane position='sticky' />
+                  <RightPane position="sticky" />
                 </Grid>
               </HeroProvider>
             </div>
@@ -32,7 +38,7 @@ function App(props) {
         </CardsProvider>
       </DeckProvider>
       <ScrollTop {...props}>
-        <Fab color='secondary' size='large' aria-label='scroll back to top'>
+        <Fab color="secondary" size="large" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
