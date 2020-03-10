@@ -6,13 +6,13 @@ export default function Hero(props) {
   const [hero, setHero] = useContext(HeroContext);
 
   return (
-    <Link to='/'>
+    <Link to="/">
       <img
-        onClick={(e) => {
-          setHero(props.name);
+        onClick={e => {
+          setHero({ name: props.heroName, id: props.heroId });
         }}
         src={props.image}
-        alt='..|..'
+        alt="..|.."
       />
     </Link>
   );

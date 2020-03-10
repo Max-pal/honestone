@@ -24,7 +24,12 @@ const heroImages = [
 ];
 
 export function HeroSelect() {
-  return heroImages.map((hero) => (
-    <Hero key={hero.id} image={hero.img} name={hero.name} />
+  return heroImages.map(hero => (
+    <Hero
+      key={hero.id}
+      image={hero.img}
+      heroId={hero.id}
+      heroName={hero.name}
+    />
   ));
 }

@@ -79,9 +79,9 @@ export function CastSelect(props) {
           />
           <Tab
             onClick={() => {
-              setSettings({ ...settings, class: hero.toLowerCase() });
+              setSettings({ ...settings, class: hero.name.toLowerCase() });
             }}
-            label={hero}
+            label={hero.name}
             {...a11yProps(1)}
           />
         </Tabs>
