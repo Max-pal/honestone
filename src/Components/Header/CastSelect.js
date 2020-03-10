@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { CardsContext } from "../../DataStore/CardsContext";
+import { HeroContext } from "../../DataStore/HeroContext";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -31,10 +32,21 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`
   };
 }
+const heroList = [
+  "Rogue",
+  "Druid",
+  "Warrior",
+  "Paladin",
+  "Warlock",
+  "Mage",
+  "Priest",
+  "Shaman",
+  "Hunter"
+];
 
 export function CastSelect(props) {
-  console.log("rendering");
   const [value, setValue] = useState(0);
+  const [hero] = useContext(HeroContext);
   const { pageCount, page, setPage, settings, setSettings } = useContext(
     CardsContext
   );
@@ -65,64 +77,20 @@ export function CastSelect(props) {
             label="Neutral"
             {...a11yProps(0)}
           />
-          <Tab
-            onClick={() => setSettings({ ...settings, class: "rogue" })}
-            label="Rogue"
-            {...a11yProps(1)}
-          />
-          <Tab
-            onClick={() => setSettings({ ...settings, class: "druid" })}
-            label="Druid"
-            {...a11yProps(2)}
-          />
-          <Tab
-            onClick={() => setSettings({ ...settings, class: "warrior" })}
-            label="Warrior"
-            {...a11yProps(3)}
-          />
-          <Tab
-            onClick={() => setSettings({ ...settings, class: "paladin" })}
-            label="Paladin"
-            {...a11yProps(4)}
-          />
-          <Tab
-            onClick={() => setSettings({ ...settings, class: "warlock" })}
-            label="Warlock"
-            {...a11yProps(5)}
-          />
-          <Tab
-            onClick={() => setSettings({ ...settings, class: "mage" })}
-            label="Mage"
-            {...a11yProps(6)}
-          />
-          <Tab
-            onClick={() => setSettings({ ...settings, class: "priest" })}
-            label="Priest"
-            {...a11yProps(7)}
-          />
-          <Tab
-            onClick={() => setSettings({ ...settings, class: "shaman" })}
-            label="Shaman"
-            {...a11yProps(8)}
-          />
-          <Tab
-            onClick={() => setSettings({ ...settings, class: "hunter" })}
-            label="Hunter"
-            {...a11yProps(9)}
-          />
+          {hero.name !== "" && (
+            <Tab
+              onClick={() => {
+                setSettings({ ...settings, class: hero.name.toLowerCase() });
+              }}
+              label={hero.name}
+              {...a11yProps(1)}
+            />
+          )}
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} />
       <TabPanel value={value} index={1} />
-      <TabPanel value={value} index={2} />
-      <TabPanel value={value} index={3} />
-      <TabPanel value={value} index={4} />
-      <TabPanel value={value} index={5} />
-      <TabPanel value={value} index={6} />
-      <TabPanel value={value} index={7} />
-      <TabPanel value={value} index={8} />
-      <TabPanel value={value} index={9} />
-      <div>
+      {page !== 1 && (
         <Button
           style={{ float: "left" }}
           onClick={() => {
@@ -134,7 +102,9 @@ export function CastSelect(props) {
         >
           Previous Page
         </Button>
+      )}
 
+      {page !== pageCount && (
         <Button
           style={{ float: "right" }}
           variant="outlined"
@@ -146,7 +116,7 @@ export function CastSelect(props) {
         >
           Next Page
         </Button>
-      </div>
+      )}
     </div>
   );
 }

@@ -4,15 +4,17 @@
   "private": true,
   "dependencies": {
     "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.44",
+    "@material-ui/lab": "^4.0.0-alpha.45",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
+    "deckstrings": "^2.1.0",
     "merge-images": "^1.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "styled-components": "^5.0.1",
     "use-force-update": "^1.0.7"
   },
   "scripts": {

@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import Card from "./Card";
 import { CardsContext } from "../../DataStore/CardsContext";
+import styled from "styled-components";
 
 export default function CardListed(props) {
   const { cards } = useContext(CardsContext);
+
   return (
     <React.Fragment>
       {cards &&

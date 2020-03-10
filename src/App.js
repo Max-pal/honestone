@@ -1,27 +1,38 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { CardsProvider } from "./DataStore/CardsContext";
 import { DeckProvider } from "./DataStore/DeckContext";
+import { HeroProvider } from "./DataStore/HeroContext";
 import LeftPane from "./Components/LeftPane/LeftPane";
 import RightPane from "./Components/RightPane/RightPane";
+import { HeroSelect } from "./Components/Header/HeroSelect";
+import Header from "./Components/Header/Header";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import ScrollTop from "./Components/Header/ScrollTop";
-import Header from "./Components/Header/Header";
+import Registry from "./Components/Registry";
+import { UserProvider } from "./DataStore/UserProvider";
 
 function App(props) {
   return (
-    <Router>
+    <BrowserRouter>
       <DeckProvider>
         <CardsProvider>
           <div className='App'>
-            <Header />
+            <UserProvider>
+              <Header />
+
+              <Registry />
+            </UserProvider>
             <div>
-              <Grid container direction='row'>
-                <LeftPane />
-                <RightPane position='sticky' />
-              </Grid>
+              <HeroProvider>
+                <Route path='/builddeck' component={HeroSelect} />
+                <Grid container direction='row'>
+                  <LeftPane />
+                  <RightPane position='sticky' />
+                </Grid>
+              </HeroProvider>
             </div>
           </div>
         </CardsProvider>
@@ -31,7 +42,7 @@ function App(props) {
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
-    </Router>
+    </BrowserRouter>
   );
 }
 

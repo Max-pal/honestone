@@ -1,38 +1,98 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DeckContext } from "../../DataStore/DeckContext";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import transitions from "@material-ui/core/styles/transitions";
+import useDeckString from "../../hooks/useDeckString";
+import styled from "styled-components";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant='filled' {...props} />;
+}
+
+const StyledCard = styled.img`
+  height: 395px;
+  width: 295px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.15);
+  }
+  transition-duration: 0.3s;
+`;
 
 export default function Card(props) {
-  const [cardsInDeck, setCardsInDeck] = useContext(DeckContext);
+  const [cardsInDeck, setCardsInDeck, deckLength] = useContext(DeckContext);
   const { id, image } = props.card;
+  const [open, setOpen] = useState(false);
+  const [message, setMassage] = useState("");
 
-  const cardSize = {
-    height: "395px",
-    width: "295px"
-  };
+  function isSameCardsInDeck() {
+    for (const card of cardsInDeck) {
+      if (card.id === props.card.id) {
+        return card.quantity >= 2;
+      }
+    }
+  }
 
-  const sameCardsInDeck = cardsInDeck.filter(x => x === props.card).length >= 2;
-
-  const noLegendaryCardDuplicate =
-    props.card.rarityId === 5 &&
-    cardsInDeck.filter(x => x === props.card).length >= 1;
-
-  const maxCardsReached = cardsInDeck.length >= 30;
-
-  return (
-    <img
-      onClick={() => {
-        if (sameCardsInDeck || noLegendaryCardDuplicate) {
-          alert("Reached maximum number of cards from that type");
-        } else if (maxCardsReached) {
-          alert("Reached maximum number of cards in a deck");
-        } else {
-          setCardsInDeck([...cardsInDeck, props.card]);
+  function isLegendaryInDeck() {
+    if (props.card.rarityId === 5) {
+      for (const card of cardsInDeck) {
+        if (card.id === props.card.id) {
+          return true;
         }
-      }}
-      style={cardSize}
-      id={id}
-      src={image}
-      alt=""
-    />
+      }
+    }
+  }
+
+  const isDeckFull = deckLength >= 30;
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  return (
+    <React.Fragment>
+      <StyledCard
+        className='imadomfaragobalazst'
+        onClick={() => {
+          if (!isDeckFull) {
+            if (isSameCardsInDeck() || isLegendaryInDeck()) {
+              setMassage(
+                "Reached the maximum number of cards of the this card!"
+              );
+              setOpen(true);
+            } else {
+              let found = false;
+              for (const card of cardsInDeck) {
+                if (card.id === props.card.id) {
+                  found = true;
+                  card.quantity = 2;
+                  break;
+                }
+              }
+              if (!found)
+                setCardsInDeck([
+                  ...cardsInDeck,
+                  { ...props.card, quantity: 1 }
+                ]);
+              else setCardsInDeck([...cardsInDeck]);
+            }
+          } else {
+            setMassage("You can have only 30 cards in your deck!");
+            setOpen(true);
+          }
+        }}
+        id={id}
+        src={image}
+        alt=''
+      />
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity='error'>
+          {message}
+        </Alert>
+      </Snackbar>
+    </React.Fragment>
   );
 }
