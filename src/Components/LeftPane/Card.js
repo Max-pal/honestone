@@ -4,19 +4,27 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import transitions from "@material-ui/core/styles/transitions";
 import useDeckString from "../../hooks/useDeckString";
+import styled from "styled-components";
+
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+
+const StyledCard = styled.img`
+  height: 395px;
+  width: 295px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.15);
+  }
+  transition-duration: 0.3s;
+`;
+
 export default function Card(props) {
   const [cardsInDeck, setCardsInDeck, deckLength] = useContext(DeckContext);
   const { id, image } = props.card;
   const [open, setOpen] = useState(false);
   const [message, setMassage] = useState("");
-  const cardStyle = {
-    height: "395px",
-    width: "295px",
-    cursor: "pointer"
-  };
 
   function isSameCardsInDeck() {
     for (const card of cardsInDeck) {
@@ -46,7 +54,8 @@ export default function Card(props) {
   };
   return (
     <React.Fragment>
-      <img
+      <StyledCard
+        className="imadomfaragobalazst"
         onClick={() => {
           if (!isDeckFull) {
             if (isSameCardsInDeck() || isLegendaryInDeck()) {
@@ -75,7 +84,6 @@ export default function Card(props) {
             setOpen(true);
           }
         }}
-        style={cardStyle}
         id={id}
         src={image}
         alt=""

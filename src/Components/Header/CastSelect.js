@@ -77,13 +77,15 @@ export function CastSelect(props) {
             label="Neutral"
             {...a11yProps(0)}
           />
-          <Tab
-            onClick={() => {
-              setSettings({ ...settings, class: hero.name.toLowerCase() });
-            }}
-            label={hero.name}
-            {...a11yProps(1)}
-          />
+          {hero.name !== "" && (
+            <Tab
+              onClick={() => {
+                setSettings({ ...settings, class: hero.name.toLowerCase() });
+              }}
+              label={hero.name}
+              {...a11yProps(1)}
+            />
+          )}
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} />
