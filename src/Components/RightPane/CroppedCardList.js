@@ -3,11 +3,12 @@ import CroppedCard from "./CroppedCard";
 import { DeckContext } from "../../DataStore/DeckContext";
 import { Button } from "@material-ui/core";
 import useDeckString from "../../hooks/useDeckString";
+import copy from "copy-to-clipboard";
 
 export default function CroppedCardList(props) {
   const [cardsInDeck, setCardsInDeck, deckLength] = useContext(DeckContext);
 
-  const printDeckString = useDeckString(cardsInDeck);
+  const getDeckString = useDeckString(cardsInDeck);
 
   return (
     <React.Fragment>
@@ -29,7 +30,7 @@ export default function CroppedCardList(props) {
         ))}
       <Button
         onClick={() => {
-          console.log(printDeckString);
+          copy(getDeckString);
         }}
       >
         Copy Deck URL
