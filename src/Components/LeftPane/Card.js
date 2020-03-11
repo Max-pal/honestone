@@ -21,7 +21,7 @@ const StyledCard = styled.img`
 `;
 
 export default function Card(props) {
-  const [cardsInDeck, setCardsInDeck, deckLength] = useContext(DeckContext);
+  const { cardsInDeck, setCardsInDeck, deckLength } = useContext(DeckContext);
   const { id, image } = props.card;
   const [open, setOpen] = useState(false);
   const [message, setMassage] = useState("");

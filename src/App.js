@@ -13,6 +13,7 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import ScrollTop from "./Components/Header/ScrollTop";
 import Registry from "./Components/Registry";
 import { UserProvider } from "./DataStore/UserProvider";
+import Collection from "./Components/Collection";
 
 function App(props) {
   return (
@@ -22,7 +23,6 @@ function App(props) {
           <div className="App">
             <UserProvider>
               <Header />
-
               <Registry />
             </UserProvider>
             <div>
