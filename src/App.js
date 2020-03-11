@@ -3,7 +3,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { CardsProvider } from "./DataStore/CardsContext";
 import { DeckProvider } from "./DataStore/DeckContext";
-import { HeroProvider } from "./DataStore/HeroContext";
 import LeftPane from "./Components/LeftPane/LeftPane";
 import RightPane from "./Components/RightPane/RightPane";
 import { HeroSelect } from "./Components/Header/HeroSelect";
@@ -13,6 +12,7 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import ScrollTop from "./Components/Header/ScrollTop";
 import Registry from "./Components/Registry";
 import { UserProvider } from "./DataStore/UserProvider";
+import { DeckStringProvider } from "./DataStore/DeckCodeContext";
 
 function App(props) {
   return (
@@ -22,18 +22,17 @@ function App(props) {
           <div className="App">
             <UserProvider>
               <Header />
-
               <Registry />
             </UserProvider>
-            <div>
-              <HeroProvider>
+            <DeckStringProvider>
+              <div>
                 <Route path="/builddeck" component={HeroSelect} />
                 <Grid container direction="row">
                   <LeftPane />
                   <RightPane position="sticky" />
                 </Grid>
-              </HeroProvider>
-            </div>
+              </div>
+            </DeckStringProvider>
           </div>
         </CardsProvider>
       </DeckProvider>

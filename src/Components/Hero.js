@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { HeroContext } from "../DataStore/HeroContext";
+import { DeckContext } from "../DataStore/DeckContext";
 
 export default function Hero(props) {
-  const [hero, setHero] = useContext(HeroContext);
+  const { hero, setHero } = useContext(DeckContext);
 
   return (
     <Link to="/">

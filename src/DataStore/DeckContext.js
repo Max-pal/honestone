@@ -5,6 +5,7 @@ export const DeckContext = createContext();
 export function DeckProvider(props) {
   const [cardsInDeck, setCardsInDeck] = useState([]);
   const [deckLength, setDeckLength] = useState(0);
+  const [hero, setHero] = useState({ name: "", id: 7 });
 
   useEffect(() => {
     let count = 0;
@@ -13,7 +14,9 @@ export function DeckProvider(props) {
   }, [cardsInDeck]);
 
   return (
-    <DeckContext.Provider value={[cardsInDeck, setCardsInDeck, deckLength]}>
+    <DeckContext.Provider
+      value={{ cardsInDeck, setCardsInDeck, deckLength, hero, setHero }}
+    >
       {props.children}
     </DeckContext.Provider>
   );

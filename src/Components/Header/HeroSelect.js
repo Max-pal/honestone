@@ -1,6 +1,6 @@
 import React from "react";
-import HeroContext from "../../DataStore/HeroContext";
 import Hero from "../Hero";
+import { ImportDeck } from "./ImportDeck";
 import druid from "../../static/images/druid.png";
 import hunter from "../../static/images/hunter.png";
 import warrior from "../../static/images/warrior.png";
@@ -24,12 +24,19 @@ const heroImages = [
 ];
 
 export function HeroSelect() {
-  return heroImages.map(hero => (
-    <Hero
-      key={hero.id}
-      image={hero.img}
-      heroId={hero.id}
-      heroName={hero.name}
-    />
-  ));
+  return (
+    <React.Fragment>
+      <ImportDeck />
+      <React.Fragment>
+        {heroImages.map(hero => (
+          <Hero
+            key={hero.id}
+            image={hero.img}
+            heroId={hero.id}
+            heroName={hero.name}
+          />
+        ))}
+      </React.Fragment>
+    </React.Fragment>
+  );
 }

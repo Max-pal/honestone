@@ -6,7 +6,7 @@ import useDeckString from "../../hooks/useDeckString";
 import copy from "copy-to-clipboard";
 
 export default function CroppedCardList(props) {
-  const [cardsInDeck, setCardsInDeck, deckLength] = useContext(DeckContext);
+  const { cardsInDeck, deckLength } = useContext(DeckContext);
 
   const getDeckString = useDeckString(cardsInDeck);
 

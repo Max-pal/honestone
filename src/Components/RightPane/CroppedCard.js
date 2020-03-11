@@ -3,7 +3,7 @@ import { DeckContext } from "../../DataStore/DeckContext";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 export default function CroppedCard(props) {
-  const [cardsInDeck, setCardsInDeck] = useContext(DeckContext);
+  const { cardsInDeck, setCardsInDeck } = useContext(DeckContext);
 
   const container = {
     position: "relative",
@@ -55,12 +55,12 @@ export default function CroppedCard(props) {
     height: "18px"
   };
 
-  const removeItem = (id) => {
+  const removeItem = id => {
     for (const card of cardsInDeck) {
       if (card.id === id) {
         card.quantity--;
         if (card.quantity === 0) {
-          setCardsInDeck(cardsInDeck.filter((card) => card.id !== id));
+          setCardsInDeck(cardsInDeck.filter(card => card.id !== id));
         } else {
           setCardsInDeck([...cardsInDeck]);
         }
@@ -74,13 +74,13 @@ export default function CroppedCard(props) {
         <div>
           <img
             style={manaCrystalStyle}
-            src='https://joust.hearthsim.net/branches/master/assets/images/mana_crystal.png'
-            alt=''
+            src="https://joust.hearthsim.net/branches/master/assets/images/mana_crystal.png"
+            alt=""
           />
           <div style={manaStyle}>{props.card.manaCost}</div>
         </div>
         <div>
-          <img style={croppedImageStyle} src={props.card.cropImage} alt='' />
+          <img style={croppedImageStyle} src={props.card.cropImage} alt="" />
         </div>
         <div style={nameStyle}>
           {props.card.name} x{props.card.quantity}
@@ -90,7 +90,7 @@ export default function CroppedCard(props) {
             removeItem(props.card.id);
           }}
           style={removeStyle}
-          alt=''
+          alt=""
         />
       </div>
     </React.Fragment>

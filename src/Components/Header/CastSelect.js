@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { CardsContext } from "../../DataStore/CardsContext";
-import { HeroContext } from "../../DataStore/HeroContext";
+import { DeckContext } from "../../DataStore/DeckContext";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,7 +46,7 @@ const heroList = [
 
 export function CastSelect(props) {
   const [value, setValue] = useState(0);
-  const [hero] = useContext(HeroContext);
+  const { hero } = useContext(DeckContext);
   const { pageCount, page, setPage, settings, setSettings } = useContext(
     CardsContext
   );
