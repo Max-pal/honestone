@@ -7,6 +7,7 @@ export function DeckProvider(props) {
   const [deckLength, setDeckLength] = useState(0);
   const [hero, setHero] = useState({ name: "", id: 7 });
 
+  console.log("Context render");
   useEffect(() => {
     let count = 0;
     cardsInDeck.map(card => (count += card.quantity));
