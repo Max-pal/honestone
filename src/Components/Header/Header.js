@@ -66,7 +66,6 @@ const useStyles = makeStyles(theme => ({
 export default function SearchAppBar() {
   const classes = useStyles();
   const { user } = useContext(UserContext);
-  //const { settings, setSettings } = useContext(CardsContext);
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -80,16 +79,20 @@ export default function SearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             HoneStone
           </Typography>
-          <Link
-            style={{ color: "#fff" }}
-            href="/deckbuilder/heroselect"
-            underline="none"
-          >
-            Create Deck
-          </Link>
-          <Link style={{ color: "#fff" }} href="/collection" underline="none">
-            Collection
-          </Link>
+          <Typography className={classes.menuButton} variant="button" noWrap>
+            <Link
+              style={{ color: "#fff" }}
+              href="/deckbuilder/heroselect"
+              underline="none"
+            >
+              Create Deck
+            </Link>
+          </Typography>
+          <Typography className={classes.menuButton} variant="button" noWrap>
+            <Link style={{ color: "#fff" }} href="/collection" underline="none">
+              Collection
+            </Link>
+          </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -97,13 +100,6 @@ export default function SearchAppBar() {
             <form
               onSubmit={e => {
                 e.preventDefault();
-                // setSettings({
-                //   manaCost: "",
-                //   rarity: "",
-                //   class: "all",
-                //   type: "",
-                //   textFilter: document.getElementById("search").value
-                // });
               }}
             >
               <InputBase
