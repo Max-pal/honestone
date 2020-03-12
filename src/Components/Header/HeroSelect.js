@@ -36,7 +36,15 @@ export function HeroSelect() {
   return (
     <React.Fragment>
       <ImportDeck />
-      <React.Fragment>
+      <div
+        style={{
+          margin: "auto",
+          maxWidth: "800px",
+          flexWrap: "wrap",
+          display: "flex",
+          justifyContent: "space-around"
+        }}
+      >
         {heroImages.map(hero => (
           <Hero
             key={hero.id}
@@ -45,7 +53,7 @@ export function HeroSelect() {
             heroName={hero.name}
           />
         ))}
-      </React.Fragment>
+      </div>
     </React.Fragment>
   );
 }

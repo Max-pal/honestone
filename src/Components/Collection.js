@@ -16,10 +16,10 @@ export default function Collection() {
   }, []);
 
   return (
-    <React.Fragment>
+    <div style={{ display: "grid" }}>
       {decks.map(deck => (
         <Deck name={deck.name} heroId={deck.hero} deckcode={deck.deckcode} />
       ))}
-    </React.Fragment>
+    </div>
   );
 }
