@@ -4,15 +4,17 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
-import { red, amber, lightBlue } from "@material-ui/core/colors";
+import { white, amber, lightBlue } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: amber[800]
+      main: amber[800],
+      contrastText: amber[50]
     },
     secondary: {
-      main: lightBlue[500]
+      main: lightBlue[500],
+      contrastText: lightBlue[50]
     }
   }
 });
