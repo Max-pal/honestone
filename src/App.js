@@ -13,6 +13,7 @@ import ScrollTop from "./Components/Header/ScrollTop";
 import Registry from "./Components/Registry";
 import { UserProvider } from "./DataStore/UserProvider";
 import { DeckStringProvider } from "./DataStore/DeckCodeContext";
+import Collection from "./Components/Collection";
 
 function App(props) {
   return (

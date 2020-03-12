@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import MyDecks from "../Header/MyDecks";
 import CardList from "./CardList";
+import Collection from "../Collection";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,7 +26,7 @@ export default function LeftPane() {
       <Paper className={classes.paper}>
         <div>
           <Route path="/" exact component={() => <CardList />} />
-          <Route path="/mydecks" component={() => <MyDecks />} />
+          <Route path="/collection" component={() => <Collection />} />
         </div>
       </Paper>
     </Grid>
