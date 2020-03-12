@@ -2,8 +2,6 @@ import React, { useContext, useState } from "react";
 import { DeckContext } from "../../DataStore/DeckContext";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-import transitions from "@material-ui/core/styles/transitions";
-import useDeckString from "../../hooks/useDeckString";
 import styled from "styled-components";
 
 function Alert(props) {
@@ -22,29 +20,36 @@ const StyledCard = styled.img`
 
 export default function Card(props) {
   const { cardsInDeck, setCardsInDeck, deckLength } = useContext(DeckContext);
-  const { id, image } = props.card;
   const [open, setOpen] = useState(false);
   const [message, setMassage] = useState("");
+  const { id, image, rarityId } = props.card;
 
-  function isSameCardsInDeck() {
+  const isSameCardsInDeck = () => {
     for (const card of cardsInDeck) {
-      if (card.id === props.card.id) {
+      if (card.id === id) {
+        if (rarityId === 5) {
+          return true;
+        }
         return card.quantity >= 2;
       }
     }
-  }
-
-  function isLegendaryInDeck() {
-    if (props.card.rarityId === 5) {
-      for (const card of cardsInDeck) {
-        if (card.id === props.card.id) {
-          return true;
-        }
-      }
-    }
-  }
+  };
 
   const isDeckFull = deckLength >= 30;
+
+  const cardChecker = () => {
+    let found = false;
+    for (const card of cardsInDeck) {
+      if (card.id === id) {
+        found = true;
+        card.quantity = 2;
+        break;
+      }
+    }
+    if (!found) {
+      setCardsInDeck([...cardsInDeck, { ...props.card, quantity: 1 }]);
+    } else setCardsInDeck([...cardsInDeck]);
+  };
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -52,36 +57,22 @@ export default function Card(props) {
     }
     setOpen(false);
   };
+
   return (
     <React.Fragment>
       <StyledCard
-        className="imadomfaragobalazst"
+        className="dummy"
         onClick={() => {
-          if (!isDeckFull) {
-            if (isSameCardsInDeck() || isLegendaryInDeck()) {
-              setMassage(
-                "Reached the maximum number of cards of the this card!"
-              );
+          if (isDeckFull) {
+            setMassage("Reached maximum deck size!");
+            setOpen(true);
+          } else {
+            if (isSameCardsInDeck()) {
+              setMassage("Reached the maximum number of this card!");
               setOpen(true);
             } else {
-              let found = false;
-              for (const card of cardsInDeck) {
-                if (card.id === props.card.id) {
-                  found = true;
-                  card.quantity = 2;
-                  break;
-                }
-              }
-              if (!found)
-                setCardsInDeck([
-                  ...cardsInDeck,
-                  { ...props.card, quantity: 1 }
-                ]);
-              else setCardsInDeck([...cardsInDeck]);
+              cardChecker();
             }
-          } else {
-            setMassage("You can have only 30 cards in your deck!");
-            setOpen(true);
           }
         }}
         id={id}

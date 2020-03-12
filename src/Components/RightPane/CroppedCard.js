@@ -1,58 +1,77 @@
 import React, { useContext } from "react";
 import { DeckContext } from "../../DataStore/DeckContext";
-import DeleteIcon from "@material-ui/icons/Delete";
 
 export default function CroppedCard(props) {
   const { cardsInDeck, setCardsInDeck } = useContext(DeckContext);
+  const { id, name, rarityId, manaCost, cropImage, quantity } = props.card;
+
+  const cardRarity = {
+    1: "rgba(96,125,139, .8)",
+    2: "rgba(141,110,99, .9)",
+    3: "rgba(2,119,189, .8)",
+    4: "rgba(210,20,255, .8)",
+    5: "rgba(255,156,20, .8)"
+  };
 
   const container = {
     position: "relative",
-    marginBottom: "5px"
+    height: "40px",
+    backgroundColor: "black"
   };
 
   const nameStyle = {
     position: "absolute",
-    top: "28%",
-    left: "26%",
+    padding: "-3px",
+    boxSizing: "border-box",
+    top: "35%",
+    left: "16%",
     color: "white",
-    fontFamily: "URW Chancery L, cursive",
-    fontSize: "1.5rem",
+    fontFamily: "system-ui",
+    fontSize: "1vmax",
     fontStyle: "oblique",
+    fontWeight: "bolder",
     textShadow: "-2px 0 black, 0 2px black, 2px 0 black, 0 -2px black",
-    wordBreak: "break-word",
-    fontWeight: "bolder"
+    wordBreak: "break-word"
   };
 
-  const manaCrystalStyle = {
+  const quantityStyle = {
     position: "absolute",
-    top: "-7px",
-    left: "-20px",
-    height: "90px",
-    width: "90px"
+    padding: "5px",
+    boxSizing: "border-box",
+    top: "0",
+    right: "0",
+    height: "100%",
+    width: "10%",
+    color: "white",
+    backgroundColor: `${cardRarity[rarityId]}`,
+    fontFamily: "system-ui",
+    fontSize: "3vmin",
+    textAlign: "center",
+    verticalAlign: "baseline",
+    wordBreak: "break-word"
   };
 
   const manaStyle = {
-    textShadow: "-2px 0 black, 0 2px black, 2px 0 black, 0 -2px black",
-    fontFamily: "URW Chancery L, cursive",
-    fontStyle: "oblique",
     position: "absolute",
-    left: "12px",
-    fontSize: "60px",
-    color: "white"
-  };
-
-  const croppedImageStyle = {
-    width: "100%",
-    maxWidth: "100%",
-    borderRadius: "20px 10px 10px 20px"
-  };
-
-  const removeStyle = {
-    color: "white",
-    position: "absolute",
+    padding: "5px",
+    boxSizing: "border-box",
     top: "0",
-    right: "0",
-    height: "18px"
+    left: "0",
+    height: "100%",
+    width: "15%",
+    color: "white",
+    backgroundColor: "rgba(2,119,189)",
+    fontFamily: "system-ui",
+    fontSize: "3vmin",
+    textAlign: "center",
+    verticalAlign: "text-bottom"
+  };
+
+  const imageStyle = {
+    backgroundImage: `linear-gradient(90deg, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 50%), url(${cropImage})`,
+    backgroundPosition: "right",
+    width: "100%",
+    height: "100%"
   };
 
   const removeItem = id => {
@@ -70,28 +89,16 @@ export default function CroppedCard(props) {
 
   return (
     <React.Fragment>
-      <div style={container}>
-        <div>
-          <img
-            style={manaCrystalStyle}
-            src="https://joust.hearthsim.net/branches/master/assets/images/mana_crystal.png"
-            alt=""
-          />
-          <div style={manaStyle}>{props.card.manaCost}</div>
-        </div>
-        <div>
-          <img style={croppedImageStyle} src={props.card.cropImage} alt="" />
-        </div>
-        <div style={nameStyle}>
-          {props.card.name} x{props.card.quantity}
-        </div>
-        <DeleteIcon
-          onClick={() => {
-            removeItem(props.card.id);
-          }}
-          style={removeStyle}
-          alt=""
-        />
+      <div
+        style={container}
+        onClick={() => {
+          removeItem(id);
+        }}
+      >
+        <div style={manaStyle}>{manaCost}</div>
+        <div style={imageStyle}></div>
+        <div style={nameStyle}>{name}</div>
+        <div style={quantityStyle}>{quantity}</div>
       </div>
     </React.Fragment>
   );
