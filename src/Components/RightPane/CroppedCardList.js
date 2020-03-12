@@ -10,7 +10,9 @@ export default function CroppedCardList(props) {
   const printDeckString = useDeckString(cardsInDeck);
 
   const dustIconStyle = {
-    float: "right"
+    float: "right",
+    paddingLeft: "4px",
+    paddingRight: "4px"
   };
 
   const craftingCosts = {
@@ -32,9 +34,17 @@ export default function CroppedCardList(props) {
   return (
     <React.Fragment>
       {deckLength > 0 && (
-        <div>
-          <div style={{ color: `${deckLength >= 30 ? "red" : ""}` }}>
-            {deckLength} / 30___________ {calculateCraftingCost()}
+        <div style={{ display: `flow-root` }}>
+          <div
+            style={{
+              float: `left`,
+              color: `${deckLength >= 30 ? "red" : ""}`
+            }}
+          >
+            {deckLength} / 30
+          </div>
+          <div style={{ float: `right` }}>
+            {calculateCraftingCost()}
             <img
               style={dustIconStyle}
               src='https://www.hearthstonetopdecks.com/wp-content/themes/hstd/images/icon-arcane-dust.png'
