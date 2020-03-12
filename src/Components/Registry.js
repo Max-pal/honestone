@@ -7,7 +7,7 @@ export default function Registry() {
   return (
     <React.Fragment>
       <Route exact path="/signup" component={SignUp} />
-      <Route exact path="/login" component={SignIn} />
+      <Route exact path="/" component={SignIn} />
     </React.Fragment>
   );
 }

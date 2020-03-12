@@ -27,7 +27,7 @@ export const heroImages = [
   { id: 671, img: paladin, name: "paladin", deckImg: paladinDeck },
   { id: 813, img: priest, name: "priest", deckImg: priestDeck },
   { id: 930, img: rogue, name: "rogue", deckImg: rogueDeck },
-  { id: 1066 img: shaman, name: "shaman", deckImg: shamanDeck },
+  { id: 1066, img: shaman, name: "shaman", deckImg: shamanDeck },
   { id: 893, img: warlock, name: "warlock", deckImg: warlockDeck },
   { id: 7, img: warrior, name: "warrior", deckImg: warriorDeck }
 ];

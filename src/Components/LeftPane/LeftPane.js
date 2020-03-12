@@ -25,7 +25,11 @@ export default function LeftPane() {
     <Grid item xs={10}>
       <Paper className={classes.paper}>
         <div>
-          <Route path="/" exact component={() => <CardList />} />
+          <Route
+            path="/deckbuilder/cardselect"
+            exact
+            component={() => <CardList />}
+          />
           <Route path="/collection" component={() => <Collection />} />
         </div>
       </Paper>

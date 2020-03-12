@@ -8,8 +8,9 @@ import axios from "axios";
 import DeckHeader from "../DeckHeader";
 
 export default function CroppedCardList(props) {
-  const { cardsInDeck, deckLength, deckName } = useContext(DeckContext);
-  const [hero, setHero] = useContext(DeckContext);
+  const { cardsInDeck, deckLength, deckName, hero, setHero } = useContext(
+    DeckContext
+  );
 
   const getDeckString = useDeckString(cardsInDeck);
 
@@ -50,11 +51,7 @@ export default function CroppedCardList(props) {
       <Button
         style={{ display: "block", margin: "auto" }}
         onClick={() => {
-<<<<<<< HEAD
           copy(getDeckString);
-=======
-          console.log(getDeckString);
->>>>>>> feature/save-new-deck
         }}
       >
         Copy Deck URL

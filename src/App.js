@@ -18,25 +18,25 @@ import Collection from "./Components/Collection";
 function App(props) {
   return (
     <BrowserRouter>
-      <DeckProvider>
-        <CardsProvider>
-          <div className="App">
-            <UserProvider>
-              <Header />
-              <Registry />
-            </UserProvider>
-            <DeckStringProvider>
-              <div>
-                <Route path="/builddeck" component={HeroSelect} />
+      <CardsProvider>
+        <div className="App">
+          <UserProvider>
+            <Header />
+            <Registry />
+          </UserProvider>
+          <div>
+            <DeckProvider>
+              <DeckStringProvider>
+                <Route path="/deckbuilder/heroselect" component={HeroSelect} />
                 <Grid container direction="row">
                   <LeftPane />
                   <RightPane position="sticky" />
                 </Grid>
-              </div>
-            </DeckStringProvider>
+              </DeckStringProvider>
+            </DeckProvider>
           </div>
-        </CardsProvider>
-      </DeckProvider>
+        </div>
+      </CardsProvider>
       <ScrollTop {...props}>
         <Fab color="secondary" size="large" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />

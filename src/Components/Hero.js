@@ -6,7 +6,7 @@ export default function Hero(props) {
   const { hero, setHero } = useContext(DeckContext);
 
   return (
-    <Link to="/">
+    <Link to="/deckbuilder/cardselect">
       <img
         onClick={e => {
           setHero({ name: props.heroName, id: props.heroId });

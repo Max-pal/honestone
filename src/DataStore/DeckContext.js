@@ -3,9 +3,9 @@ import React, { createContext, useEffect, useState } from "react";
 export const DeckContext = createContext();
 
 export function DeckProvider(props) {
-  const [cardsInDeck, setCardsInDeck] = useState([]);          
+  const [cardsInDeck, setCardsInDeck] = useState([]);
   const [deckLength, setDeckLength] = useState(0);
-  const [hero, setHero] = useState({ name: "", id: 0 });
+  const [hero, setHero] = useState({ name: "", id: 7 });
   const [deckName, setDeckName] = useState("New Deck");
 
   console.log("Context render");
@@ -17,7 +17,15 @@ export function DeckProvider(props) {
 
   return (
     <DeckContext.Provider
-      value={{ cardsInDeck, setCardsInDeck, deckLength, hero, setHero, deckName, setDeckName }}
+      value={{
+        cardsInDeck,
+        setCardsInDeck,
+        deckLength,
+        hero,
+        setHero,
+        deckName,
+        setDeckName
+      }}
     >
       {props.children}
     </DeckContext.Provider>
