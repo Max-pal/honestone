@@ -15,7 +15,7 @@ const styles = {
 };
 
 function DeckHeader() {
-  const { deckName, setDeckName, hero, setHero } = useContext(DeckContext);
+  const { setDeckName, hero, deckName } = useContext(DeckContext);
 
   return heroImages
     .filter(heroElem => heroElem.id === hero.id)
@@ -34,6 +34,7 @@ function DeckHeader() {
             top: 0,
             left: 0
           }}
+          value={deckName}
           id="deck-title"
           label={`${heroElem.name.toUpperCase()} DECK`}
           fullWidth

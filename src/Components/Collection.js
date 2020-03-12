@@ -6,9 +6,9 @@ export default function Collection() {
   const [decks, setDecks] = useState([]);
 
   const getDecksByUserId = () => {
-    axios
-      .get("http://localhost:8080/deck/get/1")
-      .then(json => setDecks(json.data));
+    axios.get("http://localhost:8080/deck/get/1").then(json => {
+      setDecks(json.data);
+    });
   };
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Collection() {
   return (
     <React.Fragment>
       {decks.map(deck => (
-        <Deck name={deck.name} deckcode={deck.deckcode} />
+        <Deck name={deck.name} heroId={deck.hero} deckcode={deck.deckcode} />
       ))}
     </React.Fragment>
   );
