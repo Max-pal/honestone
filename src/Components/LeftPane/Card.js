@@ -20,9 +20,9 @@ const StyledCard = styled.img`
 
 export default function Card(props) {
   const [cardsInDeck, setCardsInDeck, deckLength] = useContext(DeckContext);
-  const { id, image, rarityId } = props.card;
   const [open, setOpen] = useState(false);
   const [message, setMassage] = useState("");
+  const { id, image, rarityId } = props.card;
 
   const isSameCardsInDeck = () => {
     for (const card of cardsInDeck) {
@@ -63,16 +63,16 @@ export default function Card(props) {
       <StyledCard
         className='dummy'
         onClick={() => {
-          if (!isDeckFull) {
+          if (isDeckFull) {
+            setMassage("Reached maximum deck size!");
+            setOpen(true);
+          } else {
             if (isSameCardsInDeck()) {
               setMassage("Reached the maximum number of this card!");
               setOpen(true);
             } else {
               cardChecker();
             }
-          } else {
-            setMassage("Reached maximum deck size!");
-            setOpen(true);
           }
         }}
         id={id}
