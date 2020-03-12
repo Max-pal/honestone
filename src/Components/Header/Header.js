@@ -80,10 +80,14 @@ export default function SearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             HoneStone
           </Typography>
-          <Link style={{ color: "#fff" }} href="/deckbuilder/heroselect">
+          <Link
+            style={{ color: "#fff" }}
+            href="/deckbuilder/heroselect"
+            underline="none"
+          >
             Create Deck
           </Link>
-          <Link style={{ color: "#fff" }} href="/collection">
+          <Link style={{ color: "#fff" }} href="/collection" underline="none">
             Collection
           </Link>
           <div className={classes.search}>
