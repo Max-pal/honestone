@@ -13,7 +13,7 @@ const StyledCard = styled.img`
   width: 295px;
   cursor: pointer;
   &:hover {
-    transform: scale(1.15);
+    transform: scale(1.08);
   }
   transition-duration: 0.3s;
 `;

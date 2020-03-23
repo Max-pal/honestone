@@ -28,9 +28,15 @@ function App(props) {
             <DeckProvider>
               <DeckStringProvider>
                 <Route path="/deckbuilder/heroselect" component={HeroSelect} />
+                <Route path="/collection" component={() => <Collection />} />
                 <Grid container direction="row">
                   <LeftPane />
-                  <RightPane position="sticky" />
+
+                  <Route
+                    path="/deckbuilder/cardselect"
+                    exact
+                    component={() => <RightPane position="sticky" />}
+                  />
                 </Grid>
               </DeckStringProvider>
             </DeckProvider>

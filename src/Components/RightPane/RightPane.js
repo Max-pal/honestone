@@ -26,13 +26,7 @@ export default function RightPane() {
   return (
     <Grid item xs={2}>
       <Paper className={classes.paper}>
-        <div>
-          <Route
-            path="/deckbuilder/cardselect"
-            exact
-            component={CroppedCardList}
-          />
-        </div>
+        <CroppedCardList />>
       </Paper>
     </Grid>
   );

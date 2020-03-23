@@ -77,8 +77,11 @@ export default function SearchAppBar() {
             aria-label="open drawer"
           />
           <Typography className={classes.title} variant="h6" noWrap>
-            HoneStone
+            <Link style={{ color: "#fff" }} href="/collection" underline="none">
+              HoneStone
+            </Link>
           </Typography>
+
           <Typography className={classes.menuButton} variant="button" noWrap>
             <Link
               style={{ color: "#fff" }}
@@ -103,6 +106,7 @@ export default function SearchAppBar() {
               }}
             >
               <InputBase
+                autoComplete="off"
                 id="search"
                 placeholder="Search…"
                 classes={{

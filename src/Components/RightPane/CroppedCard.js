@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { DeckContext } from "../../DataStore/DeckContext";
+import styled from "styled-components";
 
 export default function CroppedCard(props) {
   const { cardsInDeck, setCardsInDeck } = useContext(DeckContext);
@@ -14,6 +15,8 @@ export default function CroppedCard(props) {
   };
 
   const container = {
+    marginBottom: "3px",
+    cursor: "pointer",
     position: "relative",
     height: "40px",
     backgroundColor: "black"
@@ -87,19 +90,24 @@ export default function CroppedCard(props) {
     }
   };
 
+  const CroppedCardStyle = styled.div`
+    transition-duration: 0.3s;
+    &:hover {
+      transform: translateX(-10px);
+    }
+  `;
+
   return (
-    <React.Fragment>
-      <div
-        style={container}
-        onClick={() => {
-          removeItem(id);
-        }}
-      >
-        <div style={manaStyle}>{manaCost}</div>
-        <div style={imageStyle}></div>
-        <div style={nameStyle}>{name}</div>
-        <div style={quantityStyle}>{quantity}</div>
-      </div>
-    </React.Fragment>
+    <CroppedCardStyle
+      style={container}
+      onClick={() => {
+        removeItem(id);
+      }}
+    >
+      <div style={manaStyle}>{manaCost}</div>
+      <div style={imageStyle}></div>
+      <div style={nameStyle}>{name}</div>
+      <div style={quantityStyle}>{quantity}</div>
+    </CroppedCardStyle>
   );
 }

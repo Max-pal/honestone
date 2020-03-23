@@ -6,6 +6,7 @@ import useDeckString from "../../hooks/useDeckString";
 import copy from "copy-to-clipboard";
 import axios from "axios";
 import DeckHeader from "../DeckHeader";
+import { Link } from "react-router-dom";
 
 export default function CroppedCardList(props) {
   const { cardsInDeck, deckLength, deckName, hero, setHero } = useContext(
@@ -74,6 +75,7 @@ export default function CroppedCardList(props) {
           </div>
         </div>
       )}
+
       {deckLength > 0 &&
         cardsInDeck.map(card => <CroppedCard key={card.id} card={card} />)}
 
@@ -86,14 +88,16 @@ export default function CroppedCardList(props) {
         Copy Deck URL
       </Button>
 
-      <Button
-        style={{ display: "block", margin: "auto" }}
-        onClick={() => {
-          saveDeck();
-        }}
-      >
-        Save Deck
-      </Button>
+      <Link style={{ color: "#fff" }} href="/collection" underline="none">
+        <Button
+          style={{ display: "block", margin: "auto" }}
+          onClick={() => {
+            saveDeck();
+          }}
+        >
+          Save Deck
+        </Button>
+      </Link>
     </React.Fragment>
   );
 }
