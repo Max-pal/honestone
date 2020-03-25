@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { encode, FormatType } from "deckstrings";
 import { DeckContext } from "../DataStore/DeckContext";
 
-export default function(deck) {
-  const { hero, setHero } = useContext(DeckContext);
+export default function(deck, hero) {
   let convertedCards = [];
   deck.map(card => convertedCards.push([card.id, card.quantity]));
   const convertedDeck = {

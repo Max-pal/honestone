@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Deck from "./Deck";
+import { UserContext } from "../DataStore/UserProvider";
 
 export default function Collection() {
   const [decks, setDecks] = useState([]);
-
-  const getDecksByUserId = () => {
-    axios.get("http://localhost:8080/deck/get/1").then(json => {
-      setDecks(json.data);
-    });
-  };
+  const { userId } = useContext(UserContext);
 
   useEffect(() => {
-    getDecksByUserId();
-  }, []);
+    if (userId !== -1) {
+      axios.get(`http://localhost:8080/deck/get/${userId}`).then(({ data }) => {
+        setDecks(data);
+      });
+    }
+  }, [userId]);
 
   return (
     <div style={{ display: "grid" }}>

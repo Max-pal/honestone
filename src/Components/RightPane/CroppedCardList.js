@@ -6,29 +6,12 @@ import useDeckString from "../../hooks/useDeckString";
 import copy from "copy-to-clipboard";
 import axios from "axios";
 import DeckHeader from "../DeckHeader";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export default function CroppedCardList(props) {
-  const { cardsInDeck, deckLength, deckName, hero, setHero } = useContext(
+  const { cardsInDeck, deckLength, getDeckString, saveDeck } = useContext(
     DeckContext
   );
-
-  const getDeckString = useDeckString(cardsInDeck);
-
-  const saveDeck = () => {
-    let Deck = {
-      deckcode: getDeckString,
-      hero: hero.id,
-      format: 1,
-      name: deckName,
-      userId: 1
-    };
-    axios.post("http://localhost:8080/deck/save", Deck, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-  };
 
   const dustIconStyle = {
     float: "right",
@@ -88,7 +71,7 @@ export default function CroppedCardList(props) {
         Copy Deck URL
       </Button>
 
-      <Link style={{ color: "#fff" }} href="/collection" underline="none">
+      <Link style={{ color: "#fff" }} to="/collection" underline="none">
         <Button
           style={{ display: "block", margin: "auto" }}
           onClick={() => {

@@ -23,24 +23,28 @@ function App(props) {
           <UserProvider>
             <Header />
             <Registry />
-          </UserProvider>
-          <div>
-            <DeckProvider>
-              <DeckStringProvider>
-                <Route path="/deckbuilder/heroselect" component={HeroSelect} />
-                <Route path="/collection" component={() => <Collection />} />
-                <Grid container direction="row">
-                  <LeftPane />
 
+            <div>
+              <DeckProvider>
+                <DeckStringProvider>
                   <Route
-                    path="/deckbuilder/cardselect"
-                    exact
-                    component={() => <RightPane position="sticky" />}
+                    path="/deckbuilder/heroselect"
+                    component={HeroSelect}
                   />
-                </Grid>
-              </DeckStringProvider>
-            </DeckProvider>
-          </div>
+                  <Route path="/collection" component={() => <Collection />} />
+                  <Grid container direction="row">
+                    <LeftPane />
+
+                    <Route
+                      path="/deckbuilder/cardselect"
+                      exact
+                      component={() => <RightPane position="sticky" />}
+                    />
+                  </Grid>
+                </DeckStringProvider>
+              </DeckProvider>
+            </div>
+          </UserProvider>
         </div>
       </CardsProvider>
       <ScrollTop {...props}>
