@@ -20,7 +20,7 @@ function App(props) {
   return (
     <BrowserRouter>
       <CardsProvider>
-        <div className="App">
+        <div className='App'>
           <UserProvider>
             <Header />
             <Registry />
@@ -30,22 +30,19 @@ function App(props) {
                 <DeckProvider>
                   <DeckStringProvider>
                     <Route
-                      path="/deckbuilder/heroselect"
+                      path='/deckbuilder/heroselect'
                       component={HeroSelect}
                     />
 
-                    <Route
-                      path="/collection"
-                      component={() => <Collection />}
-                    />
+                    <Route path='/collection' component={Collection} />
 
-                    <Grid container direction="row">
+                    <Grid container direction='row'>
                       <LeftPane />
 
                       <Route
-                        path="/deckbuilder/cardselect"
+                        path='/deckbuilder/cardselect'
                         exact
-                        component={() => <RightPane position="sticky" />}
+                        component={() => <RightPane position='sticky' />}
                       />
                     </Grid>
                   </DeckStringProvider>
@@ -56,7 +53,7 @@ function App(props) {
         </div>
       </CardsProvider>
       <ScrollTop {...props}>
-        <Fab color="secondary" size="large" aria-label="scroll back to top">
+        <Fab color='secondary' size='large' aria-label='scroll back to top'>
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
