@@ -21,17 +21,9 @@ function uniq(a, param) {
 
 const DeleteIcon = styled.img`
   position: absolute;
+  top: 0;
   right: 0;
-  opacity: 0.5;
-`;
-
-const LinkStyle = styled(Link)`
-  text-decoration: none;
-  position: relative;
-  transition-duration: 0.25s;
-  &:hover {
-    transform: scale(1.05);
-  }
+  opacity: 0.8;
 `;
 
 export default function Deck(props) {
@@ -45,6 +37,14 @@ export default function Deck(props) {
     });
   };
 
+  const LinkStyle = styled(Link)`
+    text-decoration: none;
+    transition-duration: 0.25s;
+    &:hover {
+      transform: scale(1.05);
+    }
+  `;
+
   const DeckStyle = styled.div`
     background-image: linear-gradient(
         0deg,
@@ -56,7 +56,10 @@ export default function Deck(props) {
     background-repeat: no-repeat;
     height: 92.1px;
     width: 250px;
-    transform: inherit;
+    transition-duration: 0.25s;
+    &:hover {
+      transform: scale(1.05);
+    }
   `;
 
   return (
@@ -98,7 +101,8 @@ export default function Deck(props) {
         <div
           style={{
             position: "absolute",
-            bottom: "10%",
+            bottom: "0",
+            left: "5%",
             color: "white",
             transform: "inherit"
           }}
