@@ -3,7 +3,6 @@ import { DeckContext } from "../DataStore/DeckContext";
 import getAccessToken from "../getAccessToken";
 import axios from "axios";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { heroImages } from "./Header/HeroSelect";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
