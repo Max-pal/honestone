@@ -12,13 +12,15 @@ export function DeckProvider(props) {
   const [deckLength, setDeckLength] = useState(0);
   const [hero, setHero] = useState({ name: "", id: 7 });
   const [deckName, setDeckName] = useState("New Deck");
-  const { userId } = useContext(UserContext);
+  const { userId, setTrigger, trigger } = useContext(UserContext);
   const { decks, setDecks } = useContext(CollectionContext);
+  const [deckId, setDeckId] = useState(-1);
 
   const getDeckString = useDeckString(cardsInDeck, hero);
 
   const saveDeck = () => {
     let Deck = {
+      id: deckId,
       deckcode: getDeckString,
       hero: hero.id,
       format: 1,
@@ -31,7 +33,7 @@ export function DeckProvider(props) {
           "user-id": userId
         }
       })
-      .then(({ data }) => setDecks([...decks, data]));
+      .then(() => setTrigger(trigger + 1));
   };
 
   const deleteDeck = deckId => {
@@ -56,7 +58,9 @@ export function DeckProvider(props) {
         setDeckName,
         saveDeck,
         getDeckString,
-        deleteDeck
+        deleteDeck,
+        deckId,
+        setDeckId
       }}
     >
       {props.children}

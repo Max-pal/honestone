@@ -20,9 +20,13 @@ function uniq(a, param) {
 }
 
 export default function Deck(props) {
-  const { setCardsInDeck, setHero, setDeckName, deleteDeck } = useContext(
-    DeckContext
-  );
+  const {
+    setCardsInDeck,
+    setHero,
+    setDeckName,
+    deleteDeck,
+    setDeckId
+  } = useContext(DeckContext);
   return (
     <React.Fragment>
       <Link style={{ textDecoration: "none" }} to="/deckbuilder/cardselect">
@@ -36,6 +40,7 @@ export default function Deck(props) {
                     `https://us.api.blizzard.com/hearthstone/deck/${deckstring}?locale=en_US&access_token=${token}`
                   )
                   .then(json => {
+                    setDeckId(props.id);
                     setDeckName(props.name);
                     setHero({
                       name: json.data.class.slug,

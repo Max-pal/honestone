@@ -6,6 +6,7 @@ export const UserContext = createContext();
 export function UserProvider(props) {
   const [userId, setUserId] = useState(-1);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [trigger, setTrigger] = useState(0);
 
   function register(userInformation) {
     axios
@@ -37,7 +38,9 @@ export function UserProvider(props) {
         isLoggedIn,
         setIsLoggedIn,
         register,
-        login
+        login,
+        setTrigger,
+        trigger
       }}
     >
       {props.children}
