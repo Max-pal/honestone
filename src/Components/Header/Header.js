@@ -7,8 +7,9 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import { CardsContext } from "../../DataStore/CardsContext";
-import { Link } from "@material-ui/core";
+import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../../DataStore/UserProvider";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -65,7 +66,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function SearchAppBar() {
   const classes = useStyles();
-  const { user } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn, userId, setUserId } = useContext(
+    UserContext
+  );
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -77,46 +80,74 @@ export default function SearchAppBar() {
             aria-label="open drawer"
           />
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link style={{ color: "#fff" }} href="/collection" underline="none">
+            <Link
+              style={{ color: "#fff", textDecoration: "none" }}
+              to="/collection"
+              underline="none"
+            >
               HoneStone
             </Link>
           </Typography>
+          {isLoggedIn && (
+            <React.Fragment>
+              <Typography
+                className={classes.menuButton}
+                variant="button"
+                noWrap
+              >
+                <Link
+                  style={{ color: "#fff", textDecoration: "none" }}
+                  to="/deckbuilder/heroselect"
+                  underline="none"
+                >
+                  Create Deck
+                </Link>
+              </Typography>
+              <Typography
+                className={classes.menuButton}
+                variant="button"
+                noWrap
+              >
+                <Link
+                  style={{ color: "#fff", textDecoration: "none" }}
+                  to="/collection"
+                  underline="none"
+                >
+                  Collection
+                </Link>
+              </Typography>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <form
+                  onSubmit={e => {
+                    e.preventDefault();
+                  }}
+                >
+                  <InputBase
+                    autoComplete="off"
+                    id="search"
+                    placeholder="Search…"
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput
+                    }}
+                    inputProps={{ "aria-label": "search" }}
+                  />
+                </form>
+              </div>
 
-          <Typography className={classes.menuButton} variant="button" noWrap>
-            <Link
-              style={{ color: "#fff" }}
-              href="/deckbuilder/heroselect"
-              underline="none"
-            >
-              Create Deck
-            </Link>
-          </Typography>
-          <Typography className={classes.menuButton} variant="button" noWrap>
-            <Link style={{ color: "#fff" }} href="/collection" underline="none">
-              Collection
-            </Link>
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <form
-              onSubmit={e => {
-                e.preventDefault();
-              }}
-            >
-              <InputBase
-                autoComplete="off"
-                id="search"
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
+              <ExitToAppIcon
+                cursor="pointer"
+                onClick={() => {
+                  setIsLoggedIn(false);
+                  setUserId(-1);
                 }}
-                inputProps={{ "aria-label": "search" }}
               />
-            </form>
-          </div>
+            </React.Fragment>
+          )}
+          {!isLoggedIn && <Redirect to="/" />}
         </Toolbar>
       </AppBar>
     </div>

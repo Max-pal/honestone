@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useEffect } from "react";
 import Deck from "./Deck";
+import { CollectionContext } from "../DataStore/CollectionContext";
+import { DeckContext } from "../DataStore/DeckContext";
 
 export default function Collection() {
-  const [decks, setDecks] = useState([]);
-
-  const getDecksByUserId = () => {
-    axios.get("http://localhost:8080/deck/get/1").then(json => {
-      setDecks(json.data);
-    });
-  };
+  const { decks, setDecks } = useContext(CollectionContext);
+  const { setFormat } = useContext(DeckContext);
 
   useEffect(() => {
-    getDecksByUserId();
-  }, []);
+    setFormat(2);
+  }, [setFormat]);
 
   return (
     <div style={{ display: "grid" }}>
       {decks.map(deck => (
-        <div>
-          <Deck name={deck.name} heroId={deck.hero} deckcode={deck.deckcode} />
-        </div>
+        <Deck
+          name={deck.name}
+          heroId={deck.hero}
+          deckcode={deck.deckcode}
+          id={deck.id}
+          setDecks={setDecks}
+          decks={decks}
+        />
       ))}
     </div>
   );

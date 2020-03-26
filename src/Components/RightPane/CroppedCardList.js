@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import CroppedCard from "./CroppedCard";
 import { DeckContext } from "../../DataStore/DeckContext";
 import { Button } from "@material-ui/core";
-import useDeckString from "../../hooks/useDeckString";
 import copy from "copy-to-clipboard";
-import axios from "axios";
 import DeckHeader from "../DeckHeader";
 import { Link } from "react-router-dom";
 import handWithCards from "../../static/images/handwithcards.png";
@@ -12,26 +10,13 @@ import saveIcon from "../../static/images/saveicon.png";
 import copyIcon from "../../static/images/copyicon.png";
 
 export default function CroppedCardList(props) {
-  const { cardsInDeck, deckLength, deckName, hero, setHero } = useContext(
-    DeckContext
-  );
-
-  const getDeckString = useDeckString(cardsInDeck);
-
-  const saveDeck = () => {
-    let Deck = {
-      deckcode: getDeckString,
-      hero: hero.id,
-      format: 1,
-      name: deckName,
-      userId: 1
-    };
-    axios.post("http://localhost:8080/deck/save", Deck, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-  };
+  const {
+    cardsInDeck,
+    deckLength,
+    getDeckString,
+    saveDeck,
+    setCardsInDeck
+  } = useContext(DeckContext);
 
   const dustIconStyle = {
     float: "right",
@@ -60,6 +45,9 @@ export default function CroppedCardList(props) {
     width: "40px"
   };
 
+  useEffect(() => {
+    setCardsInDeck([]);
+  }, [setCardsInDeck]);
   return (
     <React.Fragment>
       <DeckHeader />
@@ -99,10 +87,10 @@ export default function CroppedCardList(props) {
             copy(getDeckString);
           }}
         >
-          <img style={iconSize} src={copyIcon} alt="" />
+          <img style={iconSize} src={copyIcon} alt="Copy Deck String" />
         </Button>
 
-        <Link style={{ color: "#fff" }} href="/collection" underline="none">
+        <Link style={{ color: "#fff" }} to="/collection" underline="none">
           <Button
             style={{ display: "block", margin: "auto" }}
             onClick={() => {

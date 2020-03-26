@@ -5,7 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -13,12 +13,17 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { UserContext } from "../DataStore/UserProvider";
+import { Redirect } from "react-router-dom";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="http://localhost:3000/">
+      <Link
+        style={{ color: "#d9a62e", textDecoration: "none" }}
+        color="inherit"
+        href="#"
+      >
         HoneStone
       </Link>{" "}
       {new Date().getFullYear()}
@@ -49,8 +54,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignIn() {
   const classes = useStyles();
-  const { user, setUser } = useContext(UserContext);
+  const { login, isLoggedIn } = useContext(UserContext);
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <Container component="main" maxWidth="xs">
@@ -65,8 +71,9 @@ export default function SignIn() {
         <form
           className={classes.form}
           noValidate
-          onSubmit={() => {
-            document.querySelector("#username").click();
+          onSubmit={e => {
+            e.preventDefault();
+            login({ username, password });
           }}
         >
           <TextField
@@ -80,7 +87,7 @@ export default function SignIn() {
             autoComplete="off"
             autoFocus
             onChange={e => {
-              setUser({ username: e.target.value });
+              setUsername(e.target.value);
             }}
           />
           <TextField
@@ -93,14 +100,12 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            onChange={e => {
+              setPassword(e.target.value);
+            }}
           />
 
           <Button
-            href="/collection"
             type="submit"
             fullWidth
             variant="contained"
@@ -112,12 +117,20 @@ export default function SignIn() {
 
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link
+                style={{ color: "#d9a62e", textDecoration: "none" }}
+                href="#"
+                variant="body2"
+              >
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
+              <Link
+                style={{ color: "#d9a62e", textDecoration: "none" }}
+                to="/signup"
+                variant="body2"
+              >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -127,6 +140,7 @@ export default function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
+      {isLoggedIn === true && <Redirect to="/collection" />}
     </Container>
   );
 }

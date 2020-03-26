@@ -16,6 +16,7 @@ import { DeckStringProvider } from "./DataStore/DeckCodeContext";
 import StartHandSimulator from "./Components/LeftPane/StartHandSimulator";
 import Collection from "./Components/Collection";
 import { StartHandProvider } from "./DataStore/StartHandContext";
+import { CollectionProvider } from "./DataStore/CollectionContext";
 
 function App(props) {
   return (
@@ -25,26 +26,41 @@ function App(props) {
           <UserProvider>
             <Header />
             <Registry />
+
+            <div>
+              <CollectionProvider>
+                <DeckProvider>
+                  <DeckStringProvider>
+                    <Route
+                      path="/deckbuilder/heroselect"
+                      component={HeroSelect}
+                    />
+                    <StartHandProvider>
+                      <Route
+                        path="/handsimulator"
+                        component={StartHandSimulator}
+                      />
+                    </StartHandProvider>
+
+                    <Route
+                      path="/collection"
+                      component={() => <Collection />}
+                    />
+
+                    <Grid container direction="row">
+                      <LeftPane />
+
+                      <Route
+                        path="/deckbuilder/cardselect"
+                        exact
+                        component={() => <RightPane position="sticky" />}
+                      />
+                    </Grid>
+                  </DeckStringProvider>
+                </DeckProvider>
+              </CollectionProvider>
+            </div>
           </UserProvider>
-          <div>
-            <DeckProvider>
-              <DeckStringProvider>
-                <Route path="/deckbuilder/heroselect" component={HeroSelect} />
-                <StartHandProvider>
-                  <Route path="/handsimulator" component={StartHandSimulator} />
-                </StartHandProvider>
-                <Route path="/collection" component={Collection} />
-                <Grid container direction="row">
-                  <LeftPane />
-                  <Route
-                    path="/deckbuilder/cardselect"
-                    exact
-                    component={() => <RightPane position="sticky" />}
-                  />
-                </Grid>
-              </DeckStringProvider>
-            </DeckProvider>
-          </div>
         </div>
       </CardsProvider>
       <ScrollTop {...props}>

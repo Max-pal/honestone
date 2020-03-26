@@ -19,6 +19,7 @@ import priestDeck from "../../static/images/db-deck-class-priest.png";
 import warlockDeck from "../../static/images/db-deck-class-warlock.png";
 import warriorDeck from "../../static/images/db-deck-class-warrior.png";
 import rogueDeck from "../../static/images/db-deck-class-rogue.png";
+import FormatButtons from "../FormatButtons";
 
 export const heroImages = [
   { id: 274, img: druid, name: "druid", deckImg: druidDeck },
@@ -36,6 +37,7 @@ export function HeroSelect() {
   return (
     <React.Fragment>
       <ImportDeck />
+      <FormatButtons />
       <div
         style={{
           margin: "auto",

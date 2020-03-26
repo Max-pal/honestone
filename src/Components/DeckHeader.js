@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { heroImages } from "../Components/Header/HeroSelect";
 import TextField from "@material-ui/core/TextField";
 import { DeckContext } from "../DataStore/DeckContext";
@@ -17,6 +17,10 @@ const styles = {
 
 function DeckHeader() {
   const { setDeckName, hero, deckName } = useContext(DeckContext);
+
+  useEffect(() => {
+    setDeckName("New Deck");
+  }, [setDeckName]);
 
   return heroImages
     .filter(heroElem => heroElem.id === hero.id)
