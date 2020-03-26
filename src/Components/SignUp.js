@@ -84,6 +84,7 @@ export default function SignUp() {
                 id="username"
                 label="Username"
                 autoFocus
+                autoComplete="off"
                 onChange={e => setUsername(e.target.value)}
               />
             </Grid>
@@ -96,6 +97,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                autoComplete="off"
                 onChange={e => setemail(e.target.value)}
               />
             </Grid>

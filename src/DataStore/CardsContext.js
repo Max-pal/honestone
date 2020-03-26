@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import getAccessToken from "../getAccessToken";
+import Axios from "axios";
 
 export const CardsContext = createContext();
 
@@ -23,20 +24,51 @@ export function CardsProvider(props) {
     type: "",
     textFilter: ""
   });
+  const [wildSets, setWildSets] = useState([]);
+
+  const getWildSets = async () => {
+    let allsets = [];
+    getAccessToken()
+      .then(token =>
+        Axios.get(
+          `https://us.api.blizzard.com/hearthstone/metadata/sets?&locale=en_US&access_token=${token}`
+        )
+      )
+      .then(({ data }) => (allsets = data))
+      .then(
+        getAccessToken()
+          .then(token =>
+            Axios.get(
+              `https://us.api.blizzard.com/hearthstone/metadata/setGroups?&locale=en_US&access_token=${token}`
+            )
+          )
+          .then(({ data }) => {
+            let wildSetsSlug = data.filter(set => set.slug === "wild")[0]
+              .cardSets;
+            setWildSets(
+              allsets
+                .filter(set => wildSetsSlug.includes(set.slug))
+                .map(set => set.id)
+            );
+          })
+      );
+  };
 
   useEffect(() => {
-    getAccessToken().then(token => {
-      fetch(
-        `https://us.api.blizzard.com/hearthstone/cards?${serialize(
-          settings
-        )}&page=${page}&locale=en_US&access_token=${token}`
-      )
-        .then(response => response.json())
-        .then(json => {
-          setPageCount(json.pageCount);
-          setCards(json.cards);
-        });
-    });
+    getWildSets().then(
+      getAccessToken().then(token => {
+        fetch(
+          `https://us.api.blizzard.com/hearthstone/cards?${serialize(
+            settings
+          )}&page=${page}&locale=en_US&access_token=${token}`
+        )
+          .then(response => response.json())
+          .then(json => {
+            setPageCount(json.pageCount);
+            setCards(json.cards);
+          });
+      })
+    );
   }, [page, settings]);
 
   useEffect(() => {
@@ -45,7 +77,15 @@ export function CardsProvider(props) {
 
   return (
     <CardsContext.Provider
-      value={{ cards, setPage, page, settings, setSettings, pageCount }}
+      value={{
+        cards,
+        setPage,
+        page,
+        settings,
+        setSettings,
+        pageCount,
+        wildSets
+      }}
     >
       {props.children}
     </CardsContext.Provider>

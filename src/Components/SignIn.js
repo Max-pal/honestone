@@ -19,7 +19,11 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="http://localhost:3000/">
+      <Link
+        style={{ color: "#d9a62e", textDecoration: "none" }}
+        color="inherit"
+        href="#"
+      >
         HoneStone
       </Link>{" "}
       {new Date().getFullYear()}
@@ -113,12 +117,20 @@ export default function SignIn() {
 
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link
+                style={{ color: "#d9a62e", textDecoration: "none" }}
+                href="#"
+                variant="body2"
+              >
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/signup" variant="body2">
+              <Link
+                style={{ color: "#d9a62e", textDecoration: "none" }}
+                to="/signup"
+                variant="body2"
+              >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

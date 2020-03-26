@@ -80,7 +80,11 @@ export default function SearchAppBar() {
             aria-label="open drawer"
           />
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link style={{ color: "#fff" }} href="/collection" underline="none">
+            <Link
+              style={{ color: "#fff", textDecoration: "none" }}
+              to="/collection"
+              underline="none"
+            >
               HoneStone
             </Link>
           </Typography>
@@ -92,7 +96,7 @@ export default function SearchAppBar() {
                 noWrap
               >
                 <Link
-                  style={{ color: "#fff" }}
+                  style={{ color: "#fff", textDecoration: "none" }}
                   to="/deckbuilder/heroselect"
                   underline="none"
                 >
@@ -105,7 +109,7 @@ export default function SearchAppBar() {
                 noWrap
               >
                 <Link
-                  style={{ color: "#fff" }}
+                  style={{ color: "#fff", textDecoration: "none" }}
                   to="/collection"
                   underline="none"
                 >

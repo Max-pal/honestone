@@ -15,15 +15,16 @@ export function DeckProvider(props) {
   const { userId, setTrigger, trigger } = useContext(UserContext);
   const { decks, setDecks } = useContext(CollectionContext);
   const [deckId, setDeckId] = useState(-1);
+  const [format, setFormat] = useState(2); // 1 for Wild, 2 for Standard
 
-  const getDeckString = useDeckString(cardsInDeck, hero);
+  const getDeckString = useDeckString(cardsInDeck, hero, format);
 
   const saveDeck = () => {
     let Deck = {
       id: deckId,
       deckcode: getDeckString,
       hero: hero.id,
-      format: 1,
+      format: format,
       name: deckName
     };
     axios
@@ -60,7 +61,9 @@ export function DeckProvider(props) {
         getDeckString,
         deleteDeck,
         deckId,
-        setDeckId
+        setDeckId,
+        format,
+        setFormat
       }}
     >
       {props.children}
