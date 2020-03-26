@@ -24,7 +24,6 @@ export function UserProvider(props) {
       .then(({ data }) => {
         if (data !== -1) {
           setIsLoggedIn(true);
-          console.log(data);
           setUserId(data);
         }
       });

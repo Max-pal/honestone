@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import CroppedCard from "./CroppedCard";
 import { DeckContext } from "../../DataStore/DeckContext";
 import { Button } from "@material-ui/core";
-import useDeckString from "../../hooks/useDeckString";
 import copy from "copy-to-clipboard";
-import axios from "axios";
 import DeckHeader from "../DeckHeader";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function CroppedCardList(props) {
-  const { cardsInDeck, deckLength, getDeckString, saveDeck } = useContext(
-    DeckContext
-  );
+  const {
+    cardsInDeck,
+    deckLength,
+    getDeckString,
+    saveDeck,
+    setCardsInDeck
+  } = useContext(DeckContext);
 
   const dustIconStyle = {
     float: "right",
@@ -35,6 +37,9 @@ export default function CroppedCardList(props) {
     return craftingCost;
   };
 
+  useEffect(() => {
+    setCardsInDeck([]);
+  }, [setCardsInDeck]);
   return (
     <React.Fragment>
       <DeckHeader />

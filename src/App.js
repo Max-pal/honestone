@@ -14,6 +14,7 @@ import Registry from "./Components/Registry";
 import { UserProvider } from "./DataStore/UserProvider";
 import { DeckStringProvider } from "./DataStore/DeckCodeContext";
 import Collection from "./Components/Collection";
+import { CollectionProvider } from "./DataStore/CollectionContext";
 
 function App(props) {
   return (
@@ -25,24 +26,31 @@ function App(props) {
             <Registry />
 
             <div>
-              <DeckProvider>
-                <DeckStringProvider>
-                  <Route
-                    path="/deckbuilder/heroselect"
-                    component={HeroSelect}
-                  />
-                  <Route path="/collection" component={() => <Collection />} />
-                  <Grid container direction="row">
-                    <LeftPane />
+              <CollectionProvider>
+                <DeckProvider>
+                  <DeckStringProvider>
+                    <Route
+                      path="/deckbuilder/heroselect"
+                      component={HeroSelect}
+                    />
 
                     <Route
-                      path="/deckbuilder/cardselect"
-                      exact
-                      component={() => <RightPane position="sticky" />}
+                      path="/collection"
+                      component={() => <Collection />}
                     />
-                  </Grid>
-                </DeckStringProvider>
-              </DeckProvider>
+
+                    <Grid container direction="row">
+                      <LeftPane />
+
+                      <Route
+                        path="/deckbuilder/cardselect"
+                        exact
+                        component={() => <RightPane position="sticky" />}
+                      />
+                    </Grid>
+                  </DeckStringProvider>
+                </DeckProvider>
+              </CollectionProvider>
             </div>
           </UserProvider>
         </div>
