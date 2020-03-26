@@ -28,7 +28,6 @@ const DeleteIcon = styled.img`
 
 const LinkStyle = styled(Link)`
   text-decoration: none;
-  transition-duration: 0.25s;
 `;
 
 export default function Deck(props) {
@@ -53,6 +52,7 @@ export default function Deck(props) {
     background-repeat: no-repeat;
     height: 92.1px;
     width: 250px;
+    transition-duration: 0.25s;
     &:hover {
       transform: scale(1.05);
     }
