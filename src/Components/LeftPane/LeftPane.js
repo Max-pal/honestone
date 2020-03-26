@@ -24,13 +24,11 @@ export default function LeftPane() {
 
   return (
     <Grid item xs={10}>
-      <Paper className={classes.paper}>
-        <Route
-          path="/deckbuilder/cardselect"
-          exact
-          component={() => <CardList />}
-        />
-      </Paper>
+      <Route
+        path="/deckbuilder/cardselect"
+        exact
+        component={() => <CardList />}
+      />
     </Grid>
   );
 }

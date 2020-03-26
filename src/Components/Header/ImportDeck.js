@@ -66,6 +66,7 @@ export function ImportDeck() {
                       hero => hero.name === json.data.class.slug
                     )[0].id
                   });
+                  
                   const cardCount = new Map(
                     [...new Set(json.data.cards)].map(x => [
                       x,

@@ -5,6 +5,9 @@ import { Button } from "@material-ui/core";
 import copy from "copy-to-clipboard";
 import DeckHeader from "../DeckHeader";
 import { Link } from "react-router-dom";
+import handWithCards from "../../static/images/handwithcards.png";
+import saveIcon from "../../static/images/saveicon.png";
+import copyIcon from "../../static/images/copyicon.png";
 
 export default function CroppedCardList(props) {
   const {
@@ -37,6 +40,11 @@ export default function CroppedCardList(props) {
     return craftingCost;
   };
 
+  const iconSize = {
+    height: "40px",
+    width: "40px"
+  };
+
   useEffect(() => {
     setCardsInDeck([]);
   }, [setCardsInDeck]);
@@ -66,26 +74,43 @@ export default function CroppedCardList(props) {
 
       {deckLength > 0 &&
         cardsInDeck.map(card => <CroppedCard key={card.id} card={card} />)}
-
-      <Button
-        style={{ display: "block", margin: "auto" }}
-        onClick={() => {
-          copy(getDeckString);
+      <div
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center"
         }}
       >
-        Copy Deck URL
-      </Button>
-
-      <Link style={{ color: "#fff" }} to="/collection" underline="none">
         <Button
           style={{ display: "block", margin: "auto" }}
           onClick={() => {
-            saveDeck();
+            copy(getDeckString);
           }}
         >
-          Save Deck
+          <img style={iconSize} src={copyIcon} alt="Copy Deck String" />
         </Button>
-      </Link>
+
+        <Link style={{ color: "#fff" }} to="/collection" underline="none">
+          <Button
+            style={{ display: "block", margin: "auto" }}
+            onClick={() => {
+              saveDeck();
+            }}
+          >
+            <img style={iconSize} src={saveIcon} alt="Save Deck" />
+          </Button>
+        </Link>
+
+        <Link style={{ color: "#fff" }} to="/handsimulator" underline="none">
+          <Button style={{ display: "block", margin: "auto" }}>
+            <img
+              style={iconSize}
+              src={handWithCards}
+              alt="Start Hand Simulator"
+            />
+          </Button>
+        </Link>
+      </div>
     </React.Fragment>
   );
 }
