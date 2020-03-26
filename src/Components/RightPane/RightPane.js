@@ -26,7 +26,7 @@ export default function RightPane() {
   return (
     <Grid item xs={2}>
       <Paper className={classes.paper}>
-        <CroppedCardList />>
+        <CroppedCardList />
       </Paper>
     </Grid>
   );

@@ -13,7 +13,9 @@ import ScrollTop from "./Components/Header/ScrollTop";
 import Registry from "./Components/Registry";
 import { UserProvider } from "./DataStore/UserProvider";
 import { DeckStringProvider } from "./DataStore/DeckCodeContext";
+import StartHandSimulator from "./Components/LeftPane/StartHandSimulator";
 import Collection from "./Components/Collection";
+import { StartHandProvider } from "./DataStore/StartHandContext";
 
 function App(props) {
   return (
@@ -28,10 +30,12 @@ function App(props) {
             <DeckProvider>
               <DeckStringProvider>
                 <Route path="/deckbuilder/heroselect" component={HeroSelect} />
-                <Route path="/collection" component={() => <Collection />} />
+                <StartHandProvider>
+                  <Route path="/handsimulator" component={StartHandSimulator} />
+                </StartHandProvider>
+                <Route path="/collection" component={Collection} />
                 <Grid container direction="row">
                   <LeftPane />
-
                   <Route
                     path="/deckbuilder/cardselect"
                     exact

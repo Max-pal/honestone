@@ -18,7 +18,9 @@ export default function Collection() {
   return (
     <div style={{ display: "grid" }}>
       {decks.map(deck => (
-        <Deck name={deck.name} heroId={deck.hero} deckcode={deck.deckcode} />
+        <div>
+          <Deck name={deck.name} heroId={deck.hero} deckcode={deck.deckcode} />
+        </div>
       ))}
     </div>
   );
