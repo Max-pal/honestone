@@ -11,33 +11,36 @@ import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../../DataStore/UserProvider";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+  },
+  bottomMargin: {
+    marginBottom: "20px",
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
     display: "none",
     [theme.breakpoints.up("sm")]: {
-      display: "block"
-    }
+      display: "block",
+    },
   },
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
+      backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
-      width: "auto"
-    }
+      width: "auto",
+    },
   },
   searchIcon: {
     width: theme.spacing(7),
@@ -46,10 +49,10 @@ const useStyles = makeStyles(theme => ({
     pointerEvents: "none",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   inputRoot: {
-    color: "inherit"
+    color: "inherit",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
@@ -58,10 +61,10 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("sm")]: {
       width: 120,
       "&:focus": {
-        width: 200
-      }
-    }
-  }
+        width: 200,
+      },
+    },
+  },
 }));
 
 export default function SearchAppBar() {
@@ -71,7 +74,7 @@ export default function SearchAppBar() {
   );
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar className={classes.bottomMargin} position="static">
         <Toolbar>
           <IconButton
             edge="start"
@@ -129,7 +132,7 @@ export default function SearchAppBar() {
                   Profile
                 </Link>
               </Typography>
-              <div className={classes.search}>
+              {/* <div className={classes.search}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />
                 </div>
@@ -149,9 +152,10 @@ export default function SearchAppBar() {
                     inputProps={{ "aria-label": "search" }}
                   />
                 </form>
-              </div>
+              </div> */}
 
               <ExitToAppIcon
+                style={{ marginLeft: "10px" }}
                 cursor="pointer"
                 onClick={() => {
                   setIsLoggedIn(false);

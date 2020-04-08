@@ -10,13 +10,13 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: amber[800],
-      contrastText: amber[50]
+      contrastText: amber[50],
     },
     secondary: {
       main: lightBlue[500],
-      contrastText: lightBlue[50]
-    }
-  }
+      contrastText: lightBlue[50],
+    },
+  },
 });
 
 ReactDOM.render(

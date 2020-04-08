@@ -1,10 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
 import getAccessToken from "../getAccessToken";
-import Axios from "axios";
+import { blizzardAPI } from "../Components/axiosos";
 
 export const CardsContext = createContext();
 
-const serialize = function(obj) {
+const serialize = function (obj) {
   var str = [];
   for (var p in obj)
     if (obj.hasOwnProperty(p)) {
@@ -22,33 +22,33 @@ export function CardsProvider(props) {
     rarity: "",
     class: "neutral",
     type: "",
-    textFilter: ""
+    textFilter: "",
   });
   const [wildSets, setWildSets] = useState([]);
 
   const getWildSets = async () => {
     let allsets = [];
     getAccessToken()
-      .then(token =>
-        Axios.get(
+      .then((token) =>
+        blizzardAPI.get(
           `https://us.api.blizzard.com/hearthstone/metadata/sets?&locale=en_US&access_token=${token}`
         )
       )
       .then(({ data }) => (allsets = data))
       .then(
         getAccessToken()
-          .then(token =>
-            Axios.get(
+          .then((token) =>
+            blizzardAPI.get(
               `https://us.api.blizzard.com/hearthstone/metadata/setGroups?&locale=en_US&access_token=${token}`
             )
           )
           .then(({ data }) => {
-            let wildSetsSlug = data.filter(set => set.slug === "wild")[0]
+            let wildSetsSlug = data.filter((set) => set.slug === "wild")[0]
               .cardSets;
             setWildSets(
               allsets
-                .filter(set => wildSetsSlug.includes(set.slug))
-                .map(set => set.id)
+                .filter((set) => wildSetsSlug.includes(set.slug))
+                .map((set) => set.id)
             );
           })
       );
@@ -56,14 +56,14 @@ export function CardsProvider(props) {
 
   useEffect(() => {
     getWildSets().then(
-      getAccessToken().then(token => {
+      getAccessToken().then((token) => {
         fetch(
           `https://us.api.blizzard.com/hearthstone/cards?${serialize(
             settings
           )}&page=${page}&locale=en_US&access_token=${token}`
         )
-          .then(response => response.json())
-          .then(json => {
+          .then((response) => response.json())
+          .then((json) => {
             setPageCount(json.pageCount);
             setCards(json.cards);
           });
@@ -84,7 +84,7 @@ export function CardsProvider(props) {
         settings,
         setSettings,
         pageCount,
-        wildSets
+        wildSets,
       }}
     >
       {props.children}

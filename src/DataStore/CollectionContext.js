@@ -1,6 +1,6 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
 import { UserContext } from "./UserProvider";
-import Axios from "axios";
+import { honestoneAPI } from "../Components/axiosos";
 
 export const CollectionContext = createContext();
 
@@ -9,9 +9,11 @@ export function CollectionProvider(props) {
   const { userId, trigger } = useContext(UserContext);
   useEffect(() => {
     if (userId !== -1) {
-      Axios.get(`http://localhost:8080/deck/get/${userId}`).then(({ data }) => {
-        setDecks(data);
-      });
+      honestoneAPI
+        .get(`http://localhost:8080/deck/get/${userId}`)
+        .then(({ data }) => {
+          setDecks(data);
+        });
     }
   }, [userId, trigger]);
 

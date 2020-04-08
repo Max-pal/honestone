@@ -1,38 +1,31 @@
 import React, { useContext } from "react";
 import { DeckContext } from "../DataStore/DeckContext";
 import getAccessToken from "../getAccessToken";
-import axios from "axios";
 import { heroImages } from "./Header/HeroSelect";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import deleteIcon from "../static/logos/X.svg";
 
-function uniq(a, param) {
-  return a.filter(function(item, pos, array) {
-    return (
-      array
-        .map(function(mapItem) {
-          return mapItem[param];
-        })
-        .indexOf(item[param]) === pos
-    );
-  });
-}
-
 const DeleteIcon = styled.img`
   position: absolute;
-  top: 0;
-  right: 0;
-  opacity: 0.8;
+  top: 3px;
+  right: 3px;
+  opacity: 0.5;
+  transform: inherit;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+  filter: invert(100%);
+  &:hover {
+    mix-blend-mode: difference;
+    opacity: 1;
+  }
 `;
 
 export default function Deck(props) {
-  const { setCardsInDeck, setHero, setDeckName, deleteDeck } = useContext(
-    DeckContext
-  );
+  const { deleteDeck, loadDeck } = useContext(DeckContext);
 
   const imageSelector = () => {
-    return heroImages.filter(hero => {
+    return heroImages.filter((hero) => {
       return hero.id === props.heroId;
     });
   };
@@ -56,6 +49,11 @@ export default function Deck(props) {
     background-repeat: no-repeat;
     height: 92.1px;
     width: 250px;
+  `;
+
+  const DeckContainer = styled.div`
+    margin: 10px;
+    position: relative;
     transition-duration: 0.25s;
     &:hover {
       transform: scale(1.05);
@@ -63,38 +61,11 @@ export default function Deck(props) {
   `;
 
   return (
-    <div style={{ position: "relative" }}>
+    <DeckContainer>
       <LinkStyle
         to="/deckbuilder/cardselect"
         onClick={() => {
-          const deckstring = props.deckcode;
-          getAccessToken().then(token => {
-            axios
-              .get(
-                `https://us.api.blizzard.com/hearthstone/deck/${deckstring}?locale=en_US&access_token=${token}`
-              )
-              .then(json => {
-                setDeckName(props.name);
-                setHero({
-                  name: json.data.class.slug,
-                  id: props.heroId
-                });
-
-                const cardCount = new Map(
-                  [...new Set(json.data.cards)].map(x => [
-                    x,
-                    json.data.cards.filter(y => y.id === x.id).length
-                  ])
-                );
-
-                const convertedCards = [...uniq(json.data.cards, "id")].map(
-                  card => {
-                    return { ...card, quantity: cardCount.get(card) };
-                  }
-                );
-                setCardsInDeck(convertedCards);
-              });
-          });
+          loadDeck(props.deckcode);
         }}
       >
         <DeckStyle src={imageSelector()[0].collectionImg} alt="..I.." />
@@ -104,7 +75,6 @@ export default function Deck(props) {
             bottom: "0",
             left: "5%",
             color: "white",
-            transform: "inherit"
           }}
         >
           {props.name}
@@ -114,9 +84,9 @@ export default function Deck(props) {
         src={deleteIcon}
         onClick={() => {
           deleteDeck(props.id);
-          props.setDecks(props.decks.filter(deck => deck.id !== props.id));
+          props.setDecks(props.decks.filter((deck) => deck.id !== props.id));
         }}
       />
-    </div>
+    </DeckContainer>
   );
 }

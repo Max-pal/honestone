@@ -30,13 +30,13 @@ export default function StartHandSimulator() {
 
   return (
     <React.Fragment>
-      <h2 style={centered}>Your Starting Hand</h2>
+      <h2 style={{ ...centered, color: "#808080" }}>Your Starting Hand</h2>
       <div style={centered}>
         {generatedCards.map(card => (
           <StyledCard src={card.image} alt="" />
         ))}
       </div>
-      <div style={centered}>
+      <div style={{ ...centered, marginTop: "20px" }}>
         <Button
           variant="outlined"
           color="primary"

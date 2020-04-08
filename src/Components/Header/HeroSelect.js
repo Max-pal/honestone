@@ -29,6 +29,15 @@ import priestCollection from "../../static/images/db-collection-class-priest.jpg
 import warlockCollection from "../../static/images/db-collection-class-warlock.jpg";
 import warriorCollection from "../../static/images/db-collection-class-warrior.jpg";
 import rogueCollection from "../../static/images/db-collection-class-rogue.jpg";
+import shamanIcon from "../../static/images/class-icon-shaman-sm.png";
+import druidIcon from "../../static/images/class-icon-druid-sm.png";
+import hunterIcon from "../../static/images/class-icon-hunter-sm.png";
+import mageIcon from "../../static/images/class-icon-mage-sm.png";
+import paladinIcon from "../../static/images/class-icon-paladin-sm.png";
+import priestIcon from "../../static/images/class-icon-priest-sm.png";
+import warlockIcon from "../../static/images/class-icon-warlock-sm.png";
+import warriorIcon from "../../static/images/class-icon-warrior-sm.png";
+import rogueIcon from "../../static/images/class-icon-rogue-sm.png";
 
 export const heroImages = [
   {
@@ -36,64 +45,73 @@ export const heroImages = [
     img: druid,
     name: "druid",
     deckImg: druidDeck,
-    collectionImg: druidCollection
+    collectionImg: druidCollection,
+    icon: druidIcon,
   },
   {
     id: 31,
     img: hunter,
     name: "hunter",
     deckImg: hunterDeck,
-    collectionImg: hunterCollection
+    collectionImg: hunterCollection,
+    icon: hunterIcon,
   },
   {
     id: 637,
     img: mage,
     name: "mage",
     deckImg: mageDeck,
-    collectionImg: mageCollection
+    collectionImg: mageCollection,
+    icon: mageIcon,
   },
   {
     id: 671,
     img: paladin,
     name: "paladin",
     deckImg: paladinDeck,
-    collectionImg: paladinCollection
+    collectionImg: paladinCollection,
+    icon: paladinIcon,
   },
   {
     id: 813,
     img: priest,
     name: "priest",
     deckImg: priestDeck,
-    collectionImg: priestCollection
+    collectionImg: priestCollection,
+    icon: priestIcon,
   },
   {
     id: 930,
     img: rogue,
     name: "rogue",
     deckImg: rogueDeck,
-    collectionImg: rogueCollection
+    collectionImg: rogueCollection,
+    icon: rogueIcon,
   },
   {
     id: 1066,
     img: shaman,
     name: "shaman",
     deckImg: shamanDeck,
-    collectionImg: shamanCollection
+    collectionImg: shamanCollection,
+    icon: shamanIcon,
   },
   {
     id: 893,
     img: warlock,
     name: "warlock",
     deckImg: warlockDeck,
-    collectionImg: warlockCollection
+    collectionImg: warlockCollection,
+    icon: warlockIcon,
   },
   {
     id: 7,
     img: warrior,
     name: "warrior",
     deckImg: warriorDeck,
-    collectionImg: warriorCollection
-  }
+    collectionImg: warriorCollection,
+    icon: warriorIcon,
+  },
 ];
 
 export function HeroSelect() {
@@ -107,10 +125,10 @@ export function HeroSelect() {
           maxWidth: "800px",
           flexWrap: "wrap",
           display: "flex",
-          justifyContent: "space-around"
+          justifyContent: "space-around",
         }}
       >
-        {heroImages.map(hero => (
+        {heroImages.map((hero) => (
           <Hero
             key={hero.id}
             image={hero.img}

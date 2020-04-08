@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CollectionContext } from "../DataStore/CollectionContext";
 import { heroImages } from "../Components/Header/HeroSelect";
 import defaultProfilePic from "../static/images/blankprofilepic.png";
-import hunter from "../static/images/hunter.png";
-import mage from "../static/images/db-collection-class-mage.jpg";
-import priest from "../static/images/db-collection-class-priest.jpg";
-import warrior from "../static/images/db-collection-class-warrior.jpg";
-import ProfileDeck from "./ProfileDeck";
+import DeckList from "./DeckList";
 
 export default function Profile() {
-  const decks = [{ image: mage }, { image: priest }, { image: warrior }];
+  const { decks } = useContext(CollectionContext);
+
+  // const getFavouriteHero = () => {
+  //   let heroCount = new Map();
+  //   decks.map((deck) =>
+  //     heroCount.has(deck.hero)
+  //       ? heroCount.set(deck.hero, heroCount.get(deck.hero) + 1)
+  //       : heroCount.set(deck.hero, 0)
+  //   );
+
+  //   let favouriteHeroId = heroCount.keys(Math.max(heroCount.values))[0];
+  //   let bestestHero = 0;
+  //   for (let id of favouriteHeroId) {
+  //     bestestHero = id;
+  //   }
+  //   console.log(bestestHero);
+  //   return heroImages.filter((hero) => {
+  //     return hero.id === bestestHero;
+  //   });
+  // };
 
   return (
     <div
@@ -33,7 +48,7 @@ export default function Profile() {
         </div>
         <div style={{ textAlign: "center" }}>
           <h3>Favourite Hero:</h3>
-          <img src={hunter} alt="" />
+          <img src={sadboi} alt="" />
         </div>
       </div>
       <div
@@ -51,22 +66,18 @@ export default function Profile() {
             justifyContent: "center",
           }}
         >
-          <h2>
-            #Decks: <h4>0</h4>
-          </h2>
+          <h2>#Decks: {decks.length}</h2>
         </div>
         <div>
-          <h2>
-            Comments: <h4>0</h4>
-          </h2>
+          <h2>Comments:0</h2>
         </div>
         <div>
-          <h2>
-            Votes: <h4>0</h4>
-          </h2>
+          <h2>Votes: 0</h2>
         </div>
       </div>
-      <div></div>
+      <div style={{ textAlign: "-webkit-center" }}>
+        <DeckList />
+      </div>
     </div>
   );
 }

@@ -23,7 +23,7 @@ export default function LeftPane() {
   const classes = useStyles();
 
   return (
-    <Grid item xs={10}>
+    <Grid style={{ textAlign: "center" }} item xs={10}>
       <Route
         path="/deckbuilder/cardselect"
         exact
