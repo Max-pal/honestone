@@ -17,12 +17,13 @@ import StartHandSimulator from "./Components/LeftPane/StartHandSimulator";
 import Collection from "./Components/Collection";
 import { StartHandProvider } from "./DataStore/StartHandContext";
 import { CollectionProvider } from "./DataStore/CollectionContext";
+import Profile from "./Components/Profile";
 
 function App(props) {
   return (
     <BrowserRouter>
       <CardsProvider>
-        <div className='App'>
+        <div className="App">
           <UserProvider>
             <Header />
             <Registry />
@@ -32,7 +33,7 @@ function App(props) {
                 <DeckProvider>
                   <DeckStringProvider>
                     <Route
-                      path='/deckbuilder/heroselect'
+                      path="/deckbuilder/heroselect"
                       component={HeroSelect}
                     />
                     <StartHandProvider>
@@ -41,16 +42,18 @@ function App(props) {
                         component={StartHandSimulator}
                       />
                     </StartHandProvider>
-
-                    <Route path='/collection' component={Collection} />
-
-                    <Grid container direction='row'>
+                    <Route path="/collection" component={Collection} />
+                    <Grid container direction="row">
                       <LeftPane />
-
                       <Route
-                        path='/deckbuilder/cardselect'
+                        path="/deckbuilder/cardselect"
                         exact
-                        component={() => <RightPane position='sticky' />}
+                        component={() => <RightPane position="sticky" />}
+                      />
+                      <Route
+                        path="/profile"
+                        exact
+                        component={() => <Profile />}
                       />
                     </Grid>
                   </DeckStringProvider>
@@ -61,7 +64,7 @@ function App(props) {
         </div>
       </CardsProvider>
       <ScrollTop {...props}>
-        <Fab color='secondary' size='large' aria-label='scroll back to top'>
+        <Fab color="secondary" size="large" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>

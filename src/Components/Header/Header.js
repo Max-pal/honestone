@@ -116,6 +116,19 @@ export default function SearchAppBar() {
                   Collection
                 </Link>
               </Typography>
+              <Typography
+                className={classes.menuButton}
+                variant="button"
+                noWrap
+              >
+                <Link
+                  style={{ color: "#fff", textDecoration: "none" }}
+                  to="/profile"
+                  underline="none"
+                >
+                  Profile
+                </Link>
+              </Typography>
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />
