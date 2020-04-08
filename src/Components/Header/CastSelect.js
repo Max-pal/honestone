@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import { CardsContext } from "../../DataStore/CardsContext";
 import { DeckContext } from "../../DataStore/DeckContext";
 import PublicSwitch from "../PublicSwitch";
+import { FormControlLabel } from "@material-ui/core";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -87,8 +88,15 @@ export function CastSelect(props) {
               {...a11yProps(1)}
             />
           )}
+          <FormControlLabel
+            style={{ marginLeft: "auto" }}
+            edge="end"
+            value="public"
+            control={<PublicSwitch />}
+            label="Public"
+            labelPlacement="end"
+          />
         </Tabs>
-        <PublicSwitch />>
       </AppBar>
       <TabPanel value={value} index={0} />
       <TabPanel value={value} index={1} />

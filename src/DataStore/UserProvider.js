@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import { honestoneAPI } from "../Components/axiosos";
+import Axios from "axios";
 
 export const UserContext = createContext();
 
@@ -30,13 +31,13 @@ export function UserProvider(props) {
   }
 
   function login({ username, password }) {
-    honestoneAPI
-      .post("http://localhost:8080/auth/login", { username, password })
-      .then((resp) => {
+    Axios.post("http://localhost:8080/auth/login", { username, password }).then(
+      (resp) => {
         if (resp.status === 200) {
           setCredentials(resp.data);
         }
-      });
+      }
+    );
   }
 
   return (

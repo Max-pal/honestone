@@ -21,18 +21,18 @@ export function DeckProvider(props) {
 
   const getDeckString = useDeckString(cardsInDeck, hero, format);
 
-  const loadDeck = (deckcode) => {
+  const loadDeck = (deckcode, id, name, heroId) => {
     getAccessToken().then((token) => {
       blizzardAPI
         .get(
           `https://us.api.blizzard.com/hearthstone/deck/${deckcode}?locale=en_US&access_token=${token}`
         )
         .then((json) => {
-          setDeckId(props.id);
-          setDeckName(props.name);
+          setDeckId(id);
+          setDeckName(name);
           setHero({
             name: json.data.class.slug,
-            id: props.heroId,
+            id: heroId,
           });
 
           const cardCount = new Map(
@@ -72,6 +72,7 @@ export function DeckProvider(props) {
       hero: hero.id,
       format: format,
       name: deckName,
+      published: published,
     };
     honestoneAPI
       .post("http://localhost:8080/deck/save", Deck, {
@@ -111,6 +112,8 @@ export function DeckProvider(props) {
         format,
         setFormat,
         loadDeck,
+        published,
+        setPublished,
       }}
     >
       {props.children}
