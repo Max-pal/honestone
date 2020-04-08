@@ -5,24 +5,24 @@ import { Link } from "react-router-dom";
 import getAccessToken from "../../getAccessToken";
 import { DeckContext } from "../../DataStore/DeckContext";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 import { heroImages } from "./HeroSelect";
 import FormControl from "@material-ui/core/FormControl";
+import { blizzardAPI } from "../axiosos";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: 200
-    }
-  }
+      width: 200,
+    },
+  },
 }));
 
 function uniq(a, param) {
-  return a.filter(function(item, pos, array) {
+  return a.filter(function (item, pos, array) {
     return (
       array
-        .map(function(mapItem) {
+        .map(function (mapItem) {
           return mapItem[param];
         })
         .indexOf(item[param]) === pos
@@ -42,7 +42,7 @@ export function ImportDeck() {
         id="filled-basic"
         label="Deck String"
         variant="filled"
-        onChange={e =>
+        onChange={(e) =>
           e.target.value !== null
             ? setDeckString(e.target.value)
             : setDeckString("")
@@ -54,28 +54,28 @@ export function ImportDeck() {
           color="primary"
           onClick={() => {
             console.log("fetched");
-            getAccessToken().then(token => {
-              axios
+            getAccessToken().then((token) => {
+              blizzardAPI
                 .get(
                   `https://us.api.blizzard.com/hearthstone/deck/${deckString}?locale=en_US&access_token=${token}`
                 )
-                .then(json => {
+                .then((json) => {
                   setHero({
                     name: json.data.class.slug,
                     id: heroImages.filter(
-                      hero => hero.name === json.data.class.slug
-                    )[0].id
+                      (hero) => hero.name === json.data.class.slug
+                    )[0].id,
                   });
-                  
+
                   const cardCount = new Map(
-                    [...new Set(json.data.cards)].map(x => [
+                    [...new Set(json.data.cards)].map((x) => [
                       x,
-                      json.data.cards.filter(y => y.id === x.id).length
+                      json.data.cards.filter((y) => y.id === x.id).length,
                     ])
                   );
 
                   const convertedCards = [...uniq(json.data.cards, "id")].map(
-                    card => {
+                    (card) => {
                       return { ...card, quantity: cardCount.get(card) };
                     }
                   );

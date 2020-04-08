@@ -14,12 +14,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { UserContext } from "../DataStore/UserProvider";
 import { Redirect } from "react-router-dom";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
+const usernameRegex =
+  "^(?=.{3,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+const passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="http://localhost:3000/">
+      <Link color="inherit" href="/">
         HoneStone
       </Link>{" "}
       {new Date().getFullYear()}
@@ -28,24 +32,24 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
 export default function SignUp() {
@@ -53,7 +57,15 @@ export default function SignUp() {
   const { register, isLoggedIn } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordRepeat, setPasswordRepeat] = useState("");
   const [email, setemail] = useState("");
+
+  ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
+    if (value !== password) {
+      return false;
+    }
+    return true;
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -65,18 +77,16 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form
+        <ValidatorForm
           className={classes.form}
-          noValidate
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
             register({ username, email, password });
           }}
         >
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
-                autoComplete="username"
+              <TextValidator
                 name="username"
                 variant="outlined"
                 required
@@ -85,24 +95,29 @@ export default function SignUp() {
                 label="Username"
                 autoFocus
                 autoComplete="off"
-                onChange={e => setUsername(e.target.value)}
+                value={username}
+                validators={[`matchRegexp:${usernameRegex}`]}
+                errorMessages={["A-Z, 0-9 and , or _"]}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <TextValidator
                 variant="outlined"
                 required
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
-                autoComplete="email"
                 autoComplete="off"
-                onChange={e => setemail(e.target.value)}
+                value={email}
+                onChange={(e) => setemail(e.target.value)}
+                validators={[`isEmail`]}
+                errorMessages={["Email is not valid"]}
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <TextValidator
                 variant="outlined"
                 required
                 fullWidth
@@ -110,20 +125,27 @@ export default function SignUp() {
                 label="Password"
                 type="password"
                 id="password"
+                value={password}
                 autoComplete="current-password"
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
+                validators={[`matchRegexp:${passwordRegex}`]}
+                errorMessages={["8-15 long, at least 1 A-Z, 1 a-z and 1 0-9"]}
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <TextValidator
                 variant="outlined"
                 required
                 fullWidth
-                name="password"
+                name="repeatPassword"
                 label="Repeat Password"
                 type="password"
                 id="password"
+                value={passwordRepeat}
+                onChange={(e) => setPasswordRepeat(e.target.value)}
                 autoComplete="current-password"
+                validators={[`isPasswordMatch`]}
+                errorMessages={["Passwords are not matching"]}
               />
             </Grid>
           </Grid>
@@ -143,7 +165,7 @@ export default function SignUp() {
               </Link>
             </Grid>
           </Grid>
-        </form>
+        </ValidatorForm>
       </div>
       <Box mt={5}>
         <Copyright />

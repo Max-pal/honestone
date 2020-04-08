@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import axios from "axios";
+import { honestoneAPI } from "../Components/axiosos";
 
 export const UserContext = createContext();
 
@@ -7,25 +7,34 @@ export function UserProvider(props) {
   const [userId, setUserId] = useState(-1);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [trigger, setTrigger] = useState(0);
+  const [username, setUsername] = useState("");
+
+  const setCredentials = (data) => {
+    setIsLoggedIn(true);
+    setUserId(data.id);
+    setUsername(data.username);
+  };
 
   function register(userInformation) {
-    axios
-      .post("http://localhost:8080/user/register", userInformation)
-      .then(({ data }) => {
-        if (data !== -1) {
-          setIsLoggedIn(true);
-          setUserId(data);
+    honestoneAPI
+      .post("http://localhost:8080/auth/register", userInformation)
+
+      .then((resp) => {
+        if (resp.status === 200) {
+          setCredentials(resp.data);
         }
+      })
+      .catch((e) => {
+        console.log(e);
       });
   }
 
   function login({ username, password }) {
-    axios
-      .post("http://localhost:8080/user/login", { username, password })
-      .then(({ data }) => {
-        if (data !== -1) {
-          setIsLoggedIn(true);
-          setUserId(data);
+    honestoneAPI
+      .post("http://localhost:8080/auth/login", { username, password })
+      .then((resp) => {
+        if (resp.status === 200) {
+          setCredentials(resp.data);
         }
       });
   }
@@ -40,7 +49,7 @@ export function UserProvider(props) {
         register,
         login,
         setTrigger,
-        trigger
+        trigger,
       }}
     >
       {props.children}

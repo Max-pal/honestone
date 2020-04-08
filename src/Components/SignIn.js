@@ -5,7 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -32,27 +32,27 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
-export default function SignIn() {
+function SignIn(props) {
   const classes = useStyles();
   const { login, isLoggedIn } = useContext(UserContext);
   const [username, setUsername] = useState("");
@@ -71,7 +71,7 @@ export default function SignIn() {
         <form
           className={classes.form}
           noValidate
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
             login({ username, password });
           }}
@@ -86,7 +86,7 @@ export default function SignIn() {
             name="username"
             autoComplete="off"
             autoFocus
-            onChange={e => {
+            onChange={(e) => {
               setUsername(e.target.value);
             }}
           />
@@ -100,7 +100,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={e => {
+            onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
@@ -144,3 +144,5 @@ export default function SignIn() {
     </Container>
   );
 }
+
+export default SignIn;

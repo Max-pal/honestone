@@ -11,7 +11,6 @@ export default function CardList(props) {
     <React.Fragment>
       <CastSelect />
       <ManaSlider />
-      <h2>Page: {page}</h2>
       {cards && <CardListed cards={props.cards} />}
     </React.Fragment>
   );

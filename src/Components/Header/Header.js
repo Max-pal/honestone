@@ -15,6 +15,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
+  bottomMargin: {
+    marginBottom: "20px"
+  },
   menuButton: {
     marginRight: theme.spacing(2)
   },
@@ -71,7 +74,7 @@ export default function SearchAppBar() {
   );
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar className={classes.bottomMargin} position="static">
         <Toolbar>
           <IconButton
             edge="start"
@@ -116,7 +119,7 @@ export default function SearchAppBar() {
                   Collection
                 </Link>
               </Typography>
-              <div className={classes.search}>
+              {/* <div className={classes.search}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />
                 </div>
@@ -136,9 +139,10 @@ export default function SearchAppBar() {
                     inputProps={{ "aria-label": "search" }}
                   />
                 </form>
-              </div>
+              </div> */}
 
               <ExitToAppIcon
+                style={{ marginLeft: "10px" }}
                 cursor="pointer"
                 onClick={() => {
                   setIsLoggedIn(false);

@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { CardsContext } from "../../DataStore/CardsContext";
 import { DeckContext } from "../../DataStore/DeckContext";
+import PublicSwitch from "../PublicSwitch";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -29,7 +30,7 @@ function TabPanel(props) {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 const heroList = [
@@ -41,7 +42,7 @@ const heroList = [
   "Mage",
   "Priest",
   "Shaman",
-  "Hunter"
+  "Hunter",
 ];
 
 export function CastSelect(props) {
@@ -50,11 +51,11 @@ export function CastSelect(props) {
   const { pageCount, page, setPage, settings, setSettings } = useContext(
     CardsContext
   );
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      backgroundColor: theme.palette.background.paper
-    }
+      backgroundColor: theme.palette.background.paper,
+    },
   }));
   const classes = useStyles();
 
@@ -87,12 +88,13 @@ export function CastSelect(props) {
             />
           )}
         </Tabs>
+        <PublicSwitch />>
       </AppBar>
       <TabPanel value={value} index={0} />
       <TabPanel value={value} index={1} />
       {page !== 1 && (
         <Button
-          style={{ float: "left" }}
+          style={{ float: "left", marginLeft: "10px" }}
           onClick={() => {
             if (page <= 1) setPage(pageCount);
             else setPage(page - 1);
@@ -106,7 +108,7 @@ export function CastSelect(props) {
 
       {page !== pageCount && (
         <Button
-          style={{ float: "right" }}
+          style={{ float: "right", marginRight: "10px" }}
           variant="outlined"
           color="primary"
           onClick={() => {
