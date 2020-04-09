@@ -21,18 +21,18 @@ export function DeckProvider(props) {
 
   const getDeckString = useDeckString(cardsInDeck, hero, format);
 
-  const loadDeck = (deckcode) => {
+  const loadDeck = (deckcode, name, id, heroId) => {
     getAccessToken().then((token) => {
       blizzardAPI
         .get(
           `https://us.api.blizzard.com/hearthstone/deck/${deckcode}?locale=en_US&access_token=${token}`
         )
         .then((json) => {
-          setDeckId(props.id);
-          setDeckName(props.name);
+          setDeckId(id);
+          setDeckName(name);
           setHero({
             name: json.data.class.slug,
-            id: props.heroId,
+            id: heroId,
           });
 
           const cardCount = new Map(

@@ -7,24 +7,18 @@ import DeckList from "./DeckList";
 export default function Profile() {
   const { decks } = useContext(CollectionContext);
 
-  // const getFavouriteHero = () => {
-  //   let heroCount = new Map();
-  //   decks.map((deck) =>
-  //     heroCount.has(deck.hero)
-  //       ? heroCount.set(deck.hero, heroCount.get(deck.hero) + 1)
-  //       : heroCount.set(deck.hero, 0)
-  //   );
-
-  //   let favouriteHeroId = heroCount.keys(Math.max(heroCount.values))[0];
-  //   let bestestHero = 0;
-  //   for (let id of favouriteHeroId) {
-  //     bestestHero = id;
-  //   }
-  //   console.log(bestestHero);
-  //   return heroImages.filter((hero) => {
-  //     return hero.id === bestestHero;
-  //   });
-  // };
+  const sadBoi = () => {
+    let heroCount = new Map();
+    decks.map((deck) =>
+      heroCount.has(deck.hero)
+        ? heroCount.set(deck.hero, heroCount.get(deck.hero) + 1)
+        : heroCount.set(deck.hero, 0)
+    );
+    let favouriteHeroId = heroCount.keys(Math.max(heroCount.values))[0];
+    return heroImages.filter((hero) => {
+      return hero.id === favouriteHeroId;
+    });
+  };
 
   return (
     <div
@@ -48,7 +42,7 @@ export default function Profile() {
         </div>
         <div style={{ textAlign: "center" }}>
           <h3>Favourite Hero:</h3>
-          <img src={sadboi} alt="" />
+          <img src={sadBoi()} alt="" />
         </div>
       </div>
       <div
@@ -58,6 +52,7 @@ export default function Profile() {
           display: "flex",
           flexWrap: "wrap",
         }}
+        f
       >
         <div
           style={{
