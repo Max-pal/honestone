@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = useStyles();
   const { register, isLoggedIn } = useContext(UserContext);
   const [username, setUsername] = useState("");
@@ -82,6 +82,7 @@ export default function SignUp() {
           onSubmit={(e) => {
             e.preventDefault();
             register({ username, email, password });
+            props.history.push("/");
           }}
         >
           <Grid container spacing={2}>
@@ -97,7 +98,7 @@ export default function SignUp() {
                 autoComplete="off"
                 value={username}
                 validators={[`matchRegexp:${usernameRegex}`]}
-                errorMessages={["A-Z, 0-9 and , or _"]}
+                errorMessages={["3-10 long. A-Z, 0-9 and , or _"]}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </Grid>
@@ -129,7 +130,7 @@ export default function SignUp() {
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
                 validators={[`matchRegexp:${passwordRegex}`]}
-                errorMessages={["8-15 long, at least 1 A-Z, 1 a-z and 1 0-9"]}
+                errorMessages={["8- long, at least one: A-Z, a-z, 0-9"]}
               />
             </Grid>
             <Grid item xs={12}>

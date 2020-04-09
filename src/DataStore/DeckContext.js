@@ -77,7 +77,6 @@ export function DeckProvider(props) {
     honestoneAPI
       .post("http://localhost:8080/deck/save", Deck, {
         headers: {
-          "Content-Type": "application/json",
           "user-id": userId,
         },
       })
