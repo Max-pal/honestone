@@ -65,7 +65,7 @@ export default function Deck(props) {
       <LinkStyle
         to="/deckbuilder/cardselect"
         onClick={() => {
-          loadDeck(props.deckcode, props.name, props.id, props.heroId);
+          loadDeck(props.deckcode, props.id, props.name, props.heroId);
         }}
       >
         <DeckStyle src={imageSelector()[0].collectionImg} alt="..I.." />

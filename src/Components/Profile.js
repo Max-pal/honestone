@@ -3,9 +3,11 @@ import { CollectionContext } from "../DataStore/CollectionContext";
 import { heroImages } from "../Components/Header/HeroSelect";
 import defaultProfilePic from "../static/images/blankprofilepic.png";
 import DeckList from "./DeckList";
+import { UserContext } from "../DataStore/UserProvider";
 
 export default function Profile() {
   const { decks } = useContext(CollectionContext);
+  const { username } = useContext(UserContext);
 
   const sadBoi = () => {
     let heroCount = new Map();
@@ -37,7 +39,7 @@ export default function Profile() {
       >
         <img src={defaultProfilePic} alt="" />
         <div>
-          <h2>Name: user.name</h2>
+          <h2>Name: {username}</h2>
           <h2>Registration Date: registryDate</h2>
         </div>
         <div style={{ textAlign: "center" }}>

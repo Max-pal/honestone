@@ -21,7 +21,7 @@ export function DeckProvider(props) {
 
   const getDeckString = useDeckString(cardsInDeck, hero, format);
 
-  const loadDeck = (deckcode, name, id, heroId) => {
+  const loadDeck = (deckcode, id, name, heroId) => {
     getAccessToken().then((token) => {
       blizzardAPI
         .get(
@@ -72,11 +72,11 @@ export function DeckProvider(props) {
       hero: hero.id,
       format: format,
       name: deckName,
+      published: published,
     };
     honestoneAPI
       .post("http://localhost:8080/deck/save", Deck, {
         headers: {
-          "Content-Type": "application/json",
           "user-id": userId,
         },
       })
@@ -111,6 +111,8 @@ export function DeckProvider(props) {
         format,
         setFormat,
         loadDeck,
+        published,
+        setPublished,
       }}
     >
       {props.children}

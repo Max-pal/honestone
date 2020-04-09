@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import { honestoneAPI } from "../Components/axiosos";
+import Axios from "axios";
 
 export const UserContext = createContext();
 
@@ -16,8 +17,7 @@ export function UserProvider(props) {
   };
 
   function register(userInformation) {
-    honestoneAPI
-      .post("http://localhost:8080/auth/register", userInformation)
+    Axios.post("http://localhost:8080/auth/register", userInformation)
 
       .then((resp) => {
         if (resp.status === 200) {
@@ -42,6 +42,7 @@ export function UserProvider(props) {
   return (
     <UserContext.Provider
       value={{
+        username,
         userId,
         setUserId,
         isLoggedIn,
