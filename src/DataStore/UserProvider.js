@@ -31,7 +31,7 @@ export function UserProvider(props) {
   }
 
   function login({ username, password }) {
-    Axios.post("http://localhost:8080/auth/login", { username, password }).then(
+    honestoneAPI.post("http://localhost:8080/auth/login", { username, password }).then(
       (resp) => {
         if (resp.status === 200) {
           setCredentials(resp.data);
