@@ -1,26 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CollectionContext } from "../DataStore/CollectionContext";
 import { heroImages } from "../Components/Header/HeroSelect";
 import defaultProfilePic from "../static/images/blankprofilepic.png";
 import DeckList from "./DeckList";
 import { UserContext } from "../DataStore/UserProvider";
+import { honestoneAPI } from "../Components/axiosos";
+import { ProfileContext } from "../DataStore/ProfileContext";
 
 export default function Profile() {
   const { decks } = useContext(CollectionContext);
   const { username } = useContext(UserContext);
+  const { profile, getProfileData } = useContext(ProfileContext);
 
-  const sadBoi = () => {
-    let heroCount = new Map();
-    decks.map((deck) =>
-      heroCount.has(deck.hero)
-        ? heroCount.set(deck.hero, heroCount.get(deck.hero) + 1)
-        : heroCount.set(deck.hero, 0)
-    );
-    let favouriteHeroId = heroCount.keys(Math.max(heroCount.values))[0];
-    return heroImages.filter((hero) => {
-      return hero.id === favouriteHeroId;
-    });
-  };
+  useEffect(() => {
+    getProfileData();
+  }, [getProfileData]);
+
+  console.log(profile);
 
   return (
     <div
@@ -37,14 +33,14 @@ export default function Profile() {
           justifyContent: "space-evenly",
         }}
       >
-        <img src={defaultProfilePic} alt="" />
+        <img src={defaultProfilePic} alt='' />
         <div>
-          <h2>Name: {username}</h2>
-          <h2>Registration Date: registryDate</h2>
+          <h2>{username}</h2>
+          <h4>re</h4>
         </div>
         <div style={{ textAlign: "center" }}>
           <h3>Favourite Hero:</h3>
-          <img src={sadBoi()} alt="" />
+          <img src='' alt='' />
         </div>
       </div>
       <div
@@ -54,7 +50,6 @@ export default function Profile() {
           display: "flex",
           flexWrap: "wrap",
         }}
-        f
       >
         <div
           style={{

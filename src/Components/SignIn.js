@@ -17,12 +17,12 @@ import { Redirect } from "react-router-dom";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant='body2' color='textSecondary' align='center'>
       {"Copyright © "}
       <Link
         style={{ color: "#d9a62e", textDecoration: "none" }}
-        color="inherit"
-        href="#"
+        color='inherit'
+        to='#'
       >
         HoneStone
       </Link>{" "}
@@ -59,13 +59,13 @@ function SignIn(props) {
   const [password, setPassword] = useState("");
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
           Sign in
         </Typography>
         <form
@@ -77,39 +77,39 @@ function SignIn(props) {
           }}
         >
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="off"
+            id='username'
+            label='Username'
+            name='username'
+            autoComplete='off'
             autoFocus
             onChange={(e) => {
               setUsername(e.target.value);
             }}
           />
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
+            name='password'
+            label='Password'
+            type='password'
+            id='password'
+            autoComplete='current-password'
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
 
           <Button
-            type="submit"
+            type='submit'
             fullWidth
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             className={classes.submit}
           >
             Sign In
@@ -119,8 +119,8 @@ function SignIn(props) {
             <Grid item xs>
               <Link
                 style={{ color: "#d9a62e", textDecoration: "none" }}
-                href="#"
-                variant="body2"
+                to='#'
+                variant='body2'
               >
                 Forgot password?
               </Link>
@@ -128,8 +128,8 @@ function SignIn(props) {
             <Grid item>
               <Link
                 style={{ color: "#d9a62e", textDecoration: "none" }}
-                to="/signup"
-                variant="body2"
+                to='/signup'
+                variant='body2'
               >
                 {"Don't have an account? Sign Up"}
               </Link>
@@ -140,7 +140,7 @@ function SignIn(props) {
       <Box mt={8}>
         <Copyright />
       </Box>
-      {isLoggedIn === true && <Redirect to="/collection" />}
+      {isLoggedIn === true && <Redirect to='/collection' />}
     </Container>
   );
 }
