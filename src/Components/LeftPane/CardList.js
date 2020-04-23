@@ -1,11 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CardsContext } from "../../DataStore/CardsContext";
 import { CastSelect } from "../Header/CastSelect";
 import CardListed from "./CardListed";
 import ManaSlider from "../Header/ManaSlider";
 
 export default function CardList(props) {
-  const { cards, page } = useContext(CardsContext);
+  const { cards, setSettings } = useContext(CardsContext);
+
+  useEffect(() => {
+    setSettings((currentSettings) => {
+      const newSettings = {
+        ...currentSettings,
+        manaCost: "",
+        class: "neutral",
+      };
+      return newSettings;
+    });
+  }, [setSettings]);
 
   return (
     <React.Fragment>

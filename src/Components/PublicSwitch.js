@@ -4,11 +4,19 @@ import { DeckContext } from "../DataStore/DeckContext";
 import styled from "styled-components";
 
 function PublicSwitch() {
-  const { published, setPublished, saveDeck } = useContext(DeckContext);
+  const {
+    published,
+    setPublished,
+    handleSwitch,
+    saveDeck,
+    deckId,
+  } = useContext(DeckContext);
 
   const handleChange = (checked) => {
     setPublished(checked);
-    saveDeck();
+    if (deckId !== -1) {
+      handleSwitch(checked);
+    }
   };
 
   return (

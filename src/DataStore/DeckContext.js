@@ -5,8 +5,21 @@ import { CollectionContext } from "./CollectionContext";
 import { DeckStringProvider } from "./DeckCodeContext";
 import getAccessToken from "../getAccessToken";
 import { blizzardAPI, honestoneAPI } from "../Components/axiosos";
+import { LoadingContext } from "./LoadingContext";
 
 export const DeckContext = createContext();
+
+export function uniq(a, param) {
+  return a.filter(function (item, pos, array) {
+    return (
+      array
+        .map(function (mapItem) {
+          return mapItem[param];
+        })
+        .indexOf(item[param]) === pos
+    );
+  });
+}
 
 export function DeckProvider(props) {
   const [cardsInDeck, setCardsInDeck] = useState([]);
@@ -18,16 +31,19 @@ export function DeckProvider(props) {
   const [deckId, setDeckId] = useState(-1);
   const [published, setPublished] = useState(false);
   const [format, setFormat] = useState(2); // 1 for Wild, 2 for Standard
-
+  const { setLoading } = useContext(LoadingContext);
+  const { loadDecks } = useContext(CollectionContext);
   const getDeckString = useDeckString(cardsInDeck, hero, format);
 
-  const loadDeck = (deckcode, id, name, heroId) => {
+  const loadDeck = (deckcode, id, name, heroId, published) => {
+    setLoading(true);
     getAccessToken().then((token) => {
       blizzardAPI
         .get(
           `https://us.api.blizzard.com/hearthstone/deck/${deckcode}?locale=en_US&access_token=${token}`
         )
         .then((json) => {
+          setPublished(published);
           setDeckId(id);
           setDeckName(name);
           setHero({
@@ -49,23 +65,15 @@ export function DeckProvider(props) {
           );
           setCardsInDeck(convertedCards);
         })
+        .then(() => {
+          setLoading(false);
+        })
         .catch((e) => console.log(e));
     });
   };
 
-  function uniq(a, param) {
-    return a.filter(function (item, pos, array) {
-      return (
-        array
-          .map(function (mapItem) {
-            return mapItem[param];
-          })
-          .indexOf(item[param]) === pos
-      );
-    });
-  }
-
   const saveDeck = () => {
+    setLoading(true);
     let Deck = {
       id: deckId,
       deckcode: getDeckString,
@@ -80,7 +88,8 @@ export function DeckProvider(props) {
           "user-id": userId,
         },
       })
-      .then(() => setTrigger(trigger + 1));
+      .then(() => loadDecks())
+      .then(() => setLoading(false));
   };
 
   const deleteDeck = (deckId) => {
@@ -92,6 +101,13 @@ export function DeckProvider(props) {
     cardsInDeck.map((card) => (count += card.quantity));
     setDeckLength(count);
   }, [cardsInDeck]);
+
+  const handleSwitch = (checked) => {
+    honestoneAPI.put("http://localhost:8080/deck/published", {
+      id: deckId,
+      published: checked,
+    });
+  };
 
   return (
     <DeckContext.Provider
@@ -113,8 +129,11 @@ export function DeckProvider(props) {
         loadDeck,
         published,
         setPublished,
+        handleSwitch,
       }}
     >
+      {" "}
+      {console.log("im stupid")}
       {props.children}
     </DeckContext.Provider>
   );

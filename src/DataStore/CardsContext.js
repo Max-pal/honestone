@@ -71,10 +71,6 @@ export function CardsProvider(props) {
     );
   }, [page, settings]);
 
-  useEffect(() => {
-    setPage(1);
-  }, [settings]);
-
   return (
     <CardsContext.Provider
       value={{

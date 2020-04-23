@@ -4,7 +4,7 @@ import { DeckContext } from "../DataStore/DeckContext";
 import styled from "styled-components";
 
 export default function Hero(props) {
-  const { hero, setHero } = useContext(DeckContext);
+  const { hero, setHero, setCardsInDeck } = useContext(DeckContext);
 
   const HeroStyle = styled.img`
     transition-duration: 0.2s;
@@ -16,7 +16,8 @@ export default function Hero(props) {
   return (
     <Link to="/deckbuilder/cardselect">
       <HeroStyle
-        onClick={e => {
+        onClick={() => {
+          setCardsInDeck([]);
           setHero({ name: props.heroName, id: props.heroId });
         }}
         src={props.image}

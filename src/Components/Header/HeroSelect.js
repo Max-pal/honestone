@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Hero from "../Hero";
 import { ImportDeck } from "./ImportDeck";
 import druid from "../../static/images/druid.png";
@@ -38,6 +38,7 @@ import priestIcon from "../../static/images/class-icon-priest-sm.png";
 import warlockIcon from "../../static/images/class-icon-warlock-sm.png";
 import warriorIcon from "../../static/images/class-icon-warrior-sm.png";
 import rogueIcon from "../../static/images/class-icon-rogue-sm.png";
+import { DeckContext } from "../../DataStore/DeckContext";
 
 export const heroImages = [
   {
@@ -115,6 +116,15 @@ export const heroImages = [
 ];
 
 export function HeroSelect() {
+  const { setDeckId, setPublished, setFormat, setDeckName } = useContext(
+    DeckContext
+  );
+  useEffect(() => {
+    setDeckName("New Deck");
+    setFormat(2);
+    setDeckId(-1);
+    setPublished(false);
+  }, [setDeckId, setDeckName, setFormat, setPublished]);
   return (
     <React.Fragment>
       <ImportDeck />

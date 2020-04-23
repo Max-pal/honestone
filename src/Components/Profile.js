@@ -4,6 +4,7 @@ import { heroImages } from "../Components/Header/HeroSelect";
 import defaultProfilePic from "../static/images/blankprofilepic.png";
 import DeckList from "./DeckList";
 import { UserContext } from "../DataStore/UserProvider";
+import DeckTable from "./DeckTable";
 
 export default function Profile() {
   const { decks } = useContext(CollectionContext);
@@ -73,7 +74,7 @@ export default function Profile() {
         </div>
       </div>
       <div style={{ textAlign: "-webkit-center" }}>
-        <DeckList />
+        <DeckTable title="My Decks" decks={decks} myprofile />
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import CroppedCard from "./CroppedCard";
 import { DeckContext } from "../../DataStore/DeckContext";
-import { Button } from "@material-ui/core";
-import copy from "copy-to-clipboard";
+import { Button, Tooltip } from "@material-ui/core";
 import DeckHeader from "../DeckHeader";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import handWithCards from "../../static/images/handwithcards.png";
 import saveIcon from "../../static/images/saveicon.png";
-import copyIcon from "../../static/images/copyicon.png";
+import CopyDeckcodeButton from "../CopyDeckcodeButton";
+import { CollectionContext } from "../../DataStore/CollectionContext";
 
 export default function CroppedCardList(props) {
   const {
@@ -15,13 +15,15 @@ export default function CroppedCardList(props) {
     deckLength,
     getDeckString,
     saveDeck,
-    setCardsInDeck
+    setCardsInDeck,
   } = useContext(DeckContext);
+
+  const { loadDecks } = useContext(CollectionContext);
 
   const dustIconStyle = {
     float: "right",
     paddingLeft: "4px",
-    paddingRight: "4px"
+    paddingRight: "4px",
   };
 
   const craftingCosts = {
@@ -29,25 +31,23 @@ export default function CroppedCardList(props) {
     2: 0,
     3: 100,
     4: 400,
-    5: 1600
+    5: 1600,
   };
 
   const calculateCraftingCost = () => {
     let craftingCost = 0;
     cardsInDeck.map(
-      card => (craftingCost += craftingCosts[card.rarityId] * card.quantity)
+      (card) => (craftingCost += craftingCosts[card.rarityId] * card.quantity)
     );
     return craftingCost;
   };
 
   const iconSize = {
     height: "40px",
-    width: "40px"
+    width: "40px",
   };
 
-  useEffect(() => {
-    setCardsInDeck([]);
-  }, [setCardsInDeck]);
+  let history = useHistory();
   return (
     <React.Fragment>
       <DeckHeader />
@@ -56,7 +56,7 @@ export default function CroppedCardList(props) {
           <div
             style={{
               float: `left`,
-              color: `${deckLength >= 30 ? "red" : ""}`
+              color: `${deckLength >= 30 ? "red" : ""}`,
             }}
           >
             {deckLength} / 30
@@ -73,43 +73,39 @@ export default function CroppedCardList(props) {
       )}
 
       {deckLength > 0 &&
-        cardsInDeck.map(card => <CroppedCard key={card.id} card={card} />)}
+        cardsInDeck.map((card) => <CroppedCard key={card.id} card={card} />)}
       <div
         style={{
           display: "inline-flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
-        <Button
-          style={{ display: "block", margin: "auto" }}
-          onClick={() => {
-            copy(getDeckString);
-          }}
-        >
-          <img style={iconSize} src={copyIcon} alt="Copy Deck String" />
-        </Button>
-
-        <Link style={{ color: "#fff" }} to="/collection" underline="none">
+        <CopyDeckcodeButton />
+        <Tooltip title="Save deck" aria-label="save">
           <Button
             style={{ display: "block", margin: "auto" }}
             onClick={() => {
               saveDeck();
+
+              history.push("/collection");
             }}
           >
             <img style={iconSize} src={saveIcon} alt="Save Deck" />
           </Button>
-        </Link>
+        </Tooltip>
 
-        <Link style={{ color: "#fff" }} to="/handsimulator" underline="none">
-          <Button style={{ display: "block", margin: "auto" }}>
-            <img
-              style={iconSize}
-              src={handWithCards}
-              alt="Start Hand Simulator"
-            />
-          </Button>
-        </Link>
+        <Tooltip title="Starting hand simulator" aria-label="startinghand">
+          <Link style={{ color: "#fff" }} to="/handsimulator" underline="none">
+            <Button style={{ display: "block", margin: "auto" }}>
+              <img
+                style={iconSize}
+                src={handWithCards}
+                alt="Start Hand Simulator"
+              />
+            </Button>
+          </Link>
+        </Tooltip>
       </div>
     </React.Fragment>
   );
