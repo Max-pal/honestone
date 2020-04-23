@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
 
 function PreviewCroppedCard(props) {
-  const { id, name, rarityId, manaCost, cropImage, quantity } = props.card;
-
+  const {
+    id,
+    name,
+    rarityId,
+    manaCost,
+    cropImage,
+    quantity,
+    image,
+  } = props.card;
+  const [show, setShow] = useState(false);
   const cardRarity = {
     1: "rgba(96,125,139, .8)",
     2: "rgba(141,110,99, .9)",
@@ -11,6 +20,12 @@ function PreviewCroppedCard(props) {
     5: "rgba(255,156,20, .8)",
   };
 
+  const CardStyle = styled.div`
+    margin-bottom: 1px;
+    position: relative !important;
+    height: 25px;
+    background-color: black;
+  `;
   const card = {
     marginBottom: "1px",
     cursor: "pointer",
@@ -72,12 +87,29 @@ function PreviewCroppedCard(props) {
   };
 
   return (
-    <div style={card}>
-      <div style={manaStyle}>{manaCost}</div>
-      <div style={imageStyle}></div>
-      <div style={nameStyle}>{name}</div>
-      <div style={quantityStyle}>{quantity}</div>
-    </div>
+    <React.Fragment>
+      <CardStyle
+        onMouseEnter={() => setShow(true)}
+        onMouseLeave={() => setShow(false)}
+      >
+        {show && (
+          <img
+            src={image}
+            alt="kartya"
+            style={{
+              position: "absolute",
+              height: "300px",
+              left: "-100%",
+              top: "-130px",
+            }}
+          />
+        )}
+        <div style={manaStyle}>{manaCost}</div>
+        <div style={imageStyle}></div>
+        <div style={nameStyle}>{name}</div>
+        <div style={quantityStyle}>{quantity}</div>
+      </CardStyle>
+    </React.Fragment>
   );
 }
 
