@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import Card from "./Card";
 import { CardsContext } from "../../DataStore/CardsContext";
 import { DeckContext } from "../../DataStore/DeckContext";
@@ -12,14 +12,14 @@ export default function CardListed(props) {
       {cards &&
         cards
           .filter(
-            card =>
+            (card) =>
               (card.cropImage !== null &&
                 format === 1 &&
                 wildSets.includes(card.cardSetId)) ||
               card.cardSetId === 2 ||
               card.cardSetId === 3
           )
-          .map(card => <Card key={card.id} card={card} />)}
+          .map((card) => <Card key={card.id} card={card} />)}
     </React.Fragment>
   );
 }

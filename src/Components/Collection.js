@@ -9,27 +9,25 @@ const CollectionStyle = {
   maxWidth: `80vw`,
   flexWrap: `wrap`,
   display: `flex`,
-  justifyContent: `flex-start`
+  justifyContent: `flex-start`,
 };
 
 export default function Collection() {
-  const { decks, setDecks } = useContext(CollectionContext);
-  const { setFormat } = useContext(DeckContext);
-  const { trigger } = useContext(UserContext);
+  const { decks, setDecks, loadDecks } = useContext(CollectionContext);
   useEffect(() => {
-    setFormat(2);
-  }, [setFormat, trigger]);
-
+    loadDecks();
+  }, [loadDecks]);
   return (
     <React.Fragment>
       <div style={CollectionStyle}>
-        {decks.map(deck => (
+        {decks.map((deck) => (
           <Deck
             key={deck.id}
             name={deck.name}
             heroId={deck.hero}
             deckcode={deck.deckcode}
             id={deck.id}
+            published={deck.published}
             setDecks={setDecks}
             decks={decks}
           />

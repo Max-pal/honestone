@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DeckContext } from "../DataStore/DeckContext";
 import getAccessToken from "../getAccessToken";
 import { heroImages } from "./Header/HeroSelect";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import deleteIcon from "../static/logos/X.svg";
+import publishedIcon from "../static/images/published.png";
+import privateIcon from "../static/images/private.png";
+import { honestoneAPI } from "./axiosos";
 
 const DeleteIcon = styled.img`
   position: absolute;
@@ -20,9 +23,26 @@ const DeleteIcon = styled.img`
     opacity: 1;
   }
 `;
+const PublishIcon = styled.img`
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  opacity: 0.5;
+  transform: inherit;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+  filter: invert(100%);
+  &:hover {
+    mix-blend-mode: difference;
+    opacity: 1;
+  }
+`;
 
 export default function Deck(props) {
   const { deleteDeck, loadDeck } = useContext(DeckContext);
+  const [published, setPublished] = useState(props.published);
 
   const imageSelector = () => {
     return heroImages.filter((hero) => {
@@ -65,7 +85,13 @@ export default function Deck(props) {
       <LinkStyle
         to="/deckbuilder/cardselect"
         onClick={() => {
-          loadDeck(props.deckcode, props.id, props.name, props.heroId);
+          loadDeck(
+            props.deckcode,
+            props.id,
+            props.name,
+            props.heroId,
+            published
+          );
         }}
       >
         <DeckStyle src={imageSelector()[0].collectionImg} alt="..I.." />
@@ -80,6 +106,17 @@ export default function Deck(props) {
           {props.name}
         </div>
       </LinkStyle>
+      <PublishIcon
+        src={published ? publishedIcon : privateIcon}
+        alt={published ? "published" : "private"}
+        onClick={() => {
+          honestoneAPI.put("http://localhost:8080/deck/published", {
+            id: props.id,
+            published: !published,
+          });
+          setPublished(!published);
+        }}
+      />
       <DeleteIcon
         src={deleteIcon}
         onClick={() => {

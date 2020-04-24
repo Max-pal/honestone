@@ -1,20 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
-import { CollectionContext } from "../DataStore/CollectionContext";
-import { heroImages } from "../Components/Header/HeroSelect";
+import React, { useContext, useEffect } from "react";
 import defaultProfilePic from "../static/images/blankprofilepic.png";
-import DeckList from "./DeckList";
-import { UserContext } from "../DataStore/UserProvider";
-import { honestoneAPI } from "../Components/axiosos";
+import DeckTable, { getDate } from "./DeckTable";
+import { CollectionContext } from "../DataStore/CollectionContext";
 import { ProfileContext } from "../DataStore/ProfileContext";
+import { LoadingContext } from "../DataStore/LoadingContext";
 
 export default function Profile() {
   const { decks } = useContext(CollectionContext);
-  const { username } = useContext(UserContext);
   const { profile, getProfileData } = useContext(ProfileContext);
+  const { setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
+    setLoading(true);
     getProfileData();
-  }, [getProfileData]);
+    setLoading(false);
+  }, [getProfileData, setLoading]);
 
   console.log(profile);
 
@@ -35,8 +35,8 @@ export default function Profile() {
       >
         <img src={defaultProfilePic} alt='' />
         <div>
-          <h2>{username}</h2>
-          <h4>re</h4>
+          <h2>{profile.username}</h2>
+          <h4>{getDate(profile.registrationDate)}</h4>
         </div>
         <div style={{ textAlign: "center" }}>
           <h3>Favourite Hero:</h3>
@@ -58,7 +58,7 @@ export default function Profile() {
             justifyContent: "center",
           }}
         >
-          <h2>#Decks: {decks.length}</h2>
+          <h2>#Decks: {profile.numberOfDecks}</h2>
         </div>
         <div>
           <h2>Comments:0</h2>
@@ -68,7 +68,7 @@ export default function Profile() {
         </div>
       </div>
       <div style={{ textAlign: "-webkit-center" }}>
-        <DeckList />
+        <DeckTable title='My Decks' decks={decks} myprofile />
       </div>
     </div>
   );

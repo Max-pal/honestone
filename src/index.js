@@ -5,6 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { white, amber, lightBlue } from "@material-ui/core/colors";
+import { LoadingProvider } from "./DataStore/LoadingContext";
 
 const theme = createMuiTheme({
   palette: {
@@ -21,7 +22,9 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <App />
+    <LoadingProvider>
+      <App />
+    </LoadingProvider>
   </MuiThemeProvider>,
   document.getElementById("root")
 );
