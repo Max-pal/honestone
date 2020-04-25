@@ -10,19 +10,6 @@ export default function Profile() {
   const { decks } = useContext(CollectionContext);
   const { username } = useContext(UserContext);
 
-  const sadBoi = () => {
-    let heroCount = new Map();
-    decks.map((deck) =>
-      heroCount.has(deck.hero)
-        ? heroCount.set(deck.hero, heroCount.get(deck.hero) + 1)
-        : heroCount.set(deck.hero, 0)
-    );
-    let favouriteHeroId = heroCount.keys(Math.max(heroCount.values))[0];
-    return heroImages.filter((hero) => {
-      return hero.id === favouriteHeroId;
-    });
-  };
-
   return (
     <div
       style={{
@@ -38,14 +25,19 @@ export default function Profile() {
           justifyContent: "space-evenly",
         }}
       >
-        <img src={defaultProfilePic} alt="" />
+        <img
+          src="https://media.tenor.com/images/f275448a47b765a8913bd9129325b28b/tenor.gif"
+          alt=""
+        />
         <div>
           <h2>Name: {username}</h2>
-          <h2>Registration Date: registryDate</h2>
+          <h2>
+            Registration Date:{" "}
+            {new Date().toJSON().slice(0, 10).replace(/-/g, "/")}
+          </h2>
         </div>
         <div style={{ textAlign: "center" }}>
           <h3>Favourite Hero:</h3>
-          <img src={sadBoi()} alt="" />
         </div>
       </div>
       <div
@@ -67,10 +59,10 @@ export default function Profile() {
           <h2>#Decks: {decks.length}</h2>
         </div>
         <div>
-          <h2>Comments:0</h2>
+          <h2>Comments:13</h2>
         </div>
         <div>
-          <h2>Votes: 0</h2>
+          <h2>Votes: 34</h2>
         </div>
       </div>
       <div style={{ textAlign: "-webkit-center" }}>

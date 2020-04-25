@@ -109,6 +109,17 @@ export function DeckProvider(props) {
     });
   };
 
+  const getManaCurve = () => {
+    let manacurve = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    cardsInDeck.forEach((card) => {
+      if (card.manaCost >= 7) {
+        manacurve[7] += card.quantity;
+      } else manacurve[card.manaCost] += card.quantity;
+    });
+    console.log(manacurve);
+    return manacurve;
+  };
+
   return (
     <DeckContext.Provider
       value={{
@@ -130,6 +141,7 @@ export function DeckProvider(props) {
         published,
         setPublished,
         handleSwitch,
+        getManaCurve,
       }}
     >
       {" "}
