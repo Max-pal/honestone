@@ -12,6 +12,9 @@ import CopyDeckcodeButton from "./CopyDeckcodeButton";
 import OpenInEditorButton from "./OpenInEditorButton";
 import CommentsBlock from "simple-react-comments";
 import ManaCurve from "./ManaCurve";
+import VoteButton from "./VoteButton";
+import minus from "../static/images/line.svg";
+import plus from "../static/images/signs.svg";
 
 function DeckPage(props) {
   const {
@@ -46,6 +49,22 @@ function DeckPage(props) {
           >
             <CopyDeckcodeButton />
             <OpenInEditorButton />
+            <VoteButton
+              endpoint={"like"}
+              voted={false}
+              filter={
+                "invert(45%) sepia(22%) saturate(1373%) hue-rotate(71deg) brightness(104%) contrast(93%)"
+              }
+              src={plus}
+            />
+            <VoteButton
+              endpoint={"dislike"}
+              voted={false}
+              filter={
+                "invert(50%) sepia(96%) saturate(7402%) hue-rotate(349deg) brightness(109%) contrast(114%)"
+              }
+              src={minus}
+            />
           </div>
         </div>
         <CommentsBlock
