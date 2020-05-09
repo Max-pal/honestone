@@ -24,6 +24,7 @@ import { LoadingProvider, LoadingContext } from "./DataStore/LoadingContext";
 import LoadingScreen from "react-loading-screen";
 import DeckPage from "./Components/DeckPage";
 import loadingIcon from "./static/images/loading.png";
+import { VoteContext, VoteProvider } from "./DataStore/VoteContext";
 
 function App(props) {
   const { loading } = useContext(LoadingContext);
@@ -39,45 +40,51 @@ function App(props) {
             <div>
               <CollectionProvider>
                 <DeckProvider>
-                  <DeckStringProvider>
-                    <LoadingScreen
-                      loading={loading}
-                      bgColor='#f1f1f1'
-                      spinnerColor='#9ee5f8'
-                      textColor='#676767'
-                      logoSrc={loadingIcon}
-                      text='Loading...'
-                    >
-                      <Route
-                        path='/deckbuilder/heroselect'
-                        component={HeroSelect}
-                      />
-                      <StartHandProvider>
+                  <VoteProvider>
+                    <DeckStringProvider>
+                      <LoadingScreen
+                        loading={loading}
+                        bgColor='#f1f1f1'
+                        spinnerColor='#9ee5f8'
+                        textColor='#676767'
+                        logoSrc={loadingIcon}
+                        text='Loading...'
+                      >
                         <Route
-                          path='/handsimulator'
-                          component={StartHandSimulator}
+                          path='/deckbuilder/heroselect'
+                          component={HeroSelect}
                         />
-                      </StartHandProvider>
-                      <Route exact path='/collection' component={Collection} />
-                      <Route exact path='/browser' component={Browser} />
-                      <Route exact path='/deckpage' component={DeckPage} />
-                      <Grid container direction='row'>
-                        <LeftPane />
-                        <Route
-                          path='/deckbuilder/cardselect'
-                          exact
-                          component={() => <RightPane position='sticky' />}
-                        />
-                        <ProfileProvider>
+                        <StartHandProvider>
                           <Route
-                            path='/profile'
-                            exact
-                            component={() => <Profile />}
+                            path='/handsimulator'
+                            component={StartHandSimulator}
                           />
-                        </ProfileProvider>
-                      </Grid>
-                    </LoadingScreen>
-                  </DeckStringProvider>
+                        </StartHandProvider>
+                        <Route
+                          exact
+                          path='/collection'
+                          component={Collection}
+                        />
+                        <Route exact path='/browser' component={Browser} />
+                        <Route exact path='/deckpage' component={DeckPage} />
+                        <Grid container direction='row'>
+                          <LeftPane />
+                          <Route
+                            path='/deckbuilder/cardselect'
+                            exact
+                            component={() => <RightPane position='sticky' />}
+                          />
+                          <ProfileProvider>
+                            <Route
+                              path='/profile'
+                              exact
+                              component={() => <Profile />}
+                            />
+                          </ProfileProvider>
+                        </Grid>
+                      </LoadingScreen>
+                    </DeckStringProvider>
+                  </VoteProvider>
                 </DeckProvider>
               </CollectionProvider>
             </div>

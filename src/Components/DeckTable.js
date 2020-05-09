@@ -133,7 +133,9 @@ function DeckTable(props) {
                   {!props.myprofile && (
                     <TableCell align='center'>{deck.user.username}</TableCell>
                   )}
-                  <TableCell>{getDate(deck.updateTime)}</TableCell>
+                  <TableCell align="center">
+                    {getDate(deck.updateTime)}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

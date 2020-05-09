@@ -16,8 +16,6 @@ export default function Profile() {
     setLoading(false);
   }, [getProfileData, setLoading]);
 
-  console.log(profile);
-
   return (
     <div
       style={{
@@ -33,7 +31,10 @@ export default function Profile() {
           justifyContent: "space-evenly",
         }}
       >
-        <img src={defaultProfilePic} alt='' />
+        <img
+          src='https://media.tenor.com/images/f275448a47b765a8913bd9129325b28b/tenor.gif'
+          alt=''
+        />
         <div>
           <h2>{profile.username}</h2>
           <h4>{getDate(profile.registrationDate)}</h4>
@@ -61,10 +62,10 @@ export default function Profile() {
           <h2>#Decks: {profile.numberOfDecks}</h2>
         </div>
         <div>
-          <h2>Comments:0</h2>
+          <h2>Comments:13</h2>
         </div>
         <div>
-          <h2>Votes: 0</h2>
+          <h2>Votes: 34</h2>
         </div>
       </div>
       <div style={{ textAlign: "-webkit-center" }}>
