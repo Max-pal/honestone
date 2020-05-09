@@ -131,7 +131,7 @@ function DeckTable(props) {
                     {deck.format == 2 ? "Standard" : "Wild"}
                   </TableCell>
                   {!props.myprofile && (
-                    <TableCell align="center">{deck.user.username}</TableCell>
+                    <TableCell align="center">{deck.username}</TableCell>
                   )}
                   <TableCell align="center">
                     {getDate(deck.updateTime)}

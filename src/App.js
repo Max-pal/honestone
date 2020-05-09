@@ -23,7 +23,7 @@ import { LoadingProvider, LoadingContext } from "./DataStore/LoadingContext";
 import LoadingScreen from "react-loading-screen";
 import DeckPage from "./Components/DeckPage";
 import loadingIcon from "./static/images/loading.png";
-import { VoteContext, VoteProvider } from "./DataStore/VoteContext";
+import { VoteProvider } from "./DataStore/VoteContext";
 
 function App(props) {
   const { loading } = useContext(LoadingContext);
