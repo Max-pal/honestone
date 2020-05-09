@@ -11,7 +11,7 @@ export function ProfileProvider(props) {
   const getProfileData = useCallback(() => {
     if (userId !== -1) {
       honestoneAPI
-        .get(`http://localhost:8080/user/profile/get/${userId}`)
+        .get(`http://localhost:8080/profile/${userId}`)
         .then(({ data }) => {
           setProfile(data);
         });
