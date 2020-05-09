@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { DeckContext } from "../DataStore/DeckContext";
 import styled from "styled-components";
 
-const getDate = (dateTime) => {
+export const getDate = (dateTime) => {
   const d = new Date(dateTime);
   let year = d.getFullYear();
   let month = d.getMonth() + 1;
@@ -128,7 +128,7 @@ function DeckTable(props) {
                     </Link>
                   </TableCell>
                   <TableCell align="center">
-                    {deck.format == 2 ? "Standard" : "Wild"}
+                    {deck.format === 2 ? "Standard" : "Wild"}
                   </TableCell>
                   {!props.myprofile && (
                     <TableCell align="center">{deck.username}</TableCell>

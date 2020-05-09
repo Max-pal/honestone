@@ -1,14 +1,20 @@
-import React, { useContext } from "react";
-import { CollectionContext } from "../DataStore/CollectionContext";
-import { heroImages } from "../Components/Header/HeroSelect";
+import React, { useContext, useEffect } from "react";
 import defaultProfilePic from "../static/images/blankprofilepic.png";
-import DeckList from "./DeckList";
-import { UserContext } from "../DataStore/UserProvider";
-import DeckTable from "./DeckTable";
+import DeckTable, { getDate } from "./DeckTable";
+import { CollectionContext } from "../DataStore/CollectionContext";
+import { ProfileContext } from "../DataStore/ProfileContext";
+import { LoadingContext } from "../DataStore/LoadingContext";
 
 export default function Profile() {
   const { decks } = useContext(CollectionContext);
-  const { username } = useContext(UserContext);
+  const { profile, getProfileData } = useContext(ProfileContext);
+  const { setLoading } = useContext(LoadingContext);
+
+  useEffect(() => {
+    setLoading(true);
+    getProfileData();
+    setLoading(false);
+  }, [getProfileData, setLoading]);
 
   return (
     <div
@@ -26,18 +32,16 @@ export default function Profile() {
         }}
       >
         <img
-          src="https://media.tenor.com/images/f275448a47b765a8913bd9129325b28b/tenor.gif"
-          alt=""
+          src='https://media.tenor.com/images/f275448a47b765a8913bd9129325b28b/tenor.gif'
+          alt=''
         />
         <div>
-          <h2>Name: {username}</h2>
-          <h2>
-            Registration Date:{" "}
-            {new Date().toJSON().slice(0, 10).replace(/-/g, "/")}
-          </h2>
+          <h2>{profile.username}</h2>
+          <h4>{getDate(profile.registrationDate)}</h4>
         </div>
         <div style={{ textAlign: "center" }}>
           <h3>Favourite Hero:</h3>
+          <img src='' alt='' />
         </div>
       </div>
       <div
@@ -47,7 +51,6 @@ export default function Profile() {
           display: "flex",
           flexWrap: "wrap",
         }}
-        f
       >
         <div
           style={{
@@ -56,7 +59,7 @@ export default function Profile() {
             justifyContent: "center",
           }}
         >
-          <h2>#Decks: {decks.length}</h2>
+          <h2>#Decks: {profile.numberOfDecks}</h2>
         </div>
         <div>
           <h2>Comments:13</h2>
@@ -66,7 +69,7 @@ export default function Profile() {
         </div>
       </div>
       <div style={{ textAlign: "-webkit-center" }}>
-        <DeckTable title="My Decks" decks={decks} myprofile />
+        <DeckTable title='My Decks' decks={decks} myprofile />
       </div>
     </div>
   );

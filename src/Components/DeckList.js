@@ -6,7 +6,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import { CollectionContext } from "../DataStore/CollectionContext";
 import { heroImages } from "../Components/Header/HeroSelect";
-import { Paper, TableContainer } from "@material-ui/core";
+import { TableContainer } from "@material-ui/core";
 
 const useStyles = makeStyles({
   table: {
@@ -27,15 +27,19 @@ export default function DeckList() {
 
   return (
     <TableContainer style={{ margin: "auto" }}>
-      <Table className={classes.table} aria-label="decklist">
+      <Table className={classes.table} aria-label='decklist'>
         <TableBody>
           {decks.map((deck) => (
             <TableRow key={deck.id}>
-              <TableCell component="th" scope="row">
-                <img src={imageSelector(deck)[0].icon} alt="" /> {deck.name}
+              <TableCell component='th' scope='row'>
+                <img src={imageSelector(deck)[0].icon} alt='' /> {deck.name}
               </TableCell>
-              <TableCell align="right">{deck.format}</TableCell>
-              <TableCell align="right">{deck.hero}</TableCell>
+              <TableCell align='center'>
+                {deck.format === 2 ? "standard" : "wild"}
+              </TableCell>
+              <TableCell align='center'>
+                {imageSelector(deck)[0].name}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

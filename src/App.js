@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import Fab from "@material-ui/core/Fab";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { CardsProvider } from "./DataStore/CardsContext";
 import { DeckProvider } from "./DataStore/DeckContext";
 import LeftPane from "./Components/LeftPane/LeftPane";
 import RightPane from "./Components/RightPane/RightPane";
 import { HeroSelect } from "./Components/Header/HeroSelect";
 import Header from "./Components/Header/Header";
-import Fab from "@material-ui/core/Fab";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import ScrollTop from "./Components/Header/ScrollTop";
 import Registry from "./Components/Registry";
 import { UserProvider } from "./DataStore/UserProvider";
@@ -17,6 +17,7 @@ import StartHandSimulator from "./Components/LeftPane/StartHandSimulator";
 import Collection from "./Components/Collection";
 import { StartHandProvider } from "./DataStore/StartHandContext";
 import { CollectionProvider } from "./DataStore/CollectionContext";
+import { ProfileProvider } from "./DataStore/ProfileContext";
 import Profile from "./Components/Profile";
 import Browser from "./Components/Browser";
 import { LoadingProvider, LoadingContext } from "./DataStore/LoadingContext";
@@ -31,7 +32,7 @@ function App(props) {
   return (
     <BrowserRouter>
       <CardsProvider>
-        <div className="App">
+        <div className='App'>
           <UserProvider>
             <Header />
             <Registry />
@@ -43,41 +44,43 @@ function App(props) {
                     <DeckStringProvider>
                       <LoadingScreen
                         loading={loading}
-                        bgColor="#f1f1f1"
-                        spinnerColor="#9ee5f8"
-                        textColor="#676767"
+                        bgColor='#f1f1f1'
+                        spinnerColor='#9ee5f8'
+                        textColor='#676767'
                         logoSrc={loadingIcon}
-                        text="Loading..."
+                        text='Loading...'
                       >
                         <Route
-                          path="/deckbuilder/heroselect"
+                          path='/deckbuilder/heroselect'
                           component={HeroSelect}
                         />
                         <StartHandProvider>
                           <Route
-                            path="/handsimulator"
+                            path='/handsimulator'
                             component={StartHandSimulator}
                           />
                         </StartHandProvider>
                         <Route
                           exact
-                          path="/collection"
+                          path='/collection'
                           component={Collection}
                         />
-                        <Route exact path="/browser" component={Browser} />
-                        <Route exact path="/deckpage" component={DeckPage} />
-                        <Grid container direction="row">
+                        <Route exact path='/browser' component={Browser} />
+                        <Route exact path='/deckpage' component={DeckPage} />
+                        <Grid container direction='row'>
                           <LeftPane />
                           <Route
-                            path="/deckbuilder/cardselect"
+                            path='/deckbuilder/cardselect'
                             exact
-                            component={() => <RightPane position="sticky" />}
+                            component={() => <RightPane position='sticky' />}
                           />
-                          <Route
-                            path="/profile"
-                            exact
-                            component={() => <Profile />}
-                          />
+                          <ProfileProvider>
+                            <Route
+                              path='/profile'
+                              exact
+                              component={() => <Profile />}
+                            />
+                          </ProfileProvider>
                         </Grid>
                       </LoadingScreen>
                     </DeckStringProvider>
@@ -89,7 +92,7 @@ function App(props) {
         </div>
       </CardsProvider>
       <ScrollTop {...props}>
-        <Fab color="secondary" size="large" aria-label="scroll back to top">
+        <Fab color='secondary' size='large' aria-label='scroll back to top'>
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
