@@ -84,7 +84,7 @@ export function DeckProvider(props) {
     };
     honestoneAPI
       .post(
-        "Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/save",
+        "https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/save",
         Deck,
         {
           headers: {
@@ -98,7 +98,7 @@ export function DeckProvider(props) {
 
   const deleteDeck = (deckId) => {
     honestoneAPI.delete(
-      `Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/${deckId}`
+      `https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/${deckId}`
     );
   };
 
@@ -110,7 +110,7 @@ export function DeckProvider(props) {
 
   const handleSwitch = (checked) => {
     honestoneAPI.put(
-      "Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/published",
+      "https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/published",
       {
         id: deckId,
         published: checked,

@@ -12,13 +12,13 @@ function Browser() {
     setLoading(true);
     honestoneAPI
       .get(
-        "Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/all-public"
+        "https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/all-public"
       )
       .then((resp) => setDecks(resp.data))
       .then(() =>
         honestoneAPI
           .get(
-            "Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/most-recent/40"
+            "https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/most-recent/40"
           )
           .then((resp) => setRecentDecks(resp.data))
       )

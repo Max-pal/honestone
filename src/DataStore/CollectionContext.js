@@ -18,7 +18,7 @@ export function CollectionProvider(props) {
     if (userId !== -1) {
       honestoneAPI
         .get(
-          `Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/get/${userId}`
+          `https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/get/${userId}`
         )
         .then(({ data }) => {
           setDecks(data);
