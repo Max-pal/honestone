@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { honestoneAPI } from "../Components/axiosos";
 import { LoadingContext } from "../DataStore/LoadingContext";
 import DeckTable from "./DeckTable";
+import styled from "styled-components";
 
 function Browser() {
   const [decks, setDecks] = useState(null);
@@ -23,11 +24,18 @@ function Browser() {
       });
   }, [setLoading]);
 
+  const ContainerStyle = styled.div`
+    margin: auto;
+    max-width: 80%;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+  `;
   return (
-    <React.Fragment>
+    <ContainerStyle>
       <DeckTable title="All Decks" decks={decks} align="left" />
       <DeckTable title="Recent Decks" decks={recentDecks} align="right" />
-    </React.Fragment>
+    </ContainerStyle>
   );
 }
 

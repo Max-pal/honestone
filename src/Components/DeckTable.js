@@ -66,14 +66,7 @@ function DeckTable(props) {
   const classes = useStyles();
   const { loadDeck } = useContext(DeckContext);
   return (
-    <div
-      style={{
-        display: "inline-block",
-        float: props.align,
-        marginLeft: props.align === "left" ? "10%" : "0",
-        marginRight: props.align === "right" ? "10%" : "0",
-      }}
-    >
+    <div>
       <Typography
         className={classes.title}
         variant="h6"
