@@ -110,10 +110,13 @@ export default function Deck(props) {
         src={published ? publishedIcon : privateIcon}
         alt={published ? "published" : "private"}
         onClick={() => {
-          honestoneAPI.put("http://localhost:8080/deck/published", {
-            id: props.id,
-            published: !published,
-          });
+          honestoneAPI.put(
+            "Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/published",
+            {
+              id: props.id,
+              published: !published,
+            }
+          );
           setPublished(!published);
         }}
       />

@@ -11,7 +11,9 @@ export function ProfileProvider(props) {
   const getProfileData = useCallback(() => {
     if (userId !== -1) {
       honestoneAPI
-        .get(`http://localhost:8080/profile/${userId}`)
+        .get(
+          `Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/profile/${userId}`
+        )
         .then(({ data }) => {
           setProfile(data);
         });

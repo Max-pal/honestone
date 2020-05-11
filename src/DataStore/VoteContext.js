@@ -7,9 +7,12 @@ export const VoteContext = createContext();
 export function VoteProvider(props) {
   const { deckId } = useContext(DeckContext);
   const handleVote = (endpoint) => {
-    honestoneAPI.post(`http://localhost:8080/vote/${endpoint}`, {
-      deckId,
-    });
+    honestoneAPI.post(
+      `Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/vote/${endpoint}`,
+      {
+        deckId,
+      }
+    );
   };
 
   return (

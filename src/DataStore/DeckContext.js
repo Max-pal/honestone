@@ -83,17 +83,23 @@ export function DeckProvider(props) {
       published: published,
     };
     honestoneAPI
-      .post("http://localhost:8080/deck/save", Deck, {
-        headers: {
-          "user-id": userId,
-        },
-      })
+      .post(
+        "Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/save",
+        Deck,
+        {
+          headers: {
+            "user-id": userId,
+          },
+        }
+      )
       .then(() => loadDecks())
       .then(() => setLoading(false));
   };
 
   const deleteDeck = (deckId) => {
-    honestoneAPI.delete(`http://localhost:8080/deck/${deckId}`);
+    honestoneAPI.delete(
+      `Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/${deckId}`
+    );
   };
 
   useEffect(() => {
@@ -103,10 +109,13 @@ export function DeckProvider(props) {
   }, [cardsInDeck]);
 
   const handleSwitch = (checked) => {
-    honestoneAPI.put("http://localhost:8080/deck/published", {
-      id: deckId,
-      published: checked,
-    });
+    honestoneAPI.put(
+      "Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/published",
+      {
+        id: deckId,
+        published: checked,
+      }
+    );
   };
 
   const getManaCurve = () => {

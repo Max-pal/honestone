@@ -17,7 +17,9 @@ export function CollectionProvider(props) {
   const loadDecks = useCallback(() => {
     if (userId !== -1) {
       honestoneAPI
-        .get(`http://localhost:8080/deck/get/${userId}`)
+        .get(
+          `Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/get/${userId}`
+        )
         .then(({ data }) => {
           setDecks(data);
         });

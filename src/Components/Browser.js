@@ -11,11 +11,15 @@ function Browser() {
   useEffect(() => {
     setLoading(true);
     honestoneAPI
-      .get("http://localhost:8080/deck/all-public")
+      .get(
+        "Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/all-public"
+      )
       .then((resp) => setDecks(resp.data))
       .then(() =>
         honestoneAPI
-          .get("http://localhost:8080/deck/most-recent/40")
+          .get(
+            "Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/most-recent/40"
+          )
           .then((resp) => setRecentDecks(resp.data))
       )
       .then(() => {
