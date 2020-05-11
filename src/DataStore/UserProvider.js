@@ -18,7 +18,7 @@ export function UserProvider(props) {
 
   function register(userInformation) {
     Axios.post(
-      "https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/auth/register",
+      "http://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/auth/register",
       userInformation
     )
 
@@ -35,7 +35,7 @@ export function UserProvider(props) {
   function login({ username, password }) {
     honestoneAPI
       .post(
-        "https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/auth/login",
+        "http://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/auth/login",
         { username, password }
       )
       .then((resp) => {

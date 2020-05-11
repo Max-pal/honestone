@@ -12,7 +12,7 @@ export function ProfileProvider(props) {
     if (userId !== -1) {
       honestoneAPI
         .get(
-          `https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/profile/${userId}`
+          `http://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/profile/${userId}`
         )
         .then(({ data }) => {
           setProfile(data);
