@@ -8,7 +8,7 @@ export function VoteProvider(props) {
   const { deckId } = useContext(DeckContext);
   const handleVote = (endpoint) => {
     honestoneAPI.post(
-      `https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/vote/${endpoint}`,
+      `Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/vote/${endpoint}`,
       {
         deckId,
       }
