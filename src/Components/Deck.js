@@ -111,7 +111,7 @@ export default function Deck(props) {
         alt={published ? "published" : "private"}
         onClick={() => {
           honestoneAPI.put(
-            "http://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/published",
+            "https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/deck/published",
             {
               id: props.id,
               published: !published,
