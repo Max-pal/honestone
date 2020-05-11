@@ -17,10 +17,7 @@ export function UserProvider(props) {
   };
 
   function register(userInformation) {
-    Axios.post(
-      "https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/auth/register",
-      userInformation
-    )
+    Axios.post("https://honestone.herokuapp.com/auth/register", userInformation)
 
       .then((resp) => {
         if (resp.status === 200) {
@@ -34,10 +31,10 @@ export function UserProvider(props) {
 
   function login({ username, password }) {
     honestoneAPI
-      .post(
-        "https://Honestone-env.eba-k4swcanf.eu-central-1.elasticbeanstalk.com/auth/login",
-        { username, password }
-      )
+      .post("https://honestone.herokuapp.com/auth/login", {
+        username,
+        password,
+      })
       .then((resp) => {
         if (resp.status === 200) {
           setCredentials(resp.data);
