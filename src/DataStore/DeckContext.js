@@ -116,7 +116,6 @@ export function DeckProvider(props) {
         manacurve[7] += card.quantity;
       } else manacurve[card.manaCost] += card.quantity;
     });
-    console.log(manacurve);
     return manacurve;
   };
 
@@ -144,8 +143,6 @@ export function DeckProvider(props) {
         getManaCurve,
       }}
     >
-      {" "}
-      {console.log("im stupid")}
       {props.children}
     </DeckContext.Provider>
   );

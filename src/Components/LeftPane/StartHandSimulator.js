@@ -8,7 +8,6 @@ export default function StartHandSimulator() {
     StartHandContext
   );
   const [generatedCards, setGeneratedCards] = useState([]);
-  console.log("Bazdmeg");
 
   useEffect(() => {
     setGeneratedCards(generateStartingHand());
@@ -25,14 +24,14 @@ export default function StartHandSimulator() {
   `;
 
   const centered = {
-    textAlign: "center"
+    textAlign: "center",
   };
 
   return (
     <React.Fragment>
       <h2 style={{ ...centered, color: "#808080" }}>Your Starting Hand</h2>
       <div style={centered}>
-        {generatedCards.map(card => (
+        {generatedCards.map((card) => (
           <StyledCard src={card.image} alt="" />
         ))}
       </div>

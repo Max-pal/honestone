@@ -34,7 +34,6 @@ export function ImportDeck() {
   const classes = useStyles();
   const { cardsInDeck, setCardsInDeck, setHero } = useContext(DeckContext);
   const [deckString, setDeckString] = useState("");
-  console.log("renderelődök éppen :)");
 
   return (
     <FormControl fullWidth={true}>
@@ -53,7 +52,6 @@ export function ImportDeck() {
           variant="outlined"
           color="primary"
           onClick={() => {
-            console.log("fetched");
             getAccessToken().then((token) => {
               blizzardAPI
                 .get(

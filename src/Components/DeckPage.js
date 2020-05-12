@@ -128,7 +128,6 @@ function DeckPage(props) {
                   },
                 ],
               });
-              console.log("submit:", text);
             }
           }}
         />
