@@ -30,16 +30,14 @@ export function UserProvider(props) {
   }
 
   function login({ username, password }) {
-    honestoneAPI
-      .post("https://honestone.herokuapp.com/auth/login", {
-        username,
-        password,
-      })
-      .then((resp) => {
-        if (resp.status === 200) {
-          setCredentials(resp.data);
-        }
-      });
+    Axios.post("https://honestone.herokuapp.com/auth/login", {
+      username,
+      password,
+    }).then((resp) => {
+      if (resp.status === 200) {
+        setCredentials(resp.data);
+      }
+    });
   }
 
   return (
