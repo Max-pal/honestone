@@ -12,7 +12,15 @@ job('NodeJS example') {
         nodejs('nodejs')
     }
     steps {
-        shell("npm install")
+        dockerBuildAndPublish {
+        repositoryName('macxsimilian/honestone')
+        tag('${GIT_REVISION,length=9}')
+        registryCredentials('dockeerhub')
+        forcePull(false)
+        forceTag(false)
+        createFintferprints(false)
+        skipDecorate()
+        }
     }
 }
 
