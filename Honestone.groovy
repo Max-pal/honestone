@@ -15,7 +15,7 @@ job('NodeJS example') {
         dockerBuildAndPublish {
         repositoryName('macxsimilian/honestone')
         tag('${GIT_REVISION,length=9}')
-        registryCredentials('dockeerhub')
+        registryCredentials('dockerhub')
         forcePull(false)
         forceTag(false)
         createFintferprints(false)
