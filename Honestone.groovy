@@ -20,6 +20,7 @@ job('NodeJS example') {
         forceTag(false)
         createFingerprints(false)
         skipDecorate()
+        // comment for Jenkins
         }
     }
 }
