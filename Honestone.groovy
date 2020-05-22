@@ -18,7 +18,7 @@ job('NodeJS example') {
         registryCredentials('dockerhub')
         forcePull(false)
         forceTag(false)
-        createFintferprints(false)
+        createFingerprints(false)
         skipDecorate()
         }
     }
